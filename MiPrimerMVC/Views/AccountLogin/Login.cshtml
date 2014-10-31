@@ -1,0 +1,121 @@
+﻿@using Domain.Entities
+@using Domain.Services
+@model MiPrimerMVC.Models.AccountLoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sales|Login </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/TmpLogin/styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/TmpLogin/styles/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="~/TmpLogin/css/preview.min.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css' />
+    <link href="~/TmpLogin/styles/font-awesome.min.css" rel="stylesheet" />
+
+    <!--[if IE 7]>
+        <link href="~/TmpLogin/styles/font-awesome-ie7.min.css" rel="stylesheet" />
+    <![endif]-->
+    <!--[if IE 8]>
+        <style type="text/css">
+        .navbar-inner{
+            filter:none;
+        }
+         </style>
+        <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div class="divider large visible-desktop"></div>
+    <div class="row-fluid" id="demo-1">
+        <div class="span10 offset1">
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#panel1" ><i class="icon-lock"></i>&nbsp;<span>Login Panel</span></a></li>
+                    <li><a href="~/Register/Register" ><i class="icon-user"></i>&nbsp;<span>Register Panel</span></a></li>
+                    <li><a href="~/ForgotPassword/ForgotPassword"><i class="icon-key"></i>&nbsp;<span>Forgot Password</span></a></li>
+                    <li><a href="#panel4" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Contact Us</span></a></li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active" id="panel1">
+                        <div class="row-fluid">
+                            <div class="span5">
+                                <h4><i class="icon-user"></i>&nbsp;&nbsp; Login Here</h4>
+                                <!--AccountLogin-Form-->
+                                @using (Html.BeginForm("Login", "AccountLogin", null, FormMethod.Post, new { @class = "form-horizontal" }))
+                                {
+                                    
+                                <label>Username</label>
+                                @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", type = "email",placeholder="First.Last@example.com", @required = "required" })
+                                <label>Password<a href="#panel3" class="pull-right"><i class="icon-question-sign" ></i>&nbsp;Forgot Password</a> </label>
+                                @Html.TextBoxFor(x => x.Password, new { @class = "input-block-level", type = "password", @required = "required" })
+                                
+                                
+                                <label>
+                                    <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
+                                    &nbsp;&nbsp;&nbsp;Remember Me
+                                </label>
+                                <br />
+                                
+                                    <button class=" btn  " type="submit">Sign In&nbsp;&nbsp;&nbsp;<i class=" icon-chevron-sign-right"></i></button>
+                                }
+                            </div>
+                            <div class="span3">
+                                <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
+                                <div class="socials clearfix">
+                                    <a class="icon-facebook facebook"></a>
+                                    <a class="icon-twitter twitter"></a>
+                                    <a class="icon-google-plus google-plus"></a>
+                                    <a class="icon-pinterest pinterest"></a>
+                                    <a class="icon-linkedin linked-in"></a>
+                                    <a class="icon-github github"></a>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <h4><i class="icon-question"></i>&nbsp;&nbsp;Registration</h4>
+                                <div class="box">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel.
+                                    </p>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in.
+                                    </p>
+                                </div>
+                                <div class="box">
+                                    Don't Have An Account.<br />
+                                    Click Here For <a href="#" data-toggle="tab">Free Register</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="panel2">
+                   
+                    </div>
+
+                    <div class="tab-pane" id="panel3">
+                   
+
+
+                    </div>
+                    <div id="panel4" class="tab-pane">
+       
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+    <script src="~/TmpLogin/scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/TmpLogin/scripts/bootstrap.min.js"></script>
+    <script src="~/TmpLogin/scripts/tabs-addon.js"></script>
+    
+
+</body>
+</html>

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace MiPrimerMVC.Models
 {
     public class AccountLoginModel

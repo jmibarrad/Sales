@@ -16,7 +16,7 @@ namespace MiPrimerMVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "CalculadoraRomana", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "AccountLogin", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

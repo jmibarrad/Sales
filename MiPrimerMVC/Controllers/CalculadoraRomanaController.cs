@@ -40,8 +40,7 @@ namespace MiPrimerMVC.Controllers
         public ActionResult Index(Calculadora calculadora)
         {
             
-            var operacion = new Operaciones("1");
-
+            var operacion = new Operaciones("");
             if (calculadora.Entrada.Contains("-"))
             {
                 operacion.Operador = "-";

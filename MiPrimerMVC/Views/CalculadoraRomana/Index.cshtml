@@ -5,10 +5,10 @@
 
 @{
     ViewBag.Title = "Calculadora Romana";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Calculadora Romana</h2>
+<h2>Calculadora HOLA Romana</h2>
 
 @using (Html.BeginForm("Index","CalculadoraRomana",null,FormMethod.Post,new {@class="form-horizontal"})) {
 
@@ -34,7 +34,7 @@
                 <td>Acciones</td>
             </tr>
         </thead>
-        <tbody>
+        <tbody>@*
             @foreach (Operaciones operacion in Model.Operaciones)
             {
                 <tr>
@@ -51,6 +51,7 @@
                     </td>
                 </tr>
             }
+        *@
         </tbody>
     </table>
 </div>

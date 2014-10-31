@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{8FF0E059-7790-46DA-AD06-DD60F8AE95E8}</Project>
+      <Project>{8ff0e059-7790-46da-ad06-dd60f8ae95e8}</Project>
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>

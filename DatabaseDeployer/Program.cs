@@ -35,6 +35,8 @@ namespace DatabaseDeployer
                 dd.Seed(new List<IDataSeeder>
                 {
                     new OperacionesSeeder(session),
+                    new AccountSeeder(session),
+                    new ClassifiedsSeeder(session),
                     new ObjectSeeder(session)
                 });
                 tx.Commit();
@@ -53,6 +55,7 @@ namespace DatabaseDeployer
         public ObjectSeeder(ISession session)
         {
             _session = session;
+            
         }
 
         public void Seed()
