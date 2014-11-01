@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Configuration;
 using System.Web;
 using System.Web.Mvc;
 using System.Windows.Forms;
@@ -42,8 +43,11 @@ namespace MiPrimerMVC.Controllers
                 }
                 else
                 {
+                    if (Session["Accounts"] == null)
                     Session["Accounts"] = user;
-                    return RedirectToAction("ToHome");
+
+
+                    return RedirectToAction("ToInbox");
                 }
             }
 
@@ -55,7 +59,23 @@ namespace MiPrimerMVC.Controllers
         
         public ActionResult ToInbox()
         {
-            return View();
+            //direct user value
+            //var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == 1);
+            //Try Sessions
+            
+            var user = (AccountLogin)Session["Accounts"];
+            Session["Accounts"] = user;
+            var mModel = new MessagesModel();
+            var x = _readOnlyRepository.GetById<AccountLogin>(user.Id);
+            mModel.MessagesList= x.AccountMessages.ToList();
+            return View(mModel);
+        }
+
+        [HttpPost]
+        public ActionResult ToInbox(MessagesModel Model)
+        {
+
+            return View(Model);
         }
 
         public ActionResult ToHome()
