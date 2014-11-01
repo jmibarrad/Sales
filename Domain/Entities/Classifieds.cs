@@ -11,13 +11,14 @@ namespace Domain.Entities
     {
 
         public virtual long Id { get; set; }
-        public virtual bool Archived { get; set; }
+        public virtual bool Archived { get; protected set; }
         public virtual string Category { get; set; }
         public virtual string Article { get; set; }
         public virtual string ArticleModel { get; set; }
         public virtual float Price { get; set; }
         public virtual string Location { get; set; }
-        //public virtual DateTime PostedDate { get; set; }
+        public virtual DateTime PostedDate { get; set; }
+        public virtual int Likes { get; set; }
 
          public Classifieds(string Category,string Article, string ArticleModel, string Location, float Price)
          {
@@ -26,13 +27,16 @@ namespace Domain.Entities
             this.ArticleModel = ArticleModel;
             this.Location = Location;
             this.Price = Price;
-            //PostedDate= new DateTime();
+            PostedDate= DateTime.Today;
             Archived = false;
-        }
+             Likes = 0;
+         }
 
          public Classifieds()
          {
-             // TODO: Complete member initialization
+             Archived = false;
+             PostedDate = DateTime.Today;
+             Likes = 0;
          }
 
 
@@ -44,6 +48,17 @@ namespace Domain.Entities
         public virtual void Activate()
         {
             Archived = false;
+        }
+
+        public virtual void LikeDislike(long classified)
+        {
+        
+            //var classifiedToBeRated = .FirstOrDefault(x => x.Id == classifiedId);
+            //if (classifiedToBeArchived != null)
+            //{
+            //    classifiedToBeArchived.Archive();
+            //}
+       
         }
     }
 }

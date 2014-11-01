@@ -22,10 +22,10 @@ namespace MiPrimerMVC.Controllers
 
         public ActionResult Login()
         {
-
             return View(new AccountLoginModel());
         }
 
+        
         [HttpPost]
         public ActionResult Login(AccountLoginModel login)
         {
@@ -42,11 +42,20 @@ namespace MiPrimerMVC.Controllers
                 }
                 else
                 {
+                    Session["Accounts"] = user;
                     return RedirectToAction("ToHome");
                 }
             }
 
             return View(login);
+        }
+
+
+
+        
+        public ActionResult ToInbox()
+        {
+            return View();
         }
 
         public ActionResult ToHome()

@@ -51,6 +51,7 @@ namespace Data
         {
             ISession session = _session;
             session.Update(itemToUpdate);
+            session.Flush();
             return itemToUpdate;
         }
     }

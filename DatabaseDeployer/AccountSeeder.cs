@@ -8,6 +8,7 @@ using Domain.Services;
 using DomainDrivenDatabaseDeployer;
 using FizzWare.NBuilder;
 using NHibernate;
+using NHibernate.Mapping;
 
 namespace DatabaseDeployer
 {
@@ -26,12 +27,35 @@ namespace DatabaseDeployer
             var account = new AccountLogin
             {
                 Archived = false,
-                Email = "jmibarra@gmail.com",
+                Email = "jmibarrad@gmail.com",
                 Name = "Jose Mario Ibarra",
                 Password = encrypter.Encrypt("password"),
-                Role = "admin"
+                Role = "admin",
+                 AccountMessages = new List<Messages>()
+                 {
+                     new Messages()
+                     {
+                         Email = "jmibarra@unitec.edu",
+                         Name = "Jose Ibarra",
+                         Message = "Queria consultar donde estan ubicados? Gracias"
+                         
+                     }
+                 },
+                AccountClassifieds = new List<Classifieds>()
+                {
+                    new Classifieds()
+                    {
+                        Article = "Mercedes Benz",
+                        ArticleModel = "XRLT 720",
+                        Category = "Automoviles",
+                        Location = "San Diego California",
+                        Price = 848
+                    }
+                }
             };
             _session.Save(account);
+            _session.Flush();
+            _session.Clear();
         }
     }
 }

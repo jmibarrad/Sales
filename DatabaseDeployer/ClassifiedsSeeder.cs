@@ -28,8 +28,7 @@ namespace DatabaseDeployer
                 ArticleModel = "XL705",
                 Location = "San Diego, Califonia",
                 Price = 7896,
-                Archived = false,
-
+                
             };
             _session.Save(classi);
         }

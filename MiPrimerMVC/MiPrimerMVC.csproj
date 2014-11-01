@@ -149,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CalculadoraRomanaController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ConvertidorController.cs" />
     <Compile Include="Controllers\AccountLoginController.cs" />
     <Compile Include="Controllers\ForgotPasswordController.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Models\AccountLoginModel.cs" />
     <Compile Include="Models\AccountRegisterModel.cs" />
     <Compile Include="Models\Calculadora.cs" />
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ForgotPasswordModel.cs" />
     <Compile Include="Models\Operaciones.cs" />
     <Compile Include="Models\RegisterModel.cs" />
@@ -344,6 +346,9 @@
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\ForgotPassword\ForgotPassword.cshtml" />
     <Content Include="Views\Terms\Terms.cshtml" />
+    <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\AccountLogin\Messages.cshtml" />
+    <Content Include="Views\AccountLogin\ToInbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

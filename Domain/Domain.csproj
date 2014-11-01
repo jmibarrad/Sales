@@ -61,9 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\AccountLogin.cs" />
+    <Compile Include="Entities\Answers.cs" />
     <Compile Include="Entities\Classifieds.cs" />
     <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Entities\Messages.cs" />
     <Compile Include="Entities\Operaciones.cs" />
+    <Compile Include="Entities\Questions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Hasher.cs" />
     <Compile Include="Services\ICrypter.cs" />
@@ -73,12 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{d6facd75-aca1-4970-8c88-a9d5a4450052}</Project>
-      <Name>Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
