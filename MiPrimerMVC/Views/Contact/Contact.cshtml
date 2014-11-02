@@ -1,4 +1,6 @@
-﻿@model MiPrimerMVC.Models.ContactModel
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc.Models
+@model MiPrimerMVC.Models.ContactModel
 
 @{
     Layout = null;
@@ -53,27 +55,71 @@
                         <div class="row-fluid">
                             <div class="span5">
                                 <h4><i class="icon-envelope-alt"></i>&nbsp;&nbsp;Contact Us</h4>
+                                @{
+                                    List<SelectListItem> dropdownItems = new List<SelectListItem>();
+                                    dropdownItems.AddRange(new[]{
+                                    new SelectListItem() { Text = "Information" },
+                                    new SelectListItem() { Text = "Important" },
+                                    new SelectListItem() { Text = "Failure" },
+                                    new SelectListItem() { Text = "Complaint" }});
+                                    ViewData.Add("DropDownItems", dropdownItems);
+                                }
                                 @using (Html.BeginForm("Contact", "Contact", null, FormMethod.Post, new { @class = "form-horizontal" }))
                                 {
-                                    <label>Name</label>
+                                   
+                                <label>Name</label>
                                 @Html.TextBoxFor(x => x.Name, new { @class = "input-block-level", type = "text", @required = "required" })
                                 <label>Email</label>
                                 @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", type = "email",placeholder="First.Last@example.com", @required = "required" })
-                                <label>Mobile No</label>
-                                <input type="text" value="" id="Text2" class="input-block-level" />
+                               var captcha = Html.Captcha("Refresh", "Input", 5, "Is required field.", false);
+                                
+                               <label>Subject</label>
+                                @Html.DropDownListFor(x => x.Subject, ViewData["DropDownItems"] as List<SelectListItem>, new {@class ="dropdown",type="text"})
                                 <label>Message</label>
-                                @Html.TextAreaFor(x => x.Message, new { @class = "input-block-level", @rows="5" , type = "text", @required = "required" })    
-                                <button class=" btn  " type="submit">Send Message&nbsp;&nbsp;&nbsp;<i class=" icon-chevron-sign-right"></i></button>
+                                @Html.TextAreaFor(x => x.Message, new { @class = "input-block-level", @rows = "4", type = "text", @required = "required" })
+                                    
+                                  <br/>
+                                  @captcha
+                                  <p style="color:red">
+                                    @Html.ValidationMessage(captcha.BuildInfo.InputElementId, new { @style = "width:50px" })
+                                  </p>    
+                                 <button class=" btn  " type="submit">Send Message&nbsp;&nbsp;&nbsp;<i class=" icon-chevron-sign-right"></i></button>
                                 }
                                 <br class="visible-phone" />
-                                <br class="visible-phone" />
+                            <br class="visible-phone" />
+                               
                             </div>
                             <div class="span7">
                                 <div class="row-fluid">
                                     <div class="span12">
                                         <h4><i class="icon-location-arrow"></i>&nbsp;&nbsp;Locate Us</h4>
-
-                                        <div class="map"></div>
+                                        <!--MAp starts here-->
+                                        <div class="col-xs-10 col-sm-6">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <div class="box-name">
+                                                        <i class="fa fa-map-marker"></i>
+                                                        <span>OpenStreetMap</span>
+                                                    </div>
+                                                    <div class="box-icons">
+                                                        <a class="collapse-link">
+                                                            <i class="fa fa-chevron-up"></i>
+                                                        </a>
+                                                        <a class="expand-link">
+                                                            <i class="fa fa-expand"></i>
+                                                        </a>
+                                                        <a class="close-link">
+                                                            <i class="fa fa-times"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="no-move"></div>
+                                                </div>
+                                                <div id="map-1" class="box-content" style="height: 200px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--MAp ends here-->
+                                        <!--<div class="map"></div>-->
 
                                     </div>
                                 </div>
@@ -82,18 +128,19 @@
                                         <h4><i class="icon-envelope-alt"></i>&nbsp;&nbsp;Contact Us</h4>
                                         <address>
                                             <strong>Full Name</strong><br />
-                                            <a href="mailto:#">first.last@example.com</a>
+                                            <p style="font-family:Arial; text-decoration: underline">Jose Mario Ibarra</p>
+                                            <a href="mailto:#">jmibarrad@gmail.com</a>
                                         </address>
                                     </div>
                                     <div class="span6">
                                         <h4><i class="icon-location-arrow"></i>&nbsp;&nbsp;Our Address</h4>
 
                                         <address>
-                                            <strong>Twitter, Inc.</strong><br />
+                                            <strong>Sales | JMID, Inc.</strong><br />
                                             795 Folsom Ave, Suite 600<br />
-                                            San Francisco, CA 94107<br />
+                                            San Pedro Sula, Cortes 2349<br />
                                             <abbr title="Phone">P:</abbr>
-                                            (123) 456-7890
+                                            (504) 999-1234
                                         </address>
                                     </div>
 
@@ -113,6 +160,25 @@
     <script src="~/TmpLogin/scripts/jquery-1.9.1.min.js"></script>
     <script src="~/TmpLogin/scripts/bootstrap.min.js"></script>
     <script src="~/TmpLogin/scripts/tabs-addon.js"></script>
-
+    <!--End Container-->
+    
+    
+    <!--<script src="~/devoops/plugins/justified-gallery/jquery.justifiedgallery.min.js"></script>
+    --><!--<script src="~/devoops/plugins/tinymce/tinymce.min.js"></script>
+    --><script src="~/devoops/plugins/tinymce/jquery.tinymce.min.js"></script>
+    <!-- All functions for this theme + document.ready processing -->
+    <script src="~/Scripts/devoops.js"></script>
+    <script type="text/javascript">
+        // Load OpenLayers library and create map
+        function OpenLayersMap() {
+            LoadOpenLayersScript(LoadTestMap);
+        }
+        $(document).ready(function () {
+            // Load Google Map API and load OpenLayers in callback
+            $.getScript('http://maps.google.com/maps/api/js?sensor=false&callback=OpenLayersMap');
+            // Add Drag-n-Drop feature
+            WinMove();
+        });
+    </script>
 </body>
 </html>

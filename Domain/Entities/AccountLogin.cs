@@ -58,6 +58,15 @@ namespace Domain.Entities
             }
         }
 
+        public virtual void AddPoint(long classifiedId)
+        {
+            var classifiedToBeRated = AccountClassifieds.FirstOrDefault(x => x.Id == classifiedId);
+            if (classifiedToBeRated != null)
+            {
+                classifiedToBeRated.Likes += 1;
+            }
+        }
+
         public virtual void AddMessage(Messages newMessage)
         {
             if (AccountMessages.All(x => x.Id == newMessage.Id))

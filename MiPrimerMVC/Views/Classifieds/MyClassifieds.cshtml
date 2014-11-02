@@ -1,0 +1,70 @@
+﻿@model MiPrimerMVC.Controllers.ClassifiedsController.ClassiModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<link href="~/Content/MyClassifieds.css" rel="stylesheet" />
+<html>
+    <head><title></title></head>
+    <body>
+        <div class="container-fluid" style="background-color:#e8e8e8">
+            <div class="container container-pad" id="property-listings">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1>My CLassifieds List</h1>
+                        <p>All Classfieds Are Shown Below</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                @foreach(var x in Model.myClassifiedsList){
+                    <div class="col-md-6">
+                        <!-- Begin Listing: 609 W GRAVERS LN-->
+                        <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                            <div class="media">
+                                <a class="pull-left" href="#" target="_parent">
+                                    <img alt="image" class="img-responsive" src="http://www.eclipsewebmedia.com/wp-content/uploads/placeholdit.gif">
+                                </a>
+
+                                <div class="clearfix visible-sm"></div>
+
+                                <div class="media-body fnt-smaller">
+                                    <a href="#" target="_parent"></a>
+
+                                    <h4 class="media-heading">
+                                        <a href="#" target="_parent">@x.Article <small class="pull-right">@x.Location</small></a>
+                                    </h4>
+
+
+                                    <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                        <li>@x.ArticleModel</li>
+
+                                        <li style="list-style: none">|</li>
+
+                                        <li>@x.Category</li>
+
+                                        <li style="list-style: none">|</li>
+
+                                        <li>$@x.Price</li>
+                                    </ul>
+
+                                    <p class="hidden-xs">
+                                        @x.Description
+                                        ...
+                                    </p><span class="fnt-smaller fnt-lighter fnt-arial">
+                                            @x.Email 
+                                            <small>@x.PostedDate</small>
+                                        </span>
+                                </div>
+                            </div>
+                        </div><!-- End Listing-->
+                     
+                    </div>
+                   } 
+                </div><!-- End row -->
+            </div><!-- End container -->
+        </div>
+    </body>
+</html>

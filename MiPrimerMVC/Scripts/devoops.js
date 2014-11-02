@@ -2330,7 +2330,7 @@ $(document).ready(function () {
 		}
 		if ($(this).hasClass('active') == false) {
 			$(this).parents("ul.dropdown-menu").find('a').removeClass('active');
-			$(this).addClass('active')
+		    $(this).addClass('active');
 		}
 		if ($(this).hasClass('ajax-link')) {
 			e.preventDefault();

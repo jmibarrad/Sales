@@ -16,7 +16,11 @@
     @Html.TextBoxFor(x=>x.Entrada,new {@class="form-control"})
     <button class="btn btn-default" type="submit">Calcular</button>
 }
-<div class="row">
+
+@{
+    const string newyork = ".newyork";
+}
+<div class="row" id=@newyork>
     <p>
         @Html.LabelFor(x => x.Salida)
         @Html.ValueFor(x => x.Salida)

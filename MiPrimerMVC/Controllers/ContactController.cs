@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using System.Windows.Forms;
+using CaptchaMvc.HtmlHelpers;
 using Domain.Entities;
 using Domain.Services;
 using MiPrimerMVC.Models;
@@ -30,6 +31,7 @@ namespace MiPrimerMVC.Controllers
         [AcceptVerbs("POST","HEAD")]
         public ActionResult Contact(ContactModel cModel)
         {
+            if (!this.IsCaptchaValid("Captcha is not valid")) return View(cModel);
             if (!ValidateText(cModel.Message))
             {
                 MessageBox.Show("Muy corto");
@@ -45,7 +47,7 @@ namespace MiPrimerMVC.Controllers
                     var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == 1);
                    
                     var messageList = user.AccountMessages.ToList();
-                    messageList.Add(new Messages(cModel.Email,cModel.Name,cModel.Message));
+                    messageList.Add(new Messages(cModel.Email,cModel.Name,cModel.Message, cModel.Subject));
                     user.AccountMessages = messageList;
                     _writeOnlyRepository.Update(user);
 
@@ -54,8 +56,6 @@ namespace MiPrimerMVC.Controllers
 
             return View(cModel);
         }
-
-
 
         public static Boolean ValidateText(string message)
         {

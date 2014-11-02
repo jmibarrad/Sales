@@ -37,21 +37,11 @@ namespace DatabaseDeployer
                      {
                          Email = "jmibarra@unitec.edu",
                          Name = "Jose Ibarra",
-                         Message = "Queria consultar donde estan ubicados? Gracias"
-                         
+                         Message = "Queria consultar donde estan ubicados? Gracias",
+                         Subject = "Importante"
                      }
-                 },
-                AccountClassifieds = new List<Classifieds>()
-                {
-                    new Classifieds()
-                    {
-                        Article = "Mercedes Benz",
-                        ArticleModel = "XRLT 720",
-                        Category = "Automoviles",
-                        Location = "San Diego California",
-                        Price = 848
-                    }
-                }
+                 }
+               
             };
             _session.Save(account);
             _session.Flush();

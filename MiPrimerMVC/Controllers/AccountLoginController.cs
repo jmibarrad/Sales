@@ -5,6 +5,7 @@ using System.Net.Configuration;
 using System.Web;
 using System.Web.Mvc;
 using System.Windows.Forms;
+using CaptchaMvc.HtmlHelpers;
 using Domain.Entities;
 using Domain.Services;
 using MiPrimerMVC.Models;
@@ -15,7 +16,7 @@ namespace MiPrimerMVC.Controllers
     {
         readonly IReadOnlyRepository _readOnlyRepository;
         readonly IWriteOnlyRepository _writeOnlyRepository;
-        public AccountLoginController(ICalculadora calc, IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository)
+        public AccountLoginController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository)
         {
             _readOnlyRepository = readOnlyRepository;
             _writeOnlyRepository = writeOnlyRepository;
@@ -74,13 +75,14 @@ namespace MiPrimerMVC.Controllers
         [HttpPost]
         public ActionResult ToInbox(MessagesModel Model)
         {
-
             return View(Model);
         }
 
+   
         public ActionResult ToHome()
         {
             return View("~/Views/CalculadoraRomana/Index.cshtml");
         }
-    }
+
+       }
 }

@@ -71,6 +71,7 @@
     <Compile Include="Services\Hasher.cs" />
     <Compile Include="Services\ICrypter.cs" />
     <Compile Include="Services\IReadOnlyRepository.cs" />
+    <Compile Include="Services\IValidate.cs" />
     <Compile Include="Services\IWriteOnlyRepository.cs" />
     <Compile Include="Services\MailTo.cs" />
   </ItemGroup>

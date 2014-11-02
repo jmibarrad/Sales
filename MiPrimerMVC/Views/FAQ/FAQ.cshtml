@@ -1,0 +1,422 @@
+﻿@model MiPrimerMVC.Controllers.QuestionModel
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Frequent Asked Questions</title>
+        <link href="~/common/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="~/common/bootstrap/css/responsive.css" rel="stylesheet" type="text/css" />
+
+        <!-- Glyphicons Font Icons -->
+        <link href="~/common/theme/fonts/glyphicons/css/glyphicons.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="~/common/theme/fonts/font-awesome/css/font-awesome.min.css">
+        <!--[if IE 7]><link rel="stylesheet" href="../../../../../common/theme/fonts/font-awesome/css/font-awesome-ie7.min.css"><![endif]-->
+        <!-- Uniform Pretty Checkboxes -->
+        <link href="~/common/theme/scripts/plugins/forms/pixelmatrix-uniform/css/uniform.default.css" rel="stylesheet" />
+
+        <!-- PrettyPhoto -->
+        <link href="~/common/theme/scripts/plugins/gallery/prettyphoto/css/prettyPhoto.css" rel="stylesheet" />
+
+        <!-- Bootstrap Extended -->
+        <link href="~/common/bootstrap/extend/jasny-fileupload/css/fileupload.css" rel="stylesheet">
+        <link href="~/common/bootstrap/extend/bootstrap-wysihtml5/css/bootstrap-wysihtml5-0.0.2.css" rel="stylesheet">
+        <link href="~/common/bootstrap/extend/bootstrap-select/bootstrap-select.css" rel="stylesheet" />
+        <link href="~/common/bootstrap/extend/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css" rel="stylesheet" />
+
+        <!-- DateTimePicker Plugin -->
+        <link href="~/common/theme/scripts/plugins/forms/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" />
+
+        <!-- JQueryUI -->
+        <link href="~/common/theme/scripts/plugins/system/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" />
+
+        <!-- MiniColors ColorPicker Plugin -->
+        <link href="~/common/theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.css" rel="stylesheet" />
+
+        <!-- Notyfy Notifications Plugin -->
+        <link href="~/common/theme/scripts/plugins/notifications/notyfy/jquery.notyfy.css" rel="stylesheet" />
+        <link href="~/common/theme/scripts/plugins/notifications/notyfy/themes/default.css" rel="stylesheet" />
+
+        <!-- Gritter Notifications Plugin -->
+        <link href="~/common/theme/scripts/plugins/notifications/Gritter/css/jquery.gritter.css" rel="stylesheet" />
+
+        <!-- Easy-pie Plugin -->
+        <link href="~/common/theme/scripts/plugins/charts/easy-pie/jquery.easy-pie-chart.css" rel="stylesheet" />
+
+        <!-- Google Code Prettify Plugin -->
+        <link href="~/common/theme/scripts/plugins/other/google-code-prettify/prettify.css" rel="stylesheet" />
+
+        <!-- Pageguide Guided Tour Plugin -->
+        <!--[if gt IE 8]><!-->
+        <link media="screen" href="~/common/theme/scripts/plugins/other/pageguide/css/pageguide.css" rel="stylesheet" /><!--<![endif]-->
+        <!-- Main Theme Stylesheet :: CSS -->
+        <link href="~/common/theme/css/style-flat.css?1372280967" rel="stylesheet" type="text/css" />
+
+
+        <!-- LESS.js Library -->
+        <script src="~/common/theme/scripts/plugins/system/less.min.js"></script>
+    </head>
+    <body>
+        <h3>Frequently Asked Questions</h3>
+        <div class="innerLR">
+            
+                <!-- Widget -->
+                <div class="widget widget-tabs widget-tabs-double-2">
+
+                    <!-- Widget heading -->
+                    <div class="widget-head">
+                        <ul>
+                            <li class="active"><a class="glyphicons list" href="#tabAll" data-toggle="tab"><i></i><span>All topics</span></a></li>
+                            <li><a class="glyphicons user" href="#tabAccount" data-toggle="tab"><i></i><span>Account</span></a></li>
+                            <li><a class="glyphicons credit_card" href="#tabPayments" data-toggle="tab"><i></i><span>Payments</span></a></li>
+                            <li><a class="glyphicons cogwheel" href="#tabSupport" data-toggle="tab"><i></i><span>Technical Support</span></a></li>
+                            <li><a class="glyphicons snowflake" href="#tabFeatures" data-toggle="tab"><i></i><span>Features</span></a></li>
+                        </ul>
+                    </div>
+                    <!-- // Widget heading END -->
+
+                    <div class="widget-body">
+                        <div class="tab-content">
+
+                            <!-- Tab content -->
+                            <div id="tabAll" class="tab-pane active">
+                                <div class="accordion accordion-2" id="accordion">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons font" data-toggle="collapse" data-parent="#accordion" href="#collapse-1">
+                                                <i></i>What is Sales|JMID?
+                                            </a>
+                                        </div>
+                                        <div id="collapse-1" class="accordion-body collapse in">
+                                            <div class="accordion-inner">
+                                            It´s a site where people can post their own items for sale or rent.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons circle_question_mark" data-toggle="collapse" data-parent="#accordion" href="#collapse-2">
+                                                <i></i>How is it use?
+                                            </a>
+                                        </div>
+                                        <div id="collapse-2" class="accordion-body collapse">
+                                            <div class="accordion-inner">
+                                                Same selling page protocol; you have to sign up and continue to dashboard and post an item with all its requirements. 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons flag" data-toggle="collapse" data-parent="#accordion" href="#collapse-3">
+                                                <i></i>Where does it come from?
+                                            </a>
+                                        </div>
+                                        <div id="collapse-3" class="accordion-body collapse">
+                                            <div class="accordion-inner">
+                                                <p>It was inspired in Amazon</p>
+                                                <p>BUt firts of all; was an attempt on classifieds project for UNITEC</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons download_alt" data-toggle="collapse" data-parent="#accordion" href="#collapse-4">
+                                                <i></i>Where its located?
+                                            </a>
+                                        </div>
+                                        <div id="collapse-4" class="accordion-body collapse">
+                                            <div class="accordion-inner">
+                                                Honduras; Central America
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!--Code Begins-->                                    
+                                @foreach(var x in Model.QuestionList)
+                                {
+                                     <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons download_alt" data-toggle="collapse" data-parent="#accordion" href="#collapse-4">
+                                             @x.QuestionText    |     <small>@x.Name</small>     |     <small>@x.Email                                                   |<i style="text-align: right"></i>@x.PostedQuestionDate.ToShortDateString()</small>
+                                            </a>
+                                        </div>
+                                         <div id="collapse-4" class="accordion-body collapse">
+                                            @* @if (x.QuestionAnswers != null) {
+                                                foreach(var z in x.QuestionAnswers){
+                                                    <div class="accordion-inner">
+                                                        <p><i class="fa fa-hand-o-right"></i> @z.AnswerText  | <small style="color:blue">@z.PostedAnswerDate</small></p>
+                                                    </div>
+                                                    <br/>
+                                                }
+                                            }*@
+                                         </div>
+                                    </div>
+                                }
+                               <!--Code Ends-->
+
+                                </div>
+                            </div>
+                            <!-- // Tab content END -->
+                            <!-- Tab content -->
+                            <div id="tabAccount" class="tab-pane">
+
+                                <!-- Accordion -->
+                                <div class="accordion accordion-2" id="tabAccountAccordion">
+
+                                    <!-- Accordion Group -->
+                                    <div class="accordion-group">
+
+                                        <!-- Heading -->
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons right_arrow" data-toggle="collapse" data-parent="#tabAccountAccordion" href="#collapse-1-1">
+                                                <i></i>Lorem ipsum dolor sit amet?
+                                            </a>
+                                        </div>
+                                        <!-- // Heading END -->
+                                        <!-- Body -->
+                                        <div id="collapse-1-1" class="accordion-body collapse in">
+                                            <div class="accordion-inner">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique rutrum libero, vel bibendum nunc consectetur sed. Sed nibh metus, sodales non porttitor non, euismod ut magna. Etiam viverra pharetra facilisis. Aenean augue risus, molestie eu semper at, ornare at velit. Maecenas erat dui, placerat sed facilisis at, laoreet at ligula. Maecenas eu rutrum lacus. Curabitur at turpis ligula. Phasellus pharetra tellus in augue viverra id vehicula eros pretium. Donec consectetur mattis lorem, eget dictum lectus tristique vel. Ut vehicula consequat mi at fringilla.
+                                            </div>
+                                        </div>
+                                        <!-- // Body END -->
+
+                                    </div>
+                                    <!-- // Accordion Group END -->
+                                    <!-- Accordion Group -->
+                                    <div class="accordion-group">
+
+                                        <!-- Heading -->
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons right_arrow" data-toggle="collapse" data-parent="#tabAccountAccordion" href="#collapse-2-1">
+                                                <i></i>Quisque porttitor elit ac mauris?
+                                            </a>
+                                        </div>
+                                        <!-- // Heading END -->
+                                        <!-- Body -->
+                                        <div id="collapse-2-1" class="accordion-body collapse">
+                                            <div class="accordion-inner">
+                                                Quisque porttitor elit ac mauris aliquam sollicitudin. Nam imperdiet ligula et dolor pulvinar consequat. Sed in turpis id erat vehicula gravida. Nunc sed mauris ante. Pellentesque at convallis dolor. Nulla pharetra risus ut neque consequat in dapibus est feugiat. Fusce dapibus adipiscing lectus, a fringilla odio dictum et. Quisque eu tortor lacus. In elementum posuere dapibus. Duis ut neque nisi, vel vulputate dolor. Donec sem est, ultricies nec auctor vel, iaculis lobortis metus.
+                                            </div>
+                                        </div>
+                                        <!-- // Body END -->
+
+                                    </div>
+                                    <!-- // Accordion Group END -->
+                                    <!-- Accordion Group -->
+                                    <div class="accordion-group">
+
+                                        <!-- Heading -->
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons right_arrow" data-toggle="collapse" data-parent="#tabAccountAccordion" href="#collapse-3-1">
+                                                <i></i>Vivamus eros tortor consequat sed?
+                                            </a>
+                                        </div>
+                                        <!-- // Heading -->
+                                        <!-- Body -->
+                                        <div id="collapse-3-1" class="accordion-body collapse">
+                                            <div class="accordion-inner">
+                                                Vivamus eros tortor, consequat sed posuere non, tempus non ligula. Integer pharetra sem eu dolor rhoncus euismod. Vestibulum fermentum sollicitudin augue eu porta. In quis magna elit, in congue urna. Vivamus vitae blandit nisi. Aliquam lacinia magna eget lorem auctor vel facilisis ante rhoncus. Nulla ut sapien sit amet justo molestie tincidunt ut mollis lacus. Sed at felis lorem. Nam tincidunt vehicula ipsum, in aliquet turpis tempor et. Donec lacinia, nulla et tincidunt fringilla, turpis nulla sodales quam, sed viverra magna eros quis ipsum. Pellentesque vulputate gravida sodales. Fusce pulvinar vestibulum malesuada. Suspendisse eget lectus sit amet lacus tincidunt fringilla. Donec posuere neque risus, non viverra justo.
+                                            </div>
+                                        </div>
+                                        <!-- // Body END -->
+
+                                    </div>
+                                    <!-- // Accordion Group END -->
+                                    <!-- Accordion Group -->
+                                    <div class="accordion-group">
+
+                                        <!-- Heading -->
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons right_arrow" data-toggle="collapse" data-parent="#tabAccountAccordion" href="#collapse-4-1">
+                                                <i></i>Etiam suscipit leo tincidunt mi volutpat?
+                                            </a>
+                                        </div>
+                                        <!-- // Heading END -->
+                                        <!-- Body -->
+                                        <div id="collapse-4-1" class="accordion-body collapse">
+                                            <div class="accordion-inner">
+                                                Etiam suscipit leo tincidunt mi volutpat commodo. Morbi tempor interdum dictum. In hac habitasse platea dictumst. Morbi quis turpis sed felis mattis tempus vel vitae nibh. In feugiat consectetur felis et sodales. Aliquam gravida elit nec augue mattis ut mollis nibh eleifend. Aliquam vulputate pulvinar libero et pellentesque. Vivamus hendrerit varius metus quis congue. Ut scelerisque tincidunt aliquam.
+                                            </div>
+                                        </div>
+                                        <!-- // Body END -->
+
+                                    </div>
+                                    <!-- // Accordion Group END -->
+
+                                </div>
+                            </div>
+                            <!-- // Tab content END -->
+                            <!-- Tab content -->
+                            <div id="tabPayments" class="tab-pane widget-body-regular">
+                                <h5>Payments tab content</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ante est, tempor ut posuere nec, venenatis sed arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis in purus ut mauris sodales sollicitudin. Mauris cursus imperdiet dignissim. Phasellus risus felis, rutrum in laoreet vel, posuere vel dolor. Sed venenatis vehicula tempus. Nam at rutrum enim. Sed massa quam, mattis in viverra ut, ullamcorper et massa. Phasellus sapien diam, faucibus ac tempor a, condimentum quis est. Donec nec velit ante, vel mattis metus. Ut nec libero diam, id auctor sapien. Suspendisse eget lorem ante, in fringilla dui. In hac habitasse platea dictumst.</p>
+                            </div>
+                            <!-- // Tab content END -->
+                            <!-- Tab content -->
+                            <div id="tabSupport" class="tab-pane widget-body-regular">
+                                <h5>Support tab content</h5>
+                                <p>Integer porttitor, enim eu egestas ullamcorper, odio mauris semper quam, in facilisis dui ligula eget ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas dolor leo, consectetur nec tristique pretium, ornare quis purus. Nullam pulvinar, enim eu molestie venenatis, turpis nisl vehicula eros, et ultricies risus urna sed diam. Suspendisse potenti. Nullam tincidunt tellus nisi. Aenean felis eros, congue vitae hendrerit id, mattis quis mi.</p>
+                            </div>
+                            <!-- // Tab content END -->
+                            <!-- Tab content -->
+                            <div id="tabFeatures" class="tab-pane widget-body-regular">
+                                <h5>Features tab content</h5>
+                                <p>Nunc aliquet lacus laoreet odio consectetur tempus. In id nisl diam, congue vehicula sapien. Nulla facilisi. Donec sagittis cursus sollicitudin. Aenean leo tellus, eleifend quis facilisis vel, tempus ac elit. Nam eget turpis nec erat vestibulum fringilla. Donec et felis ipsum. Fusce feugiat ultricies lacus a ultrices. Nunc ultrices, orci ut convallis pulvinar, diam nunc tincidunt augue, sit amet lacinia ante mi a augue. Sed feugiat, neque eget porttitor varius, tellus nisi sollicitudin libero, nec aliquam ante dui gravida ipsum. Fusce cursus rhoncus lectus, quis malesuada sapien facilisis eu. Aenean vitae massa sed urna condimentum porttitor ac at risus.</p>
+                            </div>
+                            <!-- // Tab content END -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- // Widget END -->
+
+            </div>
+            <h3>Question</h3>
+            <div class="row-fluid row-merge border-bottom border-top">
+               
+                 <!--Form BEGINS HERE-->
+                
+                @using (Html.BeginForm("FAQ", "FAQ", null, FormMethod.Post, new { @class = "form-horizontal" })) { 
+                <div class="span7">
+                    <div class="innerAll">
+                        <h4 class="separator bottom margin-none">Send us a message</h4>
+                        <form class="row-fluid margin-none">
+                            <div class="span6">
+                                @Html.TextBoxFor(x => x.Name, new { @class = "span12", placeholder="YOUR NAME" ,type = "text",  @required = "required" })
+                            </div>
+                            <div class="span6">
+                                @Html.TextBoxFor(x => x.Email, new { @class = "span12", placeholder = "EMAIL", type = "email", @required = "required" })
+                            </div>
+                            @Html.TextAreaFor(x => x.QuestionText, new { @class = "span12", placeholder = "YOUR MESSAGE",rows="5", type = "text", @required = "required" })
+                            <div class="right">
+                                <button type="submit" class="btn btn-primary btn-icon glyphicons envelope"><i></i> Send Question</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                }
+                <!--Form ENDS HERE-->
+
+                <div class="span5">
+                    <div class="innerAll">
+                        <div class="well margin-none">
+                            <address class="margin-none">
+                                <h2>Jose M. Ibarra</h2>
+                                <strong>Business manager</strong> at
+                                <strong><a href="#">Business</a></strong><br>
+                                <abbr title="Work email">e-mail:</abbr> <a href="~/Contact/Contact">jmibarrad@gmail.com</a><br />
+                                <abbr title="Work Phone">phone:</abbr> (504) 992-048<br />
+                                <abbr title="Work Fax">fax:</abbr> (012) 678-132-901
+                                <div class="separator line"></div>
+                                <p class="margin-none"><strong>SalesJMID.es</strong></p>
+                            </address>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        
+        
+        
+        <!-- // Themer END -->
+
+        <!-- JQuery -->
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+        <!-- Code Beautify -->
+        <script src="../../../../../common/theme/scripts/plugins/other/js-beautify/beautify.js"></script>
+        <script src="../../../../../common/theme/scripts/plugins/other/js-beautify/beautify-html.js"></script>
+
+        
+        <!-- Global -->
+        <script>
+            var basePath = '',
+                commonPath = '../../../../../common/';
+        </script>
+
+        <!-- JQueryUI -->
+        <script src="~/common/theme/scripts/plugins/system/jquery-ui/js/jquery-ui-1.9.2.custom.min.js"></script>
+
+        <!-- Modernizr -->
+        <script src="~/common/theme/scripts/plugins/system/modernizr.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="~/common/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- SlimScroll Plugin -->
+        <script src="~/common/theme/scripts/plugins/other/jquery-slimScroll/jquery.slimscroll.min.js"></script>
+
+        <!-- Common Demo Script -->
+        <script src="~/common/theme/scripts/demo/common.js?1372280967"></script>
+
+        <!-- Holder Plugin -->
+        <script src="~/common/theme/scripts/plugins/other/holder/holder.js"></script>
+        <script>
+            Holder.add_theme("dark", { background: "#000", foreground: "#aaa", size: 9 });
+            Holder.add_theme("white", { background: "#fff", foreground: "#c9c9c9", size: 9 });
+        </script>
+
+        <!-- Uniform Forms Plugin -->
+        <script src="~/common/theme/scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.min.js"></script>
+
+        <!-- Bootstrap Extended -->
+        <script src="~/common/bootstrap/extend/bootstrap-select/bootstrap-select.js"></script>
+        <script src="~/common/bootstrap/extend/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js"></script>
+        <script src="~/common/bootstrap/extend/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"></script>
+        <script src="~/common/bootstrap/extend/jasny-fileupload/js/bootstrap-fileupload.js"></script>
+        <script src="~/common/bootstrap/extend/bootbox.js"></script>
+        <script src="~/common/bootstrap/extend/bootstrap-wysihtml5/js/wysihtml5-0.3.0_rc2.min.js"></script>
+        <script src="/common/bootstrap/extend/bootstrap-wysihtml5/js/bootstrap-wysihtml5-0.0.2.js"></script>
+
+        <!-- Google Code Prettify -->
+        <script src="/common/theme/scripts/plugins/other/google-code-prettify/prettify.js"></script>
+
+        <!-- Gritter Notifications Plugin -->
+        <script src="/common/theme/scripts/plugins/notifications/Gritter/js/jquery.gritter.min.js"></script>
+
+        <!-- Notyfy Notifications Plugin -->
+        <script src="/common/theme/scripts/plugins/notifications/notyfy/jquery.notyfy.js"></script>
+
+        <!-- MiniColors Plugin -->
+        <script src="/common/theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.js"></script>
+
+        <!-- DateTimePicker Plugin -->
+        <script src="/common/theme/scripts/plugins/forms/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+        <!-- Cookie Plugin -->
+        <script src="/common/theme/scripts/plugins/system/jquery.cookie.js"></script>
+
+        <!-- Colors -->
+        <script>
+            var primaryColor = '#4a8bc2',
+                dangerColor = '#b55151',
+                successColor = '#609450',
+                warningColor = '#ab7a4b',
+                inverseColor = '#45484d';
+        </script>
+
+        <!-- Themer -->
+        <script>
+            var themerPrimaryColor = primaryColor;
+        </script>
+        <script src="/common/theme/scripts/demo/themer.js"></script>
+
+      
+        <!-- Sparkline Charts Plugin -->
+        <script src="/common/theme/scripts/plugins/charts/sparkline/jquery.sparkline.min.js"></script>
+
+        <!-- Ba-Resize Plugin -->
+        <script src="/common/theme/scripts/plugins/other/jquery.ba-resize.js"></script>
+
+
+        
+        
+
+    </body>
+</html>
