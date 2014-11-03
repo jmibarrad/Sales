@@ -1,4 +1,5 @@
-﻿@model MiPrimerMVC.Controllers.QuestionModel
+﻿@using Microsoft.Ajax.Utilities
+@model MiPrimerMVC.Controllers.QuestionModel
 
 @{
     Layout = "~/Views/Shared/_Layout2.cshtml";
@@ -145,7 +146,7 @@
                                             </a>
                                         </div>
                                          <div id="collapse-4" class="accordion-body collapse">
-                                            @* @if (x.QuestionAnswers != null) {
+                                             @* @if (x.QuestionAnswers != null) {
                                                 foreach(var z in x.QuestionAnswers){
                                                     <div class="accordion-inner">
                                                         <p><i class="fa fa-hand-o-right"></i> @z.AnswerText  | <small style="color:blue">@z.PostedAnswerDate</small></p>

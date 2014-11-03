@@ -2331,6 +2331,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ByCategory.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\MyClassifieds.css" />
@@ -3163,6 +3164,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ByCategory.js" />
     <Content Include="Scripts\devoops.js" />
     <Content Include="Scripts\devoops.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -3217,6 +3219,9 @@
     <Content Include="Views\FAQ\FAQ.cshtml" />
     <Content Include="Views\Classifieds\CreateClassified.cshtml" />
     <Content Include="Views\Classifieds\MyClassifieds.cshtml" />
+    <Content Include="Views\Classifieds\AllClasifieds.cshtml" />
+    <Content Include="Views\Classifieds\ByCategory.cshtml" />
+    <Content Include="Views\Classifieds\AdvancedSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

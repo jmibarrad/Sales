@@ -94,9 +94,91 @@ namespace MiPrimerMVC.Controllers
             return View(model);
         }
 
+        public ActionResult AllClasifieds()
+        {
+            return View(new ClassiModel());
+        }
+
+        [HttpPost]
+        public ActionResult AllClasifieds(ClassiModel model)
+        {
+            return View();
+        }
+
+     
+        private static Dictionary<long, string> _categoryIndex = new Dictionary<long, string>
+        {
+            {1,"Automoviles"},
+            {2,"Instruments"},
+            {3,"VG. Consoles"},
+            {4,"Technology"}
+ 
+        };
+
+        /// <summary>
+        /// Category Filter
+        /// </summary>
+        /// <param dictionary="id"></param>
+        /// <returns>ClassiModel</returns>
+        public ActionResult ByCategory(long id)
+        {
+            var cByCategory = _readOnlyRepository.GetAll<Classifieds>().ToList();
+            var cByCategoryModel = new ClassiModel
+            {
+                myClassifiedsList = cByCategory.FindAll(x => x.Category == _categoryIndex[id])
+            };
+
+            cByCategoryModel.myClassifiedsList.Reverse();
+
+            return View(cByCategoryModel);
+        }
+
+        public ActionResult AdvancedSearch()
+        {
+            var cAdvancedSearch = new ClassiModel()
+            {
+                myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList()
+            };
+
+            return View(cAdvancedSearch);
+        }
+
+        [HttpPost]
+        public ActionResult AdvancedSearch(ClassiModel model)
+        {
+            var filters = _readOnlyRepository.GetAll<Classifieds>().ToList();
+
+            filters = filters.FindAll(x => x.ArticleModel == model.Cas.Category);
+
+            if (model.Cas.Title != null)
+            {
+                filters = filters.FindAll(x => x.Article.Contains(model.Cas.Title));
+            }
+
+            if (model.Cas.Description != null)
+            {
+                filters = filters.FindAll(x => x.Description.Contains(model.Cas.Description));
+            }
+
+            model.myClassifiedsList = filters;
+
+            return View(model);
+        }
+    
+
+
         public class ClassiModel
         {
-            public List<Classifieds> myClassifiedsList { get; set; } 
+            public List<Classifieds> myClassifiedsList { get; set; }
+            public CategoryAdvancedSearch Cas { get; set; }
         }
+
+        public class CategoryAdvancedSearch
+        {
+            public string Category { get; set; }
+            public string Title { get; set; }
+            public string Description { get; set; }
+        }
+
     }
 }

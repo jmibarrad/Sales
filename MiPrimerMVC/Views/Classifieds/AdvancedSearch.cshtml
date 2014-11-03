@@ -1,0 +1,91 @@
+﻿@using Domain.Entities
+@model MiPrimerMVC.Controllers.ClassifiedsController.ClassiModel
+@{
+    ViewBag.Title = "Sales|JMID: Advanced Search";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Advanced Search</h2>
+<div class="container">
+    <div class="col-xs-8 col-xs-offset-2">
+        
+        @{
+            var dropdownItems = new List<SelectListItem>();
+            dropdownItems.AddRange(new[]{
+                                    new SelectListItem() { Text = "Automoviles" },
+                                    new SelectListItem() { Text = "Instruments" },
+                                    new SelectListItem() { Text = "VG. Consoles" },
+                                    new SelectListItem() { Text = "Technology" }});
+            ViewData.Add("DropDownItems", dropdownItems);
+        }
+
+        @using (Html.BeginForm("AdvancedSearch", "Classifieds", null, FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+
+
+        
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DropDownListFor(x => x.Cas.Category, ViewData["DropDownItems"] as List<SelectListItem>)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.Cas.Title, new { @class = "form-control", placeholder = "Title" })
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.Cas.Description, new { @class = "form-control", placeholder = "Description" })
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+<hr>
+@if (@Model.myClassifiedsList.Count > 0)
+{
+    foreach (Classifieds x in Model.myClassifiedsList)
+    {
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" />
+        <div class="container">
+            <div class="well">
+                <div class="media">
+                    <a class="pull-left">
+                        @if (@x.UrlImage != null)
+                        {
+                            <img class="media-object" src="@x.UrlImage" width="350" height="150">
+                        }
+                        else
+                        {
+                            <img class="media-object" src="http://intentionaldesign.ca/wp-content/themes/gonzo/images/no-image-blog-one.png" width="350" height="150">
+
+                        }
+                    </a>
+                    <div class="media-body">
+                        @*<!--<h4 class="media-heading">@Html.ActionLink(@x.Article, "DetailedItem", "Home", new { @id = x.Email }, null)</h4>
+                        -->*@<p>
+                            @x.Description
+                        </p>
+                        <ul class="list-inline list-unstyled">
+                            <li>Price: @x.Price </li>
+                            <li>|</li>
+                            <li>Category: @x.Category</li>
+                            <li>|</li>
+                            <li>Business Type: @x.ArticleModel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <h3>No items found to your criteria</h3>
+}

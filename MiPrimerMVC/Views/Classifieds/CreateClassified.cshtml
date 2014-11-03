@@ -30,7 +30,7 @@
         ViewData.Add("DropDownItems2", dropdownItems2);
     }
     
-        @using (Html.BeginForm("Pene", "Classifieds", null, FormMethod.Post, new { @class = "form-horizontal" }))
+        @using (Html.BeginForm("CreateClassified", "Classifieds", null, FormMethod.Post, new { @class = "form-horizontal" }))
         {
 
             <fieldset>
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Business Type</label>
                     <div class="col-lg-10">
-                        @Html.DropDownListFor(x => x.ArticleModel, ViewData["DropDownItems"] as List<SelectListItem>, new { @class = "dropdown", type = "text", @style = "width:150px" })
+                        @Html.DropDownListFor(x => x.ArticleModel, ViewData["DropDownItems2"] as List<SelectListItem>, new { @class = "dropdown", type = "text", @style = "width:150px" })
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Checkbox
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Category</label>
                     <div class="col-lg-10">
-                        @Html.DropDownListFor(x => x.Category, ViewData["DropDownItems2"] as List<SelectListItem>, new { @class = "dropdown", type = "text", @style = "width:150px" })
+                        @Html.DropDownListFor(x => x.Category, ViewData["DropDownItems"] as List<SelectListItem>, new { @class = "dropdown", type = "text", @style = "width:150px" })
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Checkbox
