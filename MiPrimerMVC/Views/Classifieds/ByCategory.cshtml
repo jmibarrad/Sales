@@ -22,10 +22,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-brand-centered">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Automoviles", "ByCategory", "Classifieds", new { @id = 1 }, null)</li>
-                    <li>@Html.ActionLink("Instruments", "ByCategory", "Classifieds", new { @id = 2 }, null)</li>
-                    <li>@Html.ActionLink("VG. Consoles", "ByCategory", "Classifieds", new { @id = 3 }, null)</li>
-                    <li>@Html.ActionLink("Technology", "ByCategory", "Classifieds", new { @id = 4 }, null)</li>
+                    <li>@Html.ActionLink("Automoviles", "ByCategory", "Classifieds", new { @id = (long) 1 }, null)</li>
+                    <li>@Html.ActionLink("Instruments", "ByCategory", "Classifieds", new { @id = (long) 2 }, null)</li>
+                    <li>@Html.ActionLink("VG. Consoles", "ByCategory", "Classifieds", new { @id = (long) 3 }, null)</li>
+                    <li>@Html.ActionLink("Technology", "ByCategory", "Classifieds", new { @id = (long)4 }, null)</li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -53,8 +53,8 @@
                             }
                         </a>
                         <div class="media-body">
-                            @* <h4 class="media-heading">@Html.ActionLink(x.Article, "DetailedItem", "Home", new { @id = x.Id }, null)</h4>
-                            *@<p>
+                             <h4 class="media-heading">@Html.ActionLink(x.Article, "Detailed", "Classifieds", new { @id = x.Id }, null)</h4>
+                            <p>
                                 @x.Description
                             </p>
                             <ul class="list-inline list-unstyled">

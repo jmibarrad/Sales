@@ -3222,6 +3222,7 @@
     <Content Include="Views\Classifieds\AllClasifieds.cshtml" />
     <Content Include="Views\Classifieds\ByCategory.cshtml" />
     <Content Include="Views\Classifieds\AdvancedSearch.cshtml" />
+    <Content Include="Views\Classifieds\Detailed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

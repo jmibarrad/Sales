@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using System.Windows.Forms;
 using Domain.Entities;
 using Domain.Services;
@@ -59,7 +60,7 @@ namespace MiPrimerMVC.Controllers
                         var classifiedsList = user.AccountClassifieds.ToList();
 
                         classifiedsList.Add(new Classifieds(model.Category, model.Article, model.ArticleModel, model.Location,
-                          model.Price, model.Description, user.Email, model.UrlImage, model.UrlVideo));
+                          model.Price, model.Description, user.Email, model.UrlImage, validate.Embed(model.UrlVideo)));
 
                         user.AccountClassifieds = classifiedsList;
                         _writeOnlyRepository.Update(user);
@@ -115,7 +116,50 @@ namespace MiPrimerMVC.Controllers
  
         };
 
-        public ActionResult ByCategory(long? id)
+        public static string EmailReceiver="";
+        public ActionResult Detailed(long id)
+        {
+            var classified = _readOnlyRepository.GetById<Classifieds>(id);
+            var classiModel = new ClassiModel();
+            classiModel.classifiedForDetail = classified;
+            EmailReceiver = classiModel.classifiedForDetail.Email;
+            Console.WriteLine(EmailReceiver);
+            return View(classiModel);
+        }
+
+        [HttpPost]
+        public ActionResult Detailed(ClassiModel model)
+        {
+            var validate = new IValidate();
+            if (!(validate.ValidateTextLength(model.sendEmail.Name,3,50)&&validate.ValidateOnlyLetters(model.sendEmail.Name)))
+            {
+                MessageBox.Show("Requirements Name: \n1. Between 3 to 50 characters\n2. Only Letters");
+
+            }
+            else
+            {
+                if (!(validate.ValidateTextWords(model.sendEmail.Message, 3) && validate.ValidateTextLength(model.sendEmail.Message, 3, 250)))
+                {
+                    MessageBox.Show("Requirements Question: \n1. No more than 250 characters\n2. At least three words");
+
+                }
+                else
+                {
+
+                    var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == EmailReceiver);
+                    var messageList = user.AccountMessages.ToList();
+                    messageList.Add(new Messages(model.sendEmail.Email, model.sendEmail.Name, model.sendEmail.Message, "Classified|Info"));
+                    user.AccountMessages = messageList;
+                    _writeOnlyRepository.Update(user);
+                    MailTo.SendSimpleMessage(EmailReceiver, model.sendEmail.Name, model.sendEmail.Message);
+
+                }
+            }
+
+            return View(model);
+        }
+
+        public ActionResult ByCategory(long id)
         {
             var cByCategory = _readOnlyRepository.GetAll<Classifieds>().ToList();
             var cByCategoryModel = new ClassiModel
@@ -164,6 +208,11 @@ namespace MiPrimerMVC.Controllers
 
         public class ClassiModel
         {
+            //For Details
+            public Classifieds classifiedForDetail { get; set; }
+            public SendEmail sendEmail { get; set; }
+            
+            //For Filters
             public List<Classifieds> myClassifiedsList { get; set; }
             public CategoryAdvancedSearch Cas { get; set; }
         }
@@ -173,6 +222,14 @@ namespace MiPrimerMVC.Controllers
             public string Category { get; set; }
             public string Title { get; set; }
             public string Description { get; set; }
+        }
+
+        public class SendEmail
+        {
+            public string Name { get; set; }
+            public string Email { get; set; }
+            public string Message { get; set; }
+            public string Email2 { get; set; }
         }
 
     }

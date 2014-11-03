@@ -68,8 +68,8 @@
                         }
                     </a>
                     <div class="media-body">
-                        @*<!--<h4 class="media-heading">@Html.ActionLink(@x.Article, "DetailedItem", "Home", new { @id = x.Email }, null)</h4>
-                        -->*@<p>
+                        <h4 class="media-heading">@Html.ActionLink(@x.Article, "Detailed", "Classifieds", new { @id = x.Id }, null)</h4>
+                        <p>
                             @x.Description
                         </p>
                         <ul class="list-inline list-unstyled">

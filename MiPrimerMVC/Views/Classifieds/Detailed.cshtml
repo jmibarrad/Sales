@@ -1,0 +1,97 @@
+﻿@model MiPrimerMVC.Controllers.ClassifiedsController.ClassiModel
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<!DOCTYPE html>
+
+<link href="~/Content/MyClassifieds.css" rel="stylesheet" />
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="container-fluid" style="background-color:#e8e8e8">
+        <div class="container container-pad" id="property-listings">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>Classified Detail</h1>
+                </div>
+            </div>
+
+            <div class="row">
+               
+                <div class="col-md-6">
+                    <!-- Begin Listing: 609 W GRAVERS LN-->
+                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                        <div class="media">
+                            <a class="pull-left" href="#" target="_parent">
+                                <img alt="image" class="img-responsive" src="http://www.eclipsewebmedia.com/wp-content/uploads/placeholdit.gif">
+                            </a>
+
+                            <div class="clearfix visible-sm"></div>
+
+                            <div class="media-body fnt-smaller">
+                                <a href="#" target="_parent"></a>
+
+                                <h4 class="media-heading">
+                                    <a href="#" target="_parent">Title: @Html.ValueFor(x=>x.classifiedForDetail.Article) <small class="pull-right">Lacation: @Html.ValueFor(x=>x.classifiedForDetail.Location)</small></a>
+                                </h4>
+
+
+                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                    <li>Business Type: @Html.ValueFor(x=>x.classifiedForDetail.ArticleModel)</li>
+
+                                    <li style="list-style: none">|</li>
+
+                                    <li>Category:@Html.ValueFor(x=>x.classifiedForDetail.Category)</li>
+
+                                    <li style="list-style: none">|</li>
+
+                                    <li>Price: $@Html.ValueFor(x=>x.classifiedForDetail.Price)</li>
+                                </ul>
+
+                                <p class="hidden-xs">
+                                    Description: @Html.ValueFor(x=>x.classifiedForDetail.Description)
+                                    ...
+                                </p><span class="fnt-smaller fnt-lighter fnt-arial">
+                                        
+                                        <small>Posted Date: @Html.ValueFor(x=>x.classifiedForDetail.PostedDate)</small>
+                                    </span>
+                            </div>
+                        </div>
+                    </div><!-- End Listing-->
+
+                </div>
+            
+                <iframe width="400" height="310" src="@Html.ValueFor(x=>x.classifiedForDetail.UrlVideo)" frameborder="0" allowfullscreen></iframe>
+      
+            </div><!-- End row -->
+        </div><!-- End container -->
+    </div>
+
+    @using (Html.BeginForm("Detailed", "Classifieds", null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <div class="span7">
+            <div class="innerAll">
+                <h4 class="separator bottom margin-none">Send us a message</h4>
+                <form class="row-fluid margin-none">
+                    <div class="span6">
+                        Name: @Html.TextBoxFor(x => x.sendEmail.Name, new { @class = "span12", placeholder = "YOUR NAME", type = "text", @required = "required" })
+                    </div>
+                    <div class="span6">
+                       Email: @Html.TextBoxFor(x => x.sendEmail.Email, new { @class = "span12", placeholder = "EMAIL", type = "email", @required = "required" })
+                    </div>
+                    @Html.TextAreaFor(x => x.sendEmail.Message, new { @class = "span12", placeholder = "YOUR MESSAGE", rows = "5", type = "text", @required = "required" })
+                    <div class="right">
+                        <button type="submit" class="btn btn-primary btn-icon glyphicons envelope"><i></i> Send Email</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+
+</body>
+</html>

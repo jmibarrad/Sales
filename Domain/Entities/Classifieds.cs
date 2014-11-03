@@ -22,6 +22,7 @@ namespace Domain.Entities
         public virtual string UrlImage { get; set; }
         public virtual DateTime PostedDate { get; set; }
         public virtual int Likes { get; set; }
+        public virtual int Visited { get; set; }
         public virtual string Email { get; set; }
 
          public Classifieds(string Category, string Article, string ArticleModel, string Location, float Price, string description, string email, string urlimage, string urlvideo)
@@ -36,6 +37,7 @@ namespace Domain.Entities
             PostedDate= DateTime.Today;
             Archived = false;
             Likes = 0;
+            Visited = 0;
             UrlImage = urlimage;
             UrlVideo=urlvideo;
          }
