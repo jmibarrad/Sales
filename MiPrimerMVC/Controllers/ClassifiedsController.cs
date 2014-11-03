@@ -115,12 +115,7 @@ namespace MiPrimerMVC.Controllers
  
         };
 
-        /// <summary>
-        /// Category Filter
-        /// </summary>
-        /// <param dictionary="id"></param>
-        /// <returns>ClassiModel</returns>
-        public ActionResult ByCategory(long id)
+        public ActionResult ByCategory(long? id)
         {
             var cByCategory = _readOnlyRepository.GetAll<Classifieds>().ToList();
             var cByCategoryModel = new ClassiModel
