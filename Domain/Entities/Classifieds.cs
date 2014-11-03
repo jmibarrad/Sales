@@ -24,7 +24,7 @@ namespace Domain.Entities
         public virtual int Likes { get; set; }
         public virtual string Email { get; set; }
 
-         public Classifieds(string Category,string Article, string ArticleModel, string Location, float Price, string description, string email, string urlimage, string urlvideo)
+         public Classifieds(string Category, string Article, string ArticleModel, string Location, float Price, string description, string email, string urlimage, string urlvideo)
          {
             this.Category = Category;
             this.Article = Article;

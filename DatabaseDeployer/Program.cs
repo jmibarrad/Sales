@@ -36,7 +36,6 @@ namespace DatabaseDeployer
                 {
                     new OperacionesSeeder(session),
                     new AccountSeeder(session),
-                    new ClassifiedsSeeder(session),
                     new ObjectSeeder(session)
                 });
                 tx.Commit();

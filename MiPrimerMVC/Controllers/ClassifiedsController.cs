@@ -30,7 +30,7 @@ namespace MiPrimerMVC.Controllers
 
         
         [HttpPost]
-        public ActionResult Pene(ClassifiedModel model)
+        public ActionResult CreateClassified(ClassifiedModel model)
         {
             var validate = new IValidate();
 
@@ -148,7 +148,7 @@ namespace MiPrimerMVC.Controllers
         {
             var filters = _readOnlyRepository.GetAll<Classifieds>().ToList();
 
-            filters = filters.FindAll(x => x.ArticleModel == model.Cas.Category);
+            //filters = filters.FindAll(x => x.Article == model.Cas.Title);
 
             if (model.Cas.Title != null)
             {
