@@ -54,7 +54,14 @@ namespace MiPrimerMVC.Controllers
 
             return View(login);
         }
-    
+
+        public ActionResult LogOut()
+        {
+            Session["Accounts"] = null;
+
+            return View("~/Views/Classifieds/MostVisited.cshtml");
+        }
+
         public ActionResult ToInbox()
         {
             //direct user value

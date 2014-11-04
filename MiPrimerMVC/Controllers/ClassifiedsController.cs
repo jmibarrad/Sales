@@ -64,6 +64,8 @@ namespace MiPrimerMVC.Controllers
 
                         user.AccountClassifieds = classifiedsList;
                         _writeOnlyRepository.Update(user);
+                        MessageBox.Show("Classified added successfully");
+
                     }
                 }
             }
@@ -145,7 +147,7 @@ namespace MiPrimerMVC.Controllers
                     user.AccountMessages = messageList;
                     _writeOnlyRepository.Update(user);
                     MailTo.SendSimpleMessage(EmailReceiver, model.sendEmail.Name, model.sendEmail.Message);
-
+                    MessageBox.Show("Email sent successfully");
                 }
             }
 
@@ -293,42 +295,26 @@ namespace MiPrimerMVC.Controllers
 
             if (alles.Count > 10)
             {
-                var list = new List<List<Classifieds>>();
+                var list = new List<Classifieds>();
 
-                var music = alles.FindAll(x => x.Category == "Music");
+                var music = alles.FindAll(x => x.Category == "Automoviles");
 
-                var hh = alles.FindAll(x => x.Category == "House Hold");
+                var hh = alles.FindAll(x => x.Category == "Instruments");
 
-                var ser = alles.FindAll(x => x.Category == "Service");
+                var ser = alles.FindAll(x => x.Category == "VG. Consoles");
 
-                var vehicles = alles.FindAll(x => x.Category == "Vehicles");
-
-
-
+                var vehicles = alles.FindAll(x => x.Category == "Techonology");
 
                 music.Reverse();
                 hh.Reverse();
                 ser.Reverse();
                 vehicles.Reverse();
 
-                list.Add(music);
-                list.Add(hh);
-                list.Add(ser);
-                list.Add(vehicles);
-
-
-                while (toModel.Count < 10)
-                {
-                    for (int i = 0; i < 5; i++)
-                    {
-                        if (list[i].Count > i)
-                        {
-                            toModel.Add(list[0][0]);
-                            list[0].RemoveAt(0);
-                        }
-                    }
-                }
-
+                list.Add(music.First());
+                list.Add(hh.First());
+                list.Add(ser.First());
+                list.Add(vehicles.First());
+                
                 alles = toModel;
             }
            
