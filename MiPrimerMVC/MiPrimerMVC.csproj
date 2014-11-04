@@ -2335,6 +2335,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\MyClassifieds.css" />
+    <Content Include="Content\SimpleSearch.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\style.min.css" />
     <Content Include="devoops\ajax\calendar.html" />
@@ -3173,6 +3174,7 @@
     <Content Include="Scripts\MyClassifieds.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SimpleSearch.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="TmpLogin\css\n1.png" />
     <Content Include="TmpLogin\css\preview.min.css" />
@@ -3223,6 +3225,10 @@
     <Content Include="Views\Classifieds\ByCategory.cshtml" />
     <Content Include="Views\Classifieds\AdvancedSearch.cshtml" />
     <Content Include="Views\Classifieds\Detailed.cshtml" />
+    <Content Include="Views\Classifieds\MostVisited.cshtml" />
+    <Content Include="Views\Classifieds\MostRecent.cshtml" />
+    <Content Include="Views\Classifieds\Featured.cshtml" />
+    <Content Include="Views\Classifieds\SimpleSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

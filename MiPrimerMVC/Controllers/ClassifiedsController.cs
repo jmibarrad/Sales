@@ -106,16 +106,6 @@ namespace MiPrimerMVC.Controllers
             return View();
         }
 
-     
-        private static Dictionary<long, string> _categoryIndex = new Dictionary<long, string>
-        {
-            {1,"Automoviles"},
-            {2,"Instruments"},
-            {3,"VG. Consoles"},
-            {4,"Technology"}
- 
-        };
-
         public static string EmailReceiver="";
         public ActionResult Detailed(long id)
         {
@@ -123,7 +113,10 @@ namespace MiPrimerMVC.Controllers
             var classiModel = new ClassiModel();
             classiModel.classifiedForDetail = classified;
             EmailReceiver = classiModel.classifiedForDetail.Email;
-            Console.WriteLine(EmailReceiver);
+
+            classiModel.classifiedForDetail.Visited++;
+            _writeOnlyRepository.Update(classiModel.classifiedForDetail);
+
             return View(classiModel);
         }
 
@@ -159,18 +152,33 @@ namespace MiPrimerMVC.Controllers
             return View(model);
         }
 
-        public ActionResult ByCategory(long id)
+        public ActionResult ByCategory()
         {
-            var cByCategory = _readOnlyRepository.GetAll<Classifieds>().ToList();
-            var cByCategoryModel = new ClassiModel
+            var cSimpleSearch = new ClassiModel()
             {
-                myClassifiedsList = cByCategory.FindAll(x => x.Category == _categoryIndex[id])
+                myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList()
             };
-
-            cByCategoryModel.myClassifiedsList.Reverse();
-
-            return View(cByCategoryModel);
+            cSimpleSearch.myClassifiedsList.Reverse();
+            return View(cSimpleSearch);
         }
+
+        [HttpPost]
+        public ActionResult ByCategory(ClassiModel model)
+        {
+            var filters = _readOnlyRepository.GetAll<Classifieds>().ToList();
+
+            if (model.Cas.Category != null)
+            {
+                filters = filters.FindAll(x => x.Category.ToUpper().Contains(model.Cas.Category.ToUpper()));
+            }
+
+            filters.Reverse();
+            model.myClassifiedsList = filters;
+
+            return View(model);
+        }
+
+
 
         public ActionResult AdvancedSearch()
         {
@@ -203,8 +211,129 @@ namespace MiPrimerMVC.Controllers
 
             return View(model);
         }
-    
 
+        public ActionResult SimpleSearch()
+        {
+            var cSimpleSearch = new ClassiModel()
+            {
+                myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList()
+            };
+
+            return View(cSimpleSearch);
+        }
+
+        [HttpPost]
+        public ActionResult SimpleSearch(ClassiModel model)
+        {
+            var filters = _readOnlyRepository.GetAll<Classifieds>().ToList();
+            
+            if (model.Cas.Title != null)
+            {
+                filters = filters.FindAll(x => x.Article.ToUpper().Contains(model.Cas.Title.ToUpper()));
+            }
+
+            model.myClassifiedsList = filters;
+
+            return View(model);
+        }
+
+        public ActionResult MostVisited()
+        {
+            var classifiedVisited = _readOnlyRepository.GetAll<Classifieds>().ToList();
+            classifiedVisited = classifiedVisited.FindAll(x => x.Visited > 0);
+
+            var top = new List<Classifieds>();
+
+            if (classifiedVisited.Count > 5)
+            {
+                while (top.Count < 5)
+                {
+                    var biggest = classifiedVisited[0];
+                    for (int i = 1; i < classifiedVisited.Count; i++)
+                    {
+                        if (biggest.Visited < classifiedVisited[i].Visited)
+                        {
+                            biggest = classifiedVisited[i];
+                        }
+                    }
+                    top.Add(biggest);
+                    classifiedVisited.Remove(biggest);
+                }
+
+                classifiedVisited = top;
+            }
+
+            var Model = new ThreeListClassifiedsModel
+            {
+                MostVisitedList = classifiedVisited,
+                RecentList = MostRecent(),
+                FeaturedList = Featured()
+            };
+
+            return View(Model);
+        }
+
+        public List<Classifieds> MostRecent()
+        {
+            var l = _readOnlyRepository.GetAll<Classifieds>().ToList();
+            l.Reverse();
+
+            if (l.Count > 5)
+                l.RemoveRange(5, l.Count - 5);
+
+         
+
+            return l;
+        }
+
+        public List<Classifieds> Featured()
+        {
+            var alles = _readOnlyRepository.GetAll<Classifieds>().ToList();
+            var toModel = new List<Classifieds>();
+
+            if (alles.Count > 10)
+            {
+                var list = new List<List<Classifieds>>();
+
+                var music = alles.FindAll(x => x.Category == "Music");
+
+                var hh = alles.FindAll(x => x.Category == "House Hold");
+
+                var ser = alles.FindAll(x => x.Category == "Service");
+
+                var vehicles = alles.FindAll(x => x.Category == "Vehicles");
+
+
+
+
+                music.Reverse();
+                hh.Reverse();
+                ser.Reverse();
+                vehicles.Reverse();
+
+                list.Add(music);
+                list.Add(hh);
+                list.Add(ser);
+                list.Add(vehicles);
+
+
+                while (toModel.Count < 10)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        if (list[i].Count > i)
+                        {
+                            toModel.Add(list[0][0]);
+                            list[0].RemoveAt(0);
+                        }
+                    }
+                }
+
+                alles = toModel;
+            }
+           
+            return alles;
+        }
 
         public class ClassiModel
         {
@@ -232,5 +361,11 @@ namespace MiPrimerMVC.Controllers
             public string Email2 { get; set; }
         }
 
+        public class ThreeListClassifiedsModel
+        {
+            public List<Classifieds> MostVisitedList { get; set; }
+            public List<Classifieds> RecentList { get; set; }
+            public List<Classifieds> FeaturedList { get; set; }
+        }
     }
 }

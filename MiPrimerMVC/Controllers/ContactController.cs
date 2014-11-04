@@ -28,7 +28,6 @@ namespace MiPrimerMVC.Controllers
         }
 
         [HttpPost]
-        [AcceptVerbs("POST","HEAD")]
         public ActionResult Contact(ContactModel cModel)
         {
             if (!this.IsCaptchaValid("Captcha is not valid")) return View(cModel);
@@ -50,7 +49,7 @@ namespace MiPrimerMVC.Controllers
                     messageList.Add(new Messages(cModel.Email,cModel.Name,cModel.Message, cModel.Subject));
                     user.AccountMessages = messageList;
                     _writeOnlyRepository.Update(user);
-
+                    ViewBag.Message = "Successfully sent..!";
                 }
             }
 

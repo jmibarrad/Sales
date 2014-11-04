@@ -20,12 +20,12 @@
 
                 <div class="row">
                 @foreach(var x in Model.myClassifiedsList){
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <!-- Begin Listing: 609 W GRAVERS LN-->
                         <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
                             <div class="media">
                                 <a class="pull-left" href="#" target="_parent">
-                                    <img alt="image" class="img-responsive" src="http://www.eclipsewebmedia.com/wp-content/uploads/placeholdit.gif">
+                                    <img alt="image" class="img-responsive" src="@x.UrlImage">
                                 </a>
 
                                 <div class="clearfix visible-sm"></div>

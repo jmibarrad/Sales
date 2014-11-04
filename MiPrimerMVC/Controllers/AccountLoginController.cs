@@ -54,10 +54,7 @@ namespace MiPrimerMVC.Controllers
 
             return View(login);
         }
-
-
-
-        
+    
         public ActionResult ToInbox()
         {
             //direct user value

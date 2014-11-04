@@ -4,9 +4,13 @@
     ViewBag.Title = "Sales|JMID: Advanced Search";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+<link href="~/Content/MyClassifieds.css" rel="stylesheet" />
 
-<h2>Advanced Search</h2>
-<div class="container">
+<div class="row">
+    <div class="col-md-8">
+        <h1>Advanced Search Classifieds</h1>
+    </div>
+</div><div class="container">
     <div class="col-xs-8 col-xs-offset-2">
         
         @{
@@ -52,40 +56,51 @@
 {
     foreach (Classifieds x in Model.myClassifiedsList)
     {
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" />
-        <div class="container">
-            <div class="well">
-                <div class="media">
-                    <a class="pull-left">
-                        @if (@x.UrlImage != null)
-                        {
-                            <img class="media-object" src="@x.UrlImage" width="350" height="150">
-                        }
-                        else
-                        {
-                            <img class="media-object" src="http://intentionaldesign.ca/wp-content/themes/gonzo/images/no-image-blog-one.png" width="350" height="150">
+         <div class="col-md-6">
+                            <!-- Begin Listing: 609 W GRAVERS LN-->
+                            <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing">
+                                <div class="media">
+                                    <a class="pull-left" href="#" target="_parent">
+                                        <img alt="image" style="width: 150px; height: 140px" class="img-responsive" src="@x.UrlImage">
+                                    </a>
 
-                        }
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">@Html.ActionLink(@x.Article, "Detailed", "Classifieds", new { @id = x.Id }, null)</h4>
-                        <p>
-                            @x.Description
-                        </p>
-                        <ul class="list-inline list-unstyled">
-                            <li>Price: @x.Price </li>
-                            <li>|</li>
-                            <li>Category: @x.Category</li>
-                            <li>|</li>
-                            <li>Business Type: @x.ArticleModel</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                    <div class="clearfix visible-sm"></div>
+
+                                    <div class="media-body fnt-smaller">
+                                        <a href="#" target="_parent"></a>
+
+                                        <h4 class="media-heading">
+                                            <a href="#" target="_parent">@Html.ActionLink(@x.Article, "Detailed", "Classifieds", new { @id = x.Id }, null) <small class="pull-right">@x.Location</small></a>
+                                        </h4>
+
+
+                                        <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                            <li>@x.ArticleModel</li>
+
+                                            <li style="list-style: none">|</li>
+
+                                            <li>@x.Category</li>
+
+                                            <li style="list-style: none">|</li>
+
+                                            <li>$@x.Price</li>
+                                        </ul>
+
+                                        <p class="hidden-xs">
+                                            @x.Description
+                                            ...
+                                        </p><span class="fnt-smaller fnt-lighter fnt-arial">
+                                            @x.Email
+                                            <small>@x.PostedDate</small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!-- End Listing-->
+
+                        </div>
     }
 }
 else
 {
-    <h3>No items found to your criteria</h3>
+   <h2 style="color:teal; text-decoration: underline"><strong><i class="fa fa-warning"></i>[ERROR: 404] Item not Found.!</strong></h2>
 }
