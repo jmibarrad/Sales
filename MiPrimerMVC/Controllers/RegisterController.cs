@@ -75,7 +75,6 @@ namespace MiPrimerMVC.Controllers
           bool meetsLengthRequirements = password.Length >= MIN_LENGTH && password.Length <= MAX_LENGTH ;
           bool hasUpperCaseLetter      = false ;
           bool hasLowerCaseLetter      = false ;
-          bool hasDecimalDigit         = false ;
 
           if ( meetsLengthRequirements )
           {
@@ -83,14 +82,12 @@ namespace MiPrimerMVC.Controllers
             {
               if      ( char.IsUpper(c) ) hasUpperCaseLetter = true ;
               else if ( char.IsLower(c) ) hasLowerCaseLetter = true ;
-              else if ( char.IsDigit(c) ) hasDecimalDigit    = true ;
             }
           }
 
           bool isValid = meetsLengthRequirements
                       && hasUpperCaseLetter
                       && hasLowerCaseLetter
-                      && hasDecimalDigit
                       ;
           return isValid ;
 
