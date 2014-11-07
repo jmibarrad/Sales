@@ -8,7 +8,7 @@ namespace Data
         {
             
             var environment = (ConfigurationManager.AppSettings["Environment"] ?? "").ToLower();
-            var connectionStringToUse = "";
+            var connectionStringToUse = string.Empty;
 
 
             if (environment == "remote")
