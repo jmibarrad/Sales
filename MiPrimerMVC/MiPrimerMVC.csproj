@@ -2904,8 +2904,6 @@
     <Content Include="common\theme\scripts\plugins\forms\jquery-validation\demo\milk\users.phps" />
     <Content Include="common\theme\scripts\plugins\forms\jquery-validation\package.json" />
     <Content Include="common\theme\scripts\plugins\forms\jquery-validation\README.md" />
-    <Content Include="common\theme\scripts\plugins\forms\multiselect\.DS_Store" />
-    <Content Include="common\theme\scripts\plugins\forms\multiselect\.gitignore" />
     <Content Include="common\theme\scripts\plugins\forms\pixelmatrix-uniform\README.textile" />
     <Content Include="common\theme\scripts\plugins\forms\plupload\examples\dump.php" />
     <Content Include="common\theme\scripts\plugins\forms\plupload\examples\jquery\s3.php" />
