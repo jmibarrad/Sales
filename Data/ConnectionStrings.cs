@@ -20,9 +20,9 @@ namespace Data
             {
                 connectionStringToUse = ConfigurationManager.ConnectionStrings["remote"].ToString();
             }
-            else if (environment == "production")
+            else if (environment == "local")
             {
-                connectionStringToUse = string.Empty;
+                connectionStringToUse = ConfigurationManager.ConnectionStrings["local"].ToString();
             }
 
             return connectionStringToUse;
