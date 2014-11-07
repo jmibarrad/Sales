@@ -295,22 +295,27 @@ namespace MiPrimerMVC.Controllers
 
             if (alles.Count > 10)
             {
+                var list = new List<Classifieds>();
 
-                var music = alles.First(x => x.Category == "Automoviles");
+                var music = alles.FindAll(x => x.Category == "Automoviles");
 
-                var hh = alles.First(x => x.Category == "Instruments");
+                var hh = alles.FindAll(x => x.Category == "Instruments");
 
-                var ser = alles.First(x => x.Category == "VG. Consoles");
+                var ser = alles.FindAll(x => x.Category == "VG. Consoles");
 
-                var vehicles = alles.First(x => x.Category == "Techonology");
+                var vehicles = alles.FindAll(x => x.Category == "Techonology");
 
-            
+                music.Reverse();
+                hh.Reverse();
+                ser.Reverse();
+                vehicles.Reverse();
 
-                toModel.Add(music);
-                toModel.Add(hh);
-                toModel.Add(ser);
-                toModel.Add(vehicles);
+                list.Add(music.First());
+                list.Add(hh.First());
+                list.Add(ser.First());
+                list.Add(vehicles.First());
                 
+                alles = toModel;
             }
            
             return alles;
