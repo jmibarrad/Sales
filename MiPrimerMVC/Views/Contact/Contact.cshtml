@@ -1,5 +1,4 @@
 ﻿@using CaptchaMvc.HtmlHelpers
-@using CaptchaMvc.Models
 @model MiPrimerMVC.Models.ContactModel
 
 @{
@@ -56,27 +55,33 @@
                             <div class="span5">
                                 <h4><i class="icon-envelope-alt"></i>&nbsp;&nbsp;Contact Us</h4>
                                 @{
-                                    List<SelectListItem> dropdownItems = new List<SelectListItem>();
+                                    var dropdownItems = new List<SelectListItem>();
                                     dropdownItems.AddRange(new[]{
-                                    new SelectListItem() { Text = "Information" },
-                                    new SelectListItem() { Text = "Important" },
-                                    new SelectListItem() { Text = "Failure" },
-                                    new SelectListItem() { Text = "Complaint" }});
+                                    new SelectListItem { Text = "Information" },
+                                    new SelectListItem { Text = "Important" },
+                                    new SelectListItem { Text = "Failure" },
+                                    new SelectListItem { Text = "Complaint" }});
                                     ViewData.Add("DropDownItems", dropdownItems);
                                 }
                                 @using (Html.BeginForm("Contact", "Contact", null, FormMethod.Post, new { @class = "form-horizontal" }))
                                 {
                                    
                                 <label>Name</label>
-                                @Html.TextBoxFor(x => x.Name, new { @class = "input-block-level", type = "text", @required = "required" })
+                                @Html.TextBoxFor(x => x.Name, new { @class = "input-block-level"})
+                                <label style="color:red">@Html.ValidationMessageFor(x=>x.Name)</label>
+
                                 <label>Email</label>
-                                @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", type = "email",placeholder="First.Last@example.com", @required = "required" })
+                                @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", placeholder="First.Last@example.com"})
+                                <label style="color:red">@Html.ValidationMessageFor(x=>x.Email)</label>
+
                                var captcha = Html.Captcha("Refresh", "Input", 5, "Is required field.", false);
                                 
                                <label>Subject</label>
-                                @Html.DropDownListFor(x => x.Subject, ViewData["DropDownItems"] as List<SelectListItem>, new {@class ="dropdown",type="text"})
+                                @Html.DropDownListFor(x => x.Subject, ViewData["DropDownItems"] as List<SelectListItem>, new {@class ="dropdown"})
                                 <label>Message</label>
-                                @Html.TextAreaFor(x => x.Message, new { @class = "input-block-level", @rows = "4", type = "text", @required = "required" })
+                                @Html.TextAreaFor(x => x.Message, new { @class = "input-block-level", @rows = "4"})
+                                <label style="color:red">@Html.ValidationMessageFor(x=>x.Message)</label>
+
                                     
                                   <br/>
                                   @captcha
@@ -118,7 +123,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--MAp ends here-->
+                                        <!--Map ends here-->
                                         <!--<div class="map"></div>-->
 
                                     </div>
@@ -128,7 +133,7 @@
                                         <h4><i class="icon-envelope-alt"></i>&nbsp;&nbsp;Contact Us</h4>
                                         <address>
                                             <strong>Full Name</strong><br />
-                                            <p style="font-family:Arial; text-decoration: underline">Jose Mario Ibarra</p>
+                                            <p style="font-family:Arial; text-decoration: underline">José Mario Ibarra</p>
                                             <a href="mailto:#">jmibarrad@gmail.com</a>
                                         </address>
                                     </div>
@@ -136,9 +141,9 @@
                                         <h4><i class="icon-location-arrow"></i>&nbsp;&nbsp;Our Address</h4>
 
                                         <address>
-                                            <strong>Sales | JMID, Inc.</strong><br />
-                                            795 Folsom Ave, Suite 600<br />
-                                            San Pedro Sula, Cortes 2349<br />
+                                            <strong>Sales | JMID, Inc.</strong><br/>
+                                            795 Folsom Ave, Suite 600<br/>
+                                            San Pedro Sula, Cortes 2349<br/>
                                             <abbr title="Phone">P:</abbr>
                                             (504) 999-1234
                                         </address>

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Web;
 using System.Web.Mvc;
-using System.Windows.Forms;
 using CaptchaMvc.HtmlHelpers;
 using Domain.Entities;
 using Domain.Services;
@@ -31,29 +27,21 @@ namespace MiPrimerMVC.Controllers
         public ActionResult Contact(ContactModel cModel)
         {
             if (!this.IsCaptchaValid("Captcha is not valid")) return View(cModel);
-            if (!ValidateText(cModel.Message))
-            {
-                MessageBox.Show("Muy corto");
-            }
-            else
-            {
-                if (!ValidateLength(cModel.Message))
-                {
-                    MessageBox.Show("No mas de 250 caracteres");
-                }
-                else
-                {
-                    var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == 1);
-                   
-                    var messageList = user.AccountMessages.ToList();
-                    messageList.Add(new Messages(cModel.Email,cModel.Name,cModel.Message, cModel.Subject));
-                    user.AccountMessages = messageList;
-                    _writeOnlyRepository.Update(user);
-                    ViewBag.Message = "Successfully sent..!";
-                }
-            }
+           
+            var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == 1);
 
-            return View(cModel);
+                if (ModelState.IsValid)
+                {
+                        var messageList = user.AccountMessages.ToList();
+                        messageList.Add(new Messages(cModel.Email,cModel.Name,cModel.Message, cModel.Subject));
+                        user.AccountMessages = messageList;
+                        _writeOnlyRepository.Update(user);
+                        //check 
+                ViewBag.Message = "Successfully sent..!";
+                } ModelState.AddModelError("", "Something went wrong with your values.");
+
+
+           return View(cModel);
         }
 
         public static Boolean ValidateText(string message)

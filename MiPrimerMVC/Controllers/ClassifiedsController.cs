@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 using System.Windows.Forms;
 using Domain.Entities;
 using Domain.Services;
 using MiPrimerMVC.Models;
+using MiPrimerMVC.ValidationAttributes;
 
 namespace MiPrimerMVC.Controllers
 {
@@ -21,42 +20,20 @@ namespace MiPrimerMVC.Controllers
             _writeOnlyRepository = writeOnlyRepository;
         }
 
+        [Authorize]
         public ActionResult CreateClassified()
         {
-            if (Session["Accounts"] == null)
-                return View("~/Views/AccountLogin/Login.cshtml");
-
             return View(new ClassifiedModel());
         }
 
-        
+        [Authorize]
         [HttpPost]
         public ActionResult CreateClassified(ClassifiedModel model)
         {
-            var validate = new IValidate();
-
-            if (!(validate.ValidateTextWords(model.Article, 1) && validate.ValidateTextLength(model.Article, 1, 100)))
+            if (ModelState.IsValid)
             {
-                MessageBox.Show("1. At Least a Word\n2. 100 characters Maximum");
-            }
-            else
-            {
-                if (!(validate.ValidateTextWords(model.Description, 3) && validate.ValidateTextLength(model.Description, 1, 250)))
-                {
-                    MessageBox.Show("1. At Least 3 Words\n2. 250 characters Maximum");
-                }
-                else
-                {
-                    if (!(validate.ValidateUrl(model.UrlImage) && validate.ValidateUrl(model.UrlVideo)))
-                    {
-                        MessageBox.Show("URLs Not valid.");
-                    }
-                    else
-                    {
-
-                        var user2 = (AccountLogin)Session["Accounts"];
-                        Session["Accounts"] = user2;
-                        var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == user2.Id);
+                        var validate = new IValidate();
+                        var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == HttpContext.User.Identity.Name);
                         var classifiedsList = user.AccountClassifieds.ToList();
 
                         classifiedsList.Add(new Classifieds(model.Category, model.Article, model.ArticleModel, model.Location,
@@ -64,33 +41,27 @@ namespace MiPrimerMVC.Controllers
 
                         user.AccountClassifieds = classifiedsList;
                         _writeOnlyRepository.Update(user);
-                        MessageBox.Show("Classified added successfully");
+                        
+                //check
+                MessageBox.Show("Classified added successfully");
 
-                    }
-                }
-            }
+            }        
 
             return View("CreateClassified",model);
         }
 
-
+        [Authorize]
         public ActionResult MyClassifieds()
         {
             var mcModel = new ClassiModel();
-            if (Session["Accounts"] != null) { 
-            var user = (AccountLogin)Session["Accounts"];
-            Session["Accounts"] = user;
-            var x = _readOnlyRepository.GetById<AccountLogin>(user.Id);
+            
+            var x = _readOnlyRepository.FirstOrDefault<AccountLogin>(z=>z.Email==HttpContext.User.Identity.Name);
             mcModel.myClassifiedsList= x.AccountClassifieds.ToList();
-            }
-            else
-            {
-                return View("~/Views/AccountLogin/Login.cshtml");
-            }
-
+           
             return View(mcModel);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult MyClassifieds(ClassiModel model)
         {
@@ -125,38 +96,23 @@ namespace MiPrimerMVC.Controllers
         [HttpPost]
         public ActionResult Detailed(ClassiModel model)
         {
-            var validate = new IValidate();
-            if (!(validate.ValidateTextLength(model.sendEmail.Name,3,50)&&validate.ValidateOnlyLetters(model.sendEmail.Name)))
-            {
-                MessageBox.Show("Requirements Name: \n1. Between 3 to 50 characters\n2. Only Letters");
-
-            }
-            else
-            {
-                if (!(validate.ValidateTextWords(model.sendEmail.Message, 3) && validate.ValidateTextLength(model.sendEmail.Message, 3, 250)))
-                {
-                    MessageBox.Show("Requirements Question: \n1. No more than 250 characters\n2. At least three words");
-
-                }
-                else
-                {
-
+                    
                     var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == EmailReceiver);
                     var messageList = user.AccountMessages.ToList();
                     messageList.Add(new Messages(model.sendEmail.Email, model.sendEmail.Name, model.sendEmail.Message, "Classified|Info"));
                     user.AccountMessages = messageList;
                     _writeOnlyRepository.Update(user);
                     MailTo.SendSimpleMessage(EmailReceiver, model.sendEmail.Name, model.sendEmail.Message);
-                    MessageBox.Show("Email sent successfully");
-                }
-            }
-
+                  
+            //check
+            MessageBox.Show("Email sent successfully");
+            
             return View(model);
         }
 
         public ActionResult ByCategory()
         {
-            var cSimpleSearch = new ClassiModel()
+            var cSimpleSearch = new ClassiModel
             {
                 myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList()
             };
@@ -184,7 +140,7 @@ namespace MiPrimerMVC.Controllers
 
         public ActionResult AdvancedSearch()
         {
-            var cAdvancedSearch = new ClassiModel()
+            var cAdvancedSearch = new ClassiModel
             {
                 myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList()
             };
@@ -216,7 +172,7 @@ namespace MiPrimerMVC.Controllers
 
         public ActionResult SimpleSearch()
         {
-            var cSimpleSearch = new ClassiModel()
+            var cSimpleSearch = new ClassiModel
             {
                 myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList()
             };
@@ -265,14 +221,14 @@ namespace MiPrimerMVC.Controllers
                 classifiedVisited = top;
             }
 
-            var Model = new ThreeListClassifiedsModel
+            var model = new ThreeListClassifiedsModel
             {
                 MostVisitedList = classifiedVisited,
                 RecentList = MostRecent(),
                 FeaturedList = Featured()
             };
 
-            return View(Model);
+            return View(model);
         }
 
         public List<Classifieds> MostRecent()
@@ -334,16 +290,37 @@ namespace MiPrimerMVC.Controllers
 
         public class CategoryAdvancedSearch
         {
+
             public string Category { get; set; }
+
+            [DataType(DataType.Text)]
             public string Title { get; set; }
+
+            [DataType(DataType.Text)]
             public string Description { get; set; }
         }
 
         public class SendEmail
         {
+            [Required(ErrorMessage = "Name is required")]
+            [DataType(DataType.Text)]
+            [StringLength(50, ErrorMessage = "First name should be between 3 and 50 characters.", MinimumLength = 3)]
             public string Name { get; set; }
+
+            [Required(ErrorMessage = "Email is required")]
+            [DataType(DataType.EmailAddress)]
+            [StringLength(100, ErrorMessage = "Email should be between 5 and 100 characters.", MinimumLength = 5)]
             public string Email { get; set; }
+
+            [Required(ErrorMessage = "Description is required")]
+            [DataType(DataType.MultilineText)]
+            [DescriptionValidation(MinimumAmountOfWords = 3, MaximumAmountOfCharacters = 250,
+            ErrorMessage = "The description must contains a minimum of 3 words and a maximum of 250 characters.")]
             public string Message { get; set; }
+
+            [Required(ErrorMessage = "Email is required")]
+            [DataType(DataType.EmailAddress)]
+            [StringLength(100, ErrorMessage = "Email should be between 5 and 100 characters.", MinimumLength = 5)]
             public string Email2 { get; set; }
         }
 

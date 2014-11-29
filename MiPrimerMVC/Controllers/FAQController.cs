@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Configuration;
 using System.Web;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 using System.Windows.Forms;
 using Domain.Entities;
 using Domain.Services;
+using MiPrimerMVC.ValidationAttributes;
 
 namespace MiPrimerMVC.Controllers
 {
@@ -34,26 +36,13 @@ namespace MiPrimerMVC.Controllers
         [HttpPost]
         public ActionResult FAQ(QuestionModel model)
         {
-            var validate = new IValidate();
-            if (!(validate.ValidateTextLength(model.Name,3,50)&&validate.ValidateOnlyLetters(model.Name)))
-            {
-                MessageBox.Show("Requirements Name: \n1. Between 3 to 50 characters\n2. Only Letters");
-            }
-            else
-            {
-                if (!(validate.ValidateTextWords(model.QuestionText,3)&&validate.ValidateTextLength(model.QuestionText,3,250)))
-                {
-                    MessageBox.Show("Requirements Question: \n1. No more than 250 characters\n2. At least three words");
-
-                }
-                else
-                {
-                    var questionToBePushed = new Questions(model.QuestionText,model.Email, model.Name);
+          
+            var questionToBePushed = new Questions(model.QuestionText,model.Email, model.Name);
 
                     var createdOperation = _writeOnlyRepository.Create(questionToBePushed);
+        //check
                     MessageBox.Show("Question Added Succesfully");
-                }
-            }
+            
             List<Questions> questionsList = _readOnlyRepository.GetAll<Questions>().ToList();
             questionsList.Reverse();
             model.QuestionList = questionsList;
@@ -66,13 +55,28 @@ namespace MiPrimerMVC.Controllers
     public class QuestionModel
     {
         public List<Questions> QuestionList { get; set; }
+
+        [Required(ErrorMessage = "Question is required")]
+        [DataType(DataType.MultilineText)]
+        [DescriptionValidation(MinimumAmountOfWords = 3, MaximumAmountOfCharacters = 255,
+            ErrorMessage = "Question must contain a minimum of 3 words and a maximum of 255 characters.")]
         public string QuestionText { get; set; }
+
+        [Required(ErrorMessage = "Email is required.")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Email is not valid.")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Name is required")]
+        [DataType(DataType.Text)]
+        [StringLength(50, ErrorMessage = "First name should be between 3 and 50 characters.", MinimumLength = 3)]
         public string Name { get; set; }
     }
 
     public class AnswerModel
     {
+        [Required(ErrorMessage = "Name is required")]
+        [DataType(DataType.Text)]
+        [StringLength(50, ErrorMessage = "First name should be between 1 and 50 characters.", MinimumLength = 1)]
         public string AnswerText { get; set; }
     }
 }

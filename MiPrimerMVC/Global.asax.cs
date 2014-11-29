@@ -55,7 +55,6 @@ namespace MiPrimerMVC
         {
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
-            kernel.Bind<ICalculadora>().To<CalculadoraRomana>();
             kernel.Bind<IReadOnlyRepository>().To<ReadOnlyRepository>();
             kernel.Bind<IWriteOnlyRepository>().To<WriteOnlyRepository>();
             kernel.Bind<ISession>().ToMethod(x => SessionFactory.GetCurrentSession());

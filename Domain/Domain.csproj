@@ -65,7 +65,6 @@
     <Compile Include="Entities\Classifieds.cs" />
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\Messages.cs" />
-    <Compile Include="Entities\Operaciones.cs" />
     <Compile Include="Entities\Questions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Hasher.cs" />

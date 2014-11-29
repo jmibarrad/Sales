@@ -48,16 +48,19 @@
                                 <!--AccountLogin-Form-->
                                 @using (Html.BeginForm("Login", "AccountLogin", null, FormMethod.Post, new { @class = "form-horizontal" }))
                                 {
-                                    
-                                <label>Username</label>
-                                @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", type = "email",placeholder="First.Last@example.com", @required = "required" })
-                                <label>Password<a href="#panel3" class="pull-right"><i class="icon-question-sign" ></i>&nbsp;Forgot Password</a> </label>
-                                @Html.TextBoxFor(x => x.Password, new { @class = "input-block-level", type = "password", @required = "required" })
                                 
+                                @Html.ValidationSummary(true)
+                                <label>Username</label>
+                                @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", placeholder="First.Last@example.com"})
+                                <label style="color:red">@Html.ValidationMessageFor(x=>x.Email)</label>
+
+                                <label>Password<a href="#panel3" class="pull-right"><i class="icon-question-sign" ></i>&nbsp;Forgot Password</a> </label>
+                                @Html.PasswordFor(x => x.Password, new { @class = "input-block-level"})
+                                <label style="color:red">@Html.ValidationMessageFor(x=>x.Password)</label>
+
                                 
                                 <label>
-                                    <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
-                                    &nbsp;&nbsp;&nbsp;Remember Me
+                                    @Html.CheckBoxFor(x => x.RememberMe, new { @class = "btn btn-mini custom-checkbox active" }) &nbsp;Remember me
                                 </label>
                                 <br />
                                 
@@ -110,12 +113,17 @@
             </div>
         </div>
     </div>
-
     <div class="divider"></div>
+    
+  
+
     <script src="~/TmpLogin/scripts/jquery-1.9.1.min.js"></script>
     <script src="~/TmpLogin/scripts/bootstrap.min.js"></script>
     <script src="~/TmpLogin/scripts/tabs-addon.js"></script>
     
-
+    <script type="text/javascript" src="~/Scripts/backsketch.js"></script>
+    <script>
+        $.backstretch("http://dl.dropbox.com/u/515046/www/garfield-interior.jpg");
+    </script>
 </body>
 </html>

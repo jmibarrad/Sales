@@ -49,17 +49,19 @@
                                 <h4><i class="icon-user"></i>&nbsp;&nbsp; Register Here</h4>
                                 @using (Html.BeginForm("Register", "Register", null, FormMethod.Post, new { @class = "form-horizontal" }))
                                 {
-
+                                    @Html.AntiForgeryToken()
+                                     @Html.ValidationSummary(true)
+                                    
                                     <label>Username</label>
-                                    @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", type = "email", placeholder = "First.Last@example.com", @required = "required" })
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", placeholder = "First.Last@example.com"})
                                     <label>Full Name</label>
-                                    @Html.TextBoxFor(x => x.Name, new { @class = "input-block-level", type = "text", @required = "required" })
+                                    @Html.TextBoxFor(x => x.Name, new { @class = "input-block-level"})
                                     <label>Password </label>
-                                    @Html.TextBoxFor(x => x.Password, new { @class = "input-block-level", type = "password", @required = "required" })
+                                    @Html.PasswordFor(x => x.Password, new { @class = "input-block-level"})
                                     <label>Repeat Password</label>
-                                    @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "input-block-level", type = "password", @required = "required" })
+                                    @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "input-block-level" })
                                    
-                                    <label>
+                                     <label>
                                         <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
                                         &nbsp;&nbsp;&nbsp;I Aggree With <a role="button" href="#TabsModal" data-toggle="modal">Terms &amp; Conditions</a>
                                     </label>

@@ -158,10 +158,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CalculadoraRomanaController.cs" />
     <Compile Include="Controllers\ClassifiedsController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
-    <Compile Include="Controllers\ConvertidorController.cs" />
     <Compile Include="Controllers\AccountLoginController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\ForgotPasswordController.cs" />
@@ -172,14 +170,13 @@
     </Compile>
     <Compile Include="Models\AccountLoginModel.cs" />
     <Compile Include="Models\AccountRegisterModel.cs" />
-    <Compile Include="Models\Calculadora.cs" />
     <Compile Include="Models\ClassifiedModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ForgotPasswordModel.cs" />
     <Compile Include="Models\MessagesModel.cs" />
-    <Compile Include="Models\Operaciones.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationAttributes\DescriptionValidationAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\bootstrap.css" />
@@ -3098,6 +3095,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="connectionStrings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -3161,6 +3159,7 @@
     <Content Include="devoops\plugins\xcharts\README.md" />
     <Content Include="devoops\Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\backsketch.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ByCategory.js" />
@@ -3184,7 +3183,9 @@
     <Content Include="TmpLogin\styles\font-awesome-ie7.min.css" />
     <Content Include="TmpLogin\styles\font-awesome.min.css" />
     <Content Include="TmpLogin\styles\font\fontawesome-webfont.svg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -3196,14 +3197,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Convertidor\ArabigosARomanos.cshtml" />
-    <Content Include="Views\Convertidor\RomanosAArabigos.cshtml" />
-    <Content Include="Views\CalculadoraRomana\Suma.cshtml" />
-    <Content Include="Views\CalculadoraRomana\Resta.cshtml" />
-    <Content Include="Views\CalculadoraRomana\Multiplicacion.cshtml" />
-    <Content Include="Views\CalculadoraRomana\Division.cshtml" />
-    <Content Include="Views\CalculadoraRomana\Index.cshtml" />
-    <Content Include="Views\CalculadoraRomana\Detalle.cshtml" />
     <Content Include="Views\AccountLogin\Login.cshtml" />
     <Content Include="TmpLogin\styles\font\fontawesome-webfont.ttf" />
     <Content Include="TmpLogin\styles\font\fontawesome-webfont_2d2816fe.eot" />
@@ -3213,7 +3206,6 @@
     <Content Include="Views\ForgotPassword\ForgotPassword.cshtml" />
     <Content Include="Views\Terms\Terms.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
-    <Content Include="Views\AccountLogin\Messages.cshtml" />
     <Content Include="Views\AccountLogin\ToInbox.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\FAQ\FAQ.cshtml" />

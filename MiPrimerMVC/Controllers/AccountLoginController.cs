@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
-using System.Net.Configuration;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
-using System.Windows.Forms;
-using CaptchaMvc.HtmlHelpers;
+using System.Web.Security;
 using Domain.Entities;
 using Domain.Services;
 using MiPrimerMVC.Models;
@@ -16,10 +15,12 @@ namespace MiPrimerMVC.Controllers
     {
         readonly IReadOnlyRepository _readOnlyRepository;
         readonly IWriteOnlyRepository _writeOnlyRepository;
-        public AccountLoginController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository)
+        //readonly IMappingEngine _mappingEngine;
+        public AccountLoginController(IReadOnlyRepository readOnlyRepository, IWriteOnlyRepository writeOnlyRepository/*, IMappingEngine mappingEngine*/)
         {
             _readOnlyRepository = readOnlyRepository;
             _writeOnlyRepository = writeOnlyRepository;
+           // _mappingEngine = mappingEngine;
         }
 
         public ActionResult Login()
@@ -29,63 +30,76 @@ namespace MiPrimerMVC.Controllers
 
         
         [HttpPost]
-        public ActionResult Login(AccountLoginModel login)
+        public ActionResult Login(AccountLoginModel login, string returnUrl)
         {
-            var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == login.Email);
-            if (user == null)
+            if (ModelState.IsValid)
             {
-                MessageBox.Show("User doesnt Exists.");
-            }
-            else
-            {
-                if (!user.Password.Equals(new Hasher().Encrypt(login.Password)))
+                var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == login.Email && x.Password==(new Hasher().Encrypt(login.Password)));
+                if (user != null)
                 {
-                    MessageBox.Show("Incorrect Password.");
-                }
-                else
-                {
-                    if (Session["Accounts"] == null)
-                    Session["Accounts"] = user;
+                        FormsAuthentication.SetAuthCookie(login.Email, login.RememberMe);
+                        //SetAuthenticationCookie(login.Email, user.Role);
+
+                        if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                            && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                        {
+                            return Redirect(returnUrl);
+                        }
 
 
-                    return RedirectToAction("ToInbox");
-                }
-            }
+                        return RedirectToAction("ToInbox");
+                
+                } 
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            } 
 
             return View(login);
         }
 
         public ActionResult LogOut()
         {
-            Session["Accounts"] = null;
-
-            return View("~/Views/Classifieds/MostVisited.cshtml");
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "AccountLogin");
         }
 
+        [Authorize]
         public ActionResult ToInbox()
         {
-            //direct user value
-            //var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == 1);
-            //Try Sessions
             
-            var user = (AccountLogin)Session["Accounts"];
-            Session["Accounts"] = user;
             var mModel = new MessagesModel();
-            var x = _readOnlyRepository.GetById<AccountLogin>(user.Id);
+            var x = _readOnlyRepository.FirstOrDefault<AccountLogin>(z=>z.Email==HttpContext.User.Identity.Name);
             mModel.MessagesList= x.AccountMessages.ToList();
             return View(mModel);
         }
 
         [HttpPost]
-        public ActionResult ToInbox(MessagesModel Model)
+        public ActionResult ToInbox(MessagesModel model)
         {
-            return View(Model);
+            return View(model);
         }
 
-   
-        public ActionResult ToHome()
+        public void SetAuthenticationCookie(string userEmail, string roles)
         {
-            return View("~/Views/CalculadoraRomana/Index.cshtml");
+            var cookieSection = (HttpCookiesSection)ConfigurationManager.GetSection("system.web/httpCookies");
+            var authenticationSection =
+                (AuthenticationSection)ConfigurationManager.GetSection("system.web/authentication");
+
+            var authTicket =
+                new FormsAuthenticationTicket(
+                    1, userEmail, DateTime.Now,
+                    DateTime.Now.AddMinutes(authenticationSection.Forms.Timeout.TotalMinutes),
+                    false, roles);
+
+            String encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+
+            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+            if (cookieSection.RequireSSL || authenticationSection.Forms.RequireSSL)
+            {
+                authCookie.Secure = true;
+            }
+
+            HttpContext.Response.Cookies.Add(authCookie);
+
         }
 
        }

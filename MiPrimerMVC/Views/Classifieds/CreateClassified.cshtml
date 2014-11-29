@@ -16,16 +16,16 @@
     @{
         var dropdownItems = new List<SelectListItem>();
         dropdownItems.AddRange(new[]{
-                                    new SelectListItem() { Text = "Automoviles" },
-                                    new SelectListItem() { Text = "Instruments" },
-                                    new SelectListItem() { Text = "VG. Consoles" },
-                                    new SelectListItem() { Text = "Technology" }});
+                                    new SelectListItem { Text = "Automoviles" },
+                                    new SelectListItem { Text = "Instruments" },
+                                    new SelectListItem { Text = "VG. Consoles" },
+                                    new SelectListItem { Text = "Technology" }});
         ViewData.Add("DropDownItems", dropdownItems);
 
         var dropdownItems2 = new List<SelectListItem>();
         dropdownItems2.AddRange(new[]{
-                                    new SelectListItem() { Text = "Sale" },
-                                    new SelectListItem() { Text = "Rent" }
+                                    new SelectListItem { Text = "Sale" },
+                                    new SelectListItem { Text = "Rent" }
                                     });
         ViewData.Add("DropDownItems2", dropdownItems2);
     }
@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Article</label>
                     <div class="col-lg-10">
-                        @Html.TextBoxFor(x => x.Article, new { @class = "form-control", type = "text", placeholder = "Article Title", @required = "required" })
+                        @Html.TextBoxFor(x => x.Article, new { @class = "form-control", placeholder = "Article Title"})
                     </div>
                 </div>
                 <!--END Title-->
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Business Type</label>
                     <div class="col-lg-10">
-                        @Html.DropDownListFor(x => x.ArticleModel, ViewData["DropDownItems2"] as List<SelectListItem>, new { @class = "dropdown", type = "text", @style = "width:150px" })
+                        @Html.DropDownListFor(x => x.ArticleModel, ViewData["DropDownItems2"] as List<SelectListItem>, new { @class = "dropdown", @style = "width:150px" })
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Checkbox
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Category</label>
                     <div class="col-lg-10">
-                        @Html.DropDownListFor(x => x.Category, ViewData["DropDownItems"] as List<SelectListItem>, new { @class = "dropdown", type = "text", @style = "width:150px" })
+                        @Html.DropDownListFor(x => x.Category, ViewData["DropDownItems"] as List<SelectListItem>, new { @class = "dropdown", @style = "width:150px" })
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Checkbox
@@ -73,7 +73,9 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Location</label>
                     <div class="col-lg-10">
-                        @Html.TextBoxFor(x => x.Location, new { @class = "form-control", type = "text", placeholder = "State | Country", @required = "required"})
+                        @Html.TextBoxFor(x => x.Location, new { @class = "form-control", placeholder = "State | Country"})
+                        <label style="color:red">@Html.ValidationMessageFor(x => x.Location)</label>
+
                     </div>
                 </div>
                 <!--END Location-->
@@ -81,7 +83,9 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Article</label>
                     <div class="col-lg-10">
-                        @Html.TextBoxFor(x => x.Price, new { @class = "form-control", type = "number", placeholder = "$ 00.00", @required = "required" })
+                        @Html.TextBoxFor(x => x.Price, new { @class = "form-control", placeholder = "$ 00.00"})
+                        <label style="color:red">@Html.ValidationMessageFor(x => x.Price)</label>
+
                     </div>
                 </div>
                 <!--END Price-->
@@ -89,7 +93,9 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Image URL</label>
                     <div class="col-lg-10">
-                        @Html.TextBoxFor(x => x.UrlImage, new { @class = "form-control", type = "text", placeholder = "Image URL here", @required = "required" })
+                        @Html.TextBoxFor(x => x.UrlImage, new { @class = "form-control", placeholder = "Image URL here" })
+                        <label style="color:red">@Html.ValidationMessageFor(x => x.UrlImage)</label>
+
                     </div>
                 </div>
                 <!--END img URL-->
@@ -97,7 +103,7 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Video URL</label>
                     <div class="col-lg-10">
-                        @Html.TextBoxFor(x => x.UrlVideo, new { @class = "form-control", type = "text", placeholder = "Video URL here", @required = "required" })
+                        @Html.TextBoxFor(x => x.UrlVideo, new { @class = "form-control", placeholder = "Video URL here"})
                     </div>
                 </div>
                 <!--END vd URL-->
@@ -105,7 +111,9 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Description</label>
                     <div class="col-lg-10">
-                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = "3", @required = "required" })
+                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = "3"})
+                        <label style="color:red">@Html.ValidationMessageFor(x => x.Description)</label>
+
                         <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
                     </div>
                 </div>

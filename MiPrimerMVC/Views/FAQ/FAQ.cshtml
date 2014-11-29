@@ -1,8 +1,7 @@
-﻿@using Microsoft.Ajax.Utilities
-@model MiPrimerMVC.Controllers.QuestionModel
+﻿@model MiPrimerMVC.Controllers.QuestionModel
 
 @{
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -288,12 +287,12 @@
                         <h4 class="separator bottom margin-none">Send us a message</h4>
                         <form class="row-fluid margin-none">
                             <div class="span6">
-                                @Html.TextBoxFor(x => x.Name, new { @class = "span12", placeholder="YOUR NAME" ,type = "text",  @required = "required" })
+                                @Html.TextBoxFor(x => x.Name, new { @class = "span12", placeholder="YOUR NAME"})
                             </div>
                             <div class="span6">
-                                @Html.TextBoxFor(x => x.Email, new { @class = "span12", placeholder = "EMAIL", type = "email", @required = "required" })
+                                @Html.TextBoxFor(x => x.Email, new { @class = "span12", placeholder = "EMAIL"})
                             </div>
-                            @Html.TextAreaFor(x => x.QuestionText, new { @class = "span12", placeholder = "YOUR MESSAGE",rows="5", type = "text", @required = "required" })
+                            @Html.TextAreaFor(x => x.QuestionText, new { @class = "span12", placeholder = "YOUR MESSAGE",rows="5"})
                             <div class="right">
                                 <button type="submit" class="btn btn-primary btn-icon glyphicons envelope"><i></i> Send Question</button>
                             </div>

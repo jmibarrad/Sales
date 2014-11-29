@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using System.Windows.Forms;
 using Domain.Entities;
@@ -28,43 +24,30 @@ namespace MiPrimerMVC.Controllers
         [HttpPost]
         public ActionResult Register(RegisterModel rModel)
         {
-            if (!(rModel.Name.Length>3&&rModel.Name.Length<=50))
+           if (ModelState.IsValid)
             {
-                MessageBox.Show("Name more than 3 letters and less than 50.");
 
-            }else{ 
-
-            if (!ValidatePassword(rModel.Password))
-            {
-                MessageBox.Show("Passwords requirement are: \n1. Length between {8,15}.\n2.At least an Uppercase.\n3.At least a number.\n4.No special characters.");
-
-
-            }else{    
-                    if (!((new Hasher()).Encrypt(rModel.Password).Equals((new Hasher()).Encrypt(rModel.ConfirmPassword))))
-                    {
-                        MessageBox.Show("Passwords don´t match.");
-                    }
-                    else { 
-                
                         var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == rModel.Email);
                         if (user != null)
                         {
+                            //check
                             MessageBox.Show("User Exists.");
                         }
                         else
                         {
-                           var RegisteredAccount = new AccountLogin(rModel.Email, rModel.Name ,(new Hasher()).Encrypt(rModel.Password), "user");
-               
-                            var createdOperation = _writeOnlyRepository.Create(RegisteredAccount);
+                           var registeredAccount = new AccountLogin(rModel.Email, rModel.Name ,(new Hasher()).Encrypt(rModel.Password), "user");
+                           
+                            _writeOnlyRepository.Create(registeredAccount);
                             MailTo.SendSimpleMessage(rModel.Email, rModel.Name, "Gracias por Registrarse");
 
-                        }           
-                    }
-                }
+                        }ModelState.AddModelError("", "Something went wrong with your credentials.");
+        
             }
+
             return View(rModel);
         }
 
+        #region ValPassword
         public static bool ValidatePassword( string password )
         {
           const int MIN_LENGTH =  8 ;
@@ -95,7 +78,7 @@ namespace MiPrimerMVC.Controllers
           return isValid ;
 
         }
-     
+        #endregion 
 
     }
 }
