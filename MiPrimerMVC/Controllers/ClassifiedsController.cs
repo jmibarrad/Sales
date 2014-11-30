@@ -192,6 +192,7 @@ namespace MiPrimerMVC.Controllers
             return View(model);
         }
 
+        [Authorize]
         public ActionResult MostVisited()
         {
             var classifiedVisited = _readOnlyRepository.GetAll<Classifieds>().ToList();

@@ -276,7 +276,7 @@
                           @foreach (var m in Model.myClassifiedsList) {   
                             <div class="widget widget-heading-simple widget-body-white widget-pinterest">
                                 <div class="widget-body padding-none">
-                                    <a href="shop_product.html?lang=en&amp;style=style-default" class="thumb"><img src="@m.UrlImage" alt="photo" /></a>
+                                    <a href="@Html.ActionLink(@m.Article, "Detailed", "Classifieds", new { @id = m.Id }, null)" class="thumb"><img src="@m.UrlImage" alt="photo" /></a>
                                     <div class="description">
                                         <h5 class="text-uppercase strong">@m.Article</h5>
                                         <p>@m.Description</p>

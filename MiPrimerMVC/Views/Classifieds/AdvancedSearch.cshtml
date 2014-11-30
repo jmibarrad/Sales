@@ -1,5 +1,4 @@
-﻿@using Domain.Entities
-@model MiPrimerMVC.Controllers.ClassifiedsController.ClassiModel
+﻿@model MiPrimerMVC.Controllers.ClassifiedsController.ClassiModel
 @{
     ViewBag.Title = "Sales|JMID: Advanced Search";
     Layout = "~/Views/Shared/_Layout2.cshtml";
@@ -54,7 +53,7 @@
 <hr>
 @if (@Model.myClassifiedsList.Count > 0)
 {
-    foreach (Classifieds x in Model.myClassifiedsList)
+    foreach (var x in Model.myClassifiedsList)
     {
          <div class="col-md-6">
              
