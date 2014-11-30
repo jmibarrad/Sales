@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
@@ -15,7 +12,8 @@ namespace Domain.Entities
         public virtual string Password { get; set; }
         public virtual string Role { get; set; }
         public virtual IEnumerable<Classifieds> AccountClassifieds { get; set;}
-        public virtual IEnumerable<Messages> AccountMessages { get; set; } 
+        public virtual IEnumerable<Messages> AccountMessages { get; set; }
+        public virtual UserData UserInfo { get; set; }
 
         public AccountLogin(string email, string name, string password, string role)
         {
