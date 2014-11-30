@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Domain.Entities;
 using Domain.Services;
 using DomainDrivenDatabaseDeployer;
-using FizzWare.NBuilder;
 using NHibernate;
-using NHibernate.Mapping;
 
 namespace DatabaseDeployer
 {
@@ -31,9 +25,9 @@ namespace DatabaseDeployer
                 Name = "Jose Mario Ibarra",
                 Password = encrypter.Encrypt("password"),
                 Role = "admin",
-                 AccountMessages = new List<Messages>()
+                 AccountMessages = new List<Messages>
                  {
-                     new Messages()
+                     new Messages
                      {
                          Email = "jmibarra@unitec.edu",
                          Name = "Jose Ibarra",

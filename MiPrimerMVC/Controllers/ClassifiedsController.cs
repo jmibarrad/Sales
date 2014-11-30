@@ -68,17 +68,6 @@ namespace MiPrimerMVC.Controllers
             return View(model);
         }
 
-        public ActionResult AllClasifieds()
-        {
-            return View(new ClassiModel());
-        }
-
-        [HttpPost]
-        public ActionResult AllClasifieds(ClassiModel model)
-        {
-            return View();
-        }
-
         public static string EmailReceiver="";
         public ActionResult Detailed(long id)
         {
@@ -108,6 +97,14 @@ namespace MiPrimerMVC.Controllers
             MessageBox.Show("Email sent successfully");
             
             return View(model);
+        }
+
+        public ActionResult AllClassifieds()
+        {
+            var allModel = new ClassiModel();
+
+            allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList();
+            return View(allModel);
         }
 
         public ActionResult ByCategory()
