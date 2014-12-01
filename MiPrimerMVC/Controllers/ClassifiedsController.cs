@@ -100,11 +100,23 @@ namespace MiPrimerMVC.Controllers
             return View(model);
         }
 
-        public ActionResult AllClassifieds()
+        public ActionResult AllClassifieds(string category="All")
         {
             var allModel = new ClassiModel();
-
-            allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList();
+            switch (category)
+            {
+                case "All": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList();
+                    break;
+                case "Auto": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x=>x.Category == "Automoviles").ToList();
+                    break;
+                case "Inst": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "Instruments").ToList();
+                    break;
+                case "VGC": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "VG. Consoles").ToList();
+                    break;
+                case "Tech": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "Technology").ToList();
+                    break;
+            }
+           
             return View(allModel);
         }
 

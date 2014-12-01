@@ -73,10 +73,6 @@
 
                         <ul class="topnav pull-right">
 
-                            <!-- Themer -->
-                            <li class="hidden-phone"><a href="#themer" data-toggle="collapse" class="glyphicons eyedropper single-icon"><i></i></a></li>
-                            <!-- // Themer END -->
-
                             <li class="hidden-phone"><a href="contact.html?lang=en&amp;style=style-default" class="glyphicons shield"><i></i> Get Help</a></li>
                             <li class="glyphs hidden-phone">
                                 <ul>
@@ -132,13 +128,6 @@
 
                     <!-- Top Menu Right -->
                     <ul class="topnav pull-right border-none hidden-tablet">
-
-                        <li class="search open margin-none border-none box-shadow-none">
-                            <form autocomplete="off" class="dropdown dd-1">
-                                <input type="text" value="" placeholder="Type for suggestions .." data-toggle="typeahead" />
-                                <button type="button" class="glyphicons search"><i></i></button>
-                            </form>
-                        </li>
 
                     </ul>
                     <div class="clearfix"></div>
@@ -223,23 +212,23 @@
                                 <!-- List -->
                                 <ul>
                                     <li>
-                                        <a href=""><i class="fa fa-car"></i> Automoviles</a>
+                                        <a href=""><i class="fa fa-car"></i> @Html.ActionLink(" Automoviles", "AllClassifieds", "Classifieds", new { @category = "Auto" }, null)</a>
                                         <span class="badge">35</span>
                                     </li>
                                     <li>
-                                        <a href=""><i class="fa fa-music"></i> Instruments</a>
+                                        <a href=""><i class="fa fa-music"></i> @Html.ActionLink(" Instruments", "AllClassifieds", "Classifieds", new { @category = "Inst" }, null)</a>
                                         <span class="badge">30</span>
                                     </li>
                                     <li>
-                                        <a href=""><i class="fa fa-gamepad"></i> VG. Consoles</a>
+                                        <a href=""><i class="fa fa-gamepad"></i>@Html.ActionLink(" VG. COnsoles", "AllClassifieds", "Classifieds", new { @category = "VGC" }, null)</a>
                                         <span class="badge">19</span>
                                     </li>
                                     <li>
-                                        <a href=""><i class="fa fa-cogs"></i> Technology</a>
+                                        <a href=""><i class="fa fa-cogs"></i>@Html.ActionLink(" Technology", "AllClassifieds", "Classifieds", new { @category = "Tech" }, null)</a>
                                         <span class="badge">33</span>
                                     </li>
                                     <li>
-                                        <a href="">Others</a>
+                                        <a href="">@Html.ActionLink("Show All", "AllClassifieds", "Classifieds", new { @category = "All" }, null)</a>
                                         <span class="badge">17</span>
                                     </li>
                                 </ul>
@@ -260,14 +249,17 @@
                                     <i></i>
                                     <h4 style="color:cornflowerblue; font-weight:bold">Have a Question?</h4>
                                     <p style="">Have access to our Frequent Asked Questions of our website.</p>
-                                    <a href="~/FAQ/FAQ" class="btn btn-info btn-block"><span class="icon-comments-alt"></span> Live Support</a>
+                                    <a href="~/FAQ/FAQ" class="btn btn-info btn-block"><span class="icon-comments-alt"></span>Go to FAQ</a>
                                 </div>
                             </div>
                         </div>
                        
                     </div>
                     <div class="span9">
-                     
+                     @if (Model.myClassifiedsList.Count == 0)
+                     {
+                        <h2 style="color:orange; text-align: center"><strong><i class="fa fa-warning"></i>[Sorry] No Items Available.!</strong></h2>
+                     }
                         <div data-toggle="gridalicious" data-gridalicious-width="300" data-gridalicious-gutter="0">
                           @foreach (var m in Model.myClassifiedsList) {   
                             <div class="widget widget-heading-simple widget-body-white widget-pinterest">
@@ -362,28 +354,7 @@
 
     </div>
     <!-- // Main Container Fluid END -->
-    <!-- Themer -->
-    <div id="themer" class="collapse">
-        <div class="wrapper">
-            <span class="close2">&times; close</span>
-            <h4>Themer <span>color options</span></h4>
-            <ul>
-                <li>Theme: <select id="themer-theme" class="pull-right"></select><div class="clearfix"></div></li>
-                <li>Primary Color: <input type="text" data-type="minicolors" data-default="#ffffff" data-slider="hue" data-textfield="false" data-position="left" id="themer-primary-cp" /><div class="clearfix"></div></li>
-                <li>
-                    <span class="link" id="themer-custom-reset">reset theme</span>
-                    <span class="pull-right"><label>advanced <input type="checkbox" value="1" id="themer-advanced-toggle" /></label></span>
-                </li>
-            </ul>
-            <div id="themer-getcode" class="hide">
-                <hr class="separator" />
-                <button class="btn btn-primary btn-small pull-right btn-icon glyphicons download" id="themer-getcode-less"><i></i>Get LESS</button>
-                <button class="btn btn-inverse btn-small pull-right btn-icon glyphicons download" id="themer-getcode-css"><i></i>Get CSS</button>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-    <!-- // Themer END -->
+    
     <!-- JQuery -->
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
