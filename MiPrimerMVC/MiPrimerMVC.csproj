@@ -3214,7 +3214,6 @@
     <Content Include="Views\Classifieds\AdvancedSearch.cshtml" />
     <Content Include="Views\Classifieds\Detailed.cshtml" />
     <Content Include="Views\Classifieds\MostVisited.cshtml" />
-    <Content Include="Views\Classifieds\MostRecent.cshtml" />
     <Content Include="Views\Classifieds\Featured.cshtml" />
     <Content Include="Views\Classifieds\AllClassifieds.cshtml" />
   </ItemGroup>
