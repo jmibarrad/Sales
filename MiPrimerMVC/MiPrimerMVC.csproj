@@ -3211,13 +3211,11 @@
     <Content Include="Views\FAQ\FAQ.cshtml" />
     <Content Include="Views\Classifieds\CreateClassified.cshtml" />
     <Content Include="Views\Classifieds\MyClassifieds.cshtml" />
-    <Content Include="Views\Classifieds\ByCategory.cshtml" />
     <Content Include="Views\Classifieds\AdvancedSearch.cshtml" />
     <Content Include="Views\Classifieds\Detailed.cshtml" />
     <Content Include="Views\Classifieds\MostVisited.cshtml" />
     <Content Include="Views\Classifieds\MostRecent.cshtml" />
     <Content Include="Views\Classifieds\Featured.cshtml" />
-    <Content Include="Views\Classifieds\SimpleSearch.cshtml" />
     <Content Include="Views\Classifieds\AllClassifieds.cshtml" />
   </ItemGroup>
   <ItemGroup>

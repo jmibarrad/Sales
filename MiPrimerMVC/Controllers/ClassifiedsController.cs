@@ -119,35 +119,7 @@ namespace MiPrimerMVC.Controllers
            
             return View(allModel);
         }
-
-        public ActionResult ByCategory()
-        {
-            var cSimpleSearch = new ClassiModel
-            {
-                myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList()
-            };
-            cSimpleSearch.myClassifiedsList.Reverse();
-            return View(cSimpleSearch);
-        }
-
-        [HttpPost]
-        public ActionResult ByCategory(ClassiModel model)
-        {
-            var filters = _readOnlyRepository.GetAll<Classifieds>().ToList();
-
-            if (model.Cas.Category != null)
-            {
-                filters = filters.FindAll(x => x.Category.ToUpper().Contains(model.Cas.Category.ToUpper()));
-            }
-
-            filters.Reverse();
-            model.myClassifiedsList = filters;
-
-            return View(model);
-        }
-
-
-
+        
         public ActionResult AdvancedSearch()
         {
             var cAdvancedSearch = new ClassiModel
@@ -163,49 +135,27 @@ namespace MiPrimerMVC.Controllers
         {
             var filters = _readOnlyRepository.GetAll<Classifieds>().ToList();
 
-            //filters = filters.FindAll(x => x.Article == model.Cas.Title);
-
-            if (model.Cas.Title != null)
-            {
-                filters = filters.FindAll(x => x.Article.Contains(model.Cas.Title));
-            }
-
-            if (model.Cas.Description != null)
-            {
-                filters = filters.FindAll(x => x.Description.Contains(model.Cas.Description));
-            }
-
-            model.myClassifiedsList = filters;
-
-            return View(model);
-        }
-
-        public ActionResult SimpleSearch()
-        {
-            var cSimpleSearch = new ClassiModel
-            {
-                myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList()
-            };
-
-            return View(cSimpleSearch);
-        }
-
-        [HttpPost]
-        public ActionResult SimpleSearch(ClassiModel model)
-        {
-            var filters = _readOnlyRepository.GetAll<Classifieds>().ToList();
-            
-            if (model.Cas.Title != null)
+            if (model.Cas.Title != null && model.Cas.TitleBool)
             {
                 filters = filters.FindAll(x => x.Article.ToUpper().Contains(model.Cas.Title.ToUpper()));
             }
 
+            if (model.Cas.Category != null && model.Cas.CategoryBool)
+            {
+                filters = filters.FindAll(x => x.Category.Contains(model.Cas.Category));
+            }
+
+            if (model.Cas.Description != null && model.Cas.DescriptionBool)
+            {
+                filters = filters.FindAll(x => x.Description.ToUpper().Contains(model.Cas.Description.ToUpper()));
+            }
+
             model.myClassifiedsList = filters;
 
             return View(model);
         }
 
-        [Authorize]
+       [Authorize]
         public ActionResult MostVisited()
         {
             var classifiedVisited = _readOnlyRepository.GetAll<Classifieds>().ToList();
@@ -307,11 +257,18 @@ namespace MiPrimerMVC.Controllers
 
             public string Category { get; set; }
 
+            public bool CategoryBool { get; set; }
+
             [DataType(DataType.Text)]
             public string Title { get; set; }
 
+            public bool TitleBool { get; set; }
+
             [DataType(DataType.Text)]
             public string Description { get; set; }
+
+            public bool DescriptionBool { get; set; }
+
         }
 
         public class SendEmail
