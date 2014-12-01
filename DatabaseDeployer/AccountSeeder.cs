@@ -25,8 +25,8 @@ namespace DatabaseDeployer
                 Name = "Jose Mario Ibarra",
                 Password = encrypter.Encrypt("password"),
                 Role = "admin",
-                 AccountMessages = new List<Messages>
-                 {
+                AccountMessages = new List<Messages>
+                {
                      new Messages
                      {
                          Email = "jmibarra@unitec.edu",
@@ -34,8 +34,9 @@ namespace DatabaseDeployer
                          Message = "Queria consultar donde estan ubicados? Gracias",
                          Subject = "Importante"
                      }
-                 }
-               
+
+                },
+                UserInfo = new UserData()
             };
             _session.Save(account);
             _session.Flush();

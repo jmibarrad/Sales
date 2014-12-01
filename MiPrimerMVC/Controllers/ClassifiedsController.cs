@@ -75,7 +75,8 @@ namespace MiPrimerMVC.Controllers
             var classiModel = new ClassiModel();
             classiModel.classifiedForDetail = classified;
             EmailReceiver = classiModel.classifiedForDetail.Email;
-
+            var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == EmailReceiver);
+            classiModel.ContactInfo = user.UserInfo;
             classiModel.classifiedForDetail.Visited++;
             _writeOnlyRepository.Update(classiModel.classifiedForDetail);
 
@@ -284,6 +285,9 @@ namespace MiPrimerMVC.Controllers
             //For Filters
             public List<Classifieds> myClassifiedsList { get; set; }
             public CategoryAdvancedSearch Cas { get; set; }
+
+            //For ContactInfo
+            public UserData ContactInfo { get; set; }
         }
 
         public class CategoryAdvancedSearch

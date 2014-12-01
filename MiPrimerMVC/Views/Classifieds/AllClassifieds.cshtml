@@ -48,7 +48,8 @@
 
     <!-- Main Theme Stylesheet :: CSS -->
     <link href="../../../common/theme/css/style-default.css?1372280995" rel="stylesheet" />
-
+    
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
 
     <!-- LESS.js Library -->
     <script src="../../../common/theme/scripts/plugins/system/less.min.js"></script>
@@ -222,23 +223,23 @@
                                 <!-- List -->
                                 <ul>
                                     <li>
-                                        <a href="">Make Up</a>
+                                        <a href=""><i class="fa fa-car"></i> Automoviles</a>
                                         <span class="badge">35</span>
                                     </li>
                                     <li>
-                                        <a href="">Fragrances</a>
+                                        <a href=""><i class="fa fa-music"></i> Instruments</a>
                                         <span class="badge">30</span>
                                     </li>
                                     <li>
-                                        <a href="">Nails</a>
+                                        <a href=""><i class="fa fa-gamepad"></i> VG. Consoles</a>
                                         <span class="badge">19</span>
                                     </li>
                                     <li>
-                                        <a href="">Hair Products</a>
+                                        <a href=""><i class="fa fa-cogs"></i> Technology</a>
                                         <span class="badge">33</span>
                                     </li>
                                     <li>
-                                        <a href="">Accessories</a>
+                                        <a href="">Others</a>
                                         <span class="badge">17</span>
                                     </li>
                                 </ul>
@@ -249,26 +250,21 @@
                         <!-- // Widget END -->
 
                         <div class="widget widget-heading-simple widget-body-gray">
+                            <div class="widget-head"><h4 class="heading glyphicons warning_sign strong" style="color: crimson"><i></i><strong>Important note</strong></h4></div>
+                            <div class="widget-body"><p class="margin-none">We only Accept the following credit cards:<br /><i class="fa fa-cc-visa"></i> Visa<br /><i class="fa fa-cc-mastercard"></i> Mastercard<br /><i class="fa fa-cc-discover"></i> Discover<br /><i class="fa fa-cc-paypal"></i> PayPal<br /><i class="fa fa-cc-stripe"></i> Stripe</p></div>
+                        </div>
+                        
+                        <div class="widget widget-heading-simple widget-body-gray">
                             <div class="widget-body">
                                 <div class="glyphicons glyphicon-xlarge glyphicon-top circle_question_mark">
                                     <i></i>
-                                    <h4>Have a Question?</h4>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                    <a href="" class="btn btn-primary btn-block"><span class="icon-comments-alt"></span> Live Support</a>
+                                    <h4 style="color:cornflowerblue; font-weight:bold">Have a Question?</h4>
+                                    <p style="">Have access to our Frequent Asked Questions of our website.</p>
+                                    <a href="~/FAQ/FAQ" class="btn btn-info btn-block"><span class="icon-comments-alt"></span> Live Support</a>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="widget widget-heading-simple widget-body-gray">
-                            <div class="widget-head"><h4 class="heading glyphicons warning_sign strong"><i></i>Important note</h4></div>
-                            <div class="widget-body"><p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi erat massa, ultricies sit amet.</p></div>
-                        </div>
-
-                        <div class="widget widget-heading-simple widget-body-gray">
-                            <div class="widget-head"><h4 class="heading glyphicons tags strong"><i></i>Labels</h4></div>
-                            <div class="widget-body center"><span class="label">responsive blog</span> <span class="label">12 column grid</span> <span class="label">awesome</span> <span class="label">mobile first</span> <span class="label">easy development</span> <span class="label">html template</span></div>
-                        </div>
-
+                       
                     </div>
                     <div class="span9">
                      
@@ -276,9 +272,9 @@
                           @foreach (var m in Model.myClassifiedsList) {   
                             <div class="widget widget-heading-simple widget-body-white widget-pinterest">
                                 <div class="widget-body padding-none">
-                                    <a href="@Html.ActionLink(@m.Article, "Detailed", "Classifieds", new { @id = m.Id }, null)" class="thumb"><img src="@m.UrlImage" alt="photo" /></a>
+                                  <a class="thumb"><img src="@m.UrlImage" alt="photo" /></a>
                                     <div class="description">
-                                        <h5 class="text-uppercase strong">@m.Article</h5>
+                                        <h5 class="text-uppercase strong">@Html.ActionLink(@m.Article, "Detailed", "Classifieds", new { @id = m.Id }, null)</h5>
                                         <p>@m.Description</p>
                                         <div class="row-fluid">
                                             <div class="span6">
