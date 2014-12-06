@@ -15,6 +15,7 @@ namespace Domain.Entities
         public virtual IEnumerable<Messages> AccountMessages { get; set; }
         public virtual UserData UserInfo { get; set; }
         public virtual Subscribers UserSubscriptions { get; set; }
+        public virtual Notifications Notifications { get; set; }
         public AccountLogin(string email, string name, string password, string role)
         {
             Role = role;

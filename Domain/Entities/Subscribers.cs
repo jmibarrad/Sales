@@ -22,5 +22,6 @@ namespace Domain.Entities
         {
             Archived = false;
         }
+
     }
 }

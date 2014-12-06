@@ -148,9 +148,8 @@
                                                                            <div class="separator bottom"></div>
                                                                            <!-- // Profile Photo END -->
                                                                            <!-- Social Icons -->
-                                                                           <a href="" class="glyphicons glyphicon-exclamation-sign"><i></i></a>
-                                                                           <a href="" class="glyphicons standard twitter"><i></i></a>
-                                                                           <a href="" class="glyphicons standard linked_in"><i></i></a>
+                                                                           @(Model.IsFollowing ? Html.ActionLink("Unfollow", "Unfollow", "AccountLogin", new {@id = Model.PublicUser.Id}, new {@class = "btn btn-danger"}) : Html.ActionLink("Follow", "Follow", "AccountLogin", new {@id = Model.PublicUser.Id}, new {@class = "btn btn-Info"}))
+                                                                           
                                                                            <div class="clearfix separator bottom"></div>
                                                                            <!-- // Social Icons END -->
                                                                        </div>

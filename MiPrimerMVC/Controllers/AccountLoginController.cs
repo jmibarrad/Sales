@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Domain.Entities;
 using Domain.Services;
+using Microsoft.Ajax.Utilities;
 using MiPrimerMVC.Models;
 
 namespace MiPrimerMVC.Controllers
@@ -216,19 +217,52 @@ namespace MiPrimerMVC.Controllers
             return RedirectToAction("ManageClassifieds");
         }
 
-        public ActionResult PublicProfile()
+        private long _forRedirect;
+        private string _toStore;
+        public ActionResult PublicProfile(long id)
         {
+            _forRedirect = id;
             var publicUser = new ProfileModel();
+            publicUser.PublicUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == id);
+            _toStore=publicUser.PublicUser.Email;
+            var activeUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == HttpContext.User.Identity.Name);
+            if (activeUser.UserSubscriptions.Following.Where(x => x.Email == _toStore).ToList().Count == 0)
+            {
+                publicUser.IsFollowing = false;
+            }
+            else
+            {
+                publicUser.IsFollowing = true;
+            } 
             return View();
         }
 
-//        [Authorize]
-//        public ActionResult Follow(long id)
-//        {
-//            var model= new 
-//            return View(model);
-//        }
+        [Authorize]
+        public ActionResult Follow()
+        {
+            var activeUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == HttpContext.User.Identity.Name);
+            var userprofile = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == _toStore);
+            activeUser.UserSubscriptions.Following.ToList().Add(userprofile);
+            userprofile.UserSubscriptions.Followers.ToList().Add(activeUser);
+            _writeOnlyRepository.Update(userprofile);
+            _writeOnlyRepository.Update(activeUser);
+            
+            return RedirectToAction("PublicProfile",_forRedirect);
+        }
 
+        [Authorize]
+        public ActionResult UnFollow()
+        {
+            var activeUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == HttpContext.User.Identity.Name);
+            var userprofile = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == _toStore);
+            activeUser.UserSubscriptions.Following.ToList().Remove(userprofile);
+            userprofile.UserSubscriptions.Followers.ToList().Remove(activeUser);
+            _writeOnlyRepository.Update(userprofile);
+            _writeOnlyRepository.Update(activeUser);
+
+
+            return RedirectToAction("PublicProfile", _forRedirect);
+        }
 
        }
 }
