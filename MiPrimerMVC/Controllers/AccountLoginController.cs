@@ -226,14 +226,19 @@ namespace MiPrimerMVC.Controllers
             publicUser.PublicUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == id);
             _toStore=publicUser.PublicUser.Email;
             var activeUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == HttpContext.User.Identity.Name);
-            if (activeUser.UserSubscriptions.Following.Where(x => x.Email == _toStore).ToList().Count == 0)
+            if (activeUser.UserSubscriptions.Following == null)
             {
                 publicUser.IsFollowing = false;
+            } else { 
+                if (activeUser.UserSubscriptions.Following.Where(x => x.Email == _toStore).ToList().Count == 0)
+                {
+                    publicUser.IsFollowing = false;
+                }
+                else
+                {
+                    publicUser.IsFollowing = true;
+                }
             }
-            else
-            {
-                publicUser.IsFollowing = true;
-            } 
             return View();
         }
 

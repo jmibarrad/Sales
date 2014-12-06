@@ -2,126 +2,132 @@
 
 @{
     ViewBag.Title = "Classifieds";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
 }
 
 <!DOCTYPE html>
 
 <html>
-<head>
-    <title>title</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-</head>
-<body>
-    @{
-        var dropdownItems = new List<SelectListItem>();
-        dropdownItems.AddRange(new[]{
-                                    new SelectListItem { Text = "Automoviles" },
-                                    new SelectListItem { Text = "Instruments" },
-                                    new SelectListItem { Text = "VG. Consoles" },
-                                    new SelectListItem { Text = "Technology" }});
-        ViewData.Add("DropDownItems", dropdownItems);
+    <head>
+        <title>title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        @{
+            var dropdownItems = new List<SelectListItem>();
+            dropdownItems.AddRange(new[]
+            {
+                new SelectListItem {Text = "Automoviles"},
+                new SelectListItem {Text = "Instruments"},
+                new SelectListItem {Text = "VG. Consoles"},
+                new SelectListItem {Text = "Technology"}
+            });
+            ViewData.Add("DropDownItems", dropdownItems);
 
-        var dropdownItems2 = new List<SelectListItem>();
-        dropdownItems2.AddRange(new[]{
-                                    new SelectListItem { Text = "Sale" },
-                                    new SelectListItem { Text = "Rent" }
-                                    });
-        ViewData.Add("DropDownItems2", dropdownItems2);
-    }
-    
-        @using (Html.BeginForm("CreateClassified", "Classifieds", null, FormMethod.Post, new { @class = "form-horizontal" }))
-        {
-
-            <fieldset>
-                <legend>Legend</legend>
-                <!--Title-->
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Article</label>
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(x => x.Article, new { @class = "form-control", placeholder = "Article Title"})
-                    </div>
-                </div>
-                <!--END Title-->
-                <!--Type-->
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Business Type</label>
-                    <div class="col-lg-10">
-                        @Html.DropDownListFor(x => x.ArticleModel, ViewData["DropDownItems2"] as List<SelectListItem>, new { @class = "dropdown", @style = "width:150px" })
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Checkbox
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <!--End Type-->
-                <!--Category-->
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Category</label>
-                    <div class="col-lg-10">
-                        @Html.DropDownListFor(x => x.Category, ViewData["DropDownItems"] as List<SelectListItem>, new { @class = "dropdown", @style = "width:150px" })
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Checkbox
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Category-->
-                <!--Location-->
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Location</label>
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(x => x.Location, new { @class = "form-control", placeholder = "State | Country"})
-                        <label style="color:red">@Html.ValidationMessageFor(x => x.Location)</label>
-
-                    </div>
-                </div>
-                <!--END Location-->
-                <!--Price-->
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Article</label>
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(x => x.Price, new { @class = "form-control", placeholder = "$ 00.00"})
-                        <label style="color:red">@Html.ValidationMessageFor(x => x.Price)</label>
-
-                    </div>
-                </div>
-                <!--END Price-->
-                <!--img URL-->
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Image URL</label>
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(x => x.UrlImage, new { @class = "form-control", placeholder = "Image URL here" })
-                        <label style="color:red">@Html.ValidationMessageFor(x => x.UrlImage)</label>
-
-                    </div>
-                </div>
-                <!--END img URL-->
-                <!--vd URL-->
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Video URL</label>
-                    <div class="col-lg-10">
-                        @Html.TextBoxFor(x => x.UrlVideo, new { @class = "form-control", placeholder = "Video URL here"})
-                    </div>
-                </div>
-                <!--END vd URL-->
-                <!--Description-->
-                <div class="form-group">
-                    <label class="col-lg-2 control-label">Description</label>
-                    <div class="col-lg-10">
-                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = "3"})
-                        <label style="color:red">@Html.ValidationMessageFor(x => x.Description)</label>
-
-                        <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
-                    </div>
-                </div>
-                <!--End Description-->
-                <button class=" btn " type="submit">Create&nbsp;&nbsp;&nbsp;<i class=" icon-chevron-sign-right"></i></button>
-
-            </fieldset>
+            var dropdownItems2 = new List<SelectListItem>();
+            dropdownItems2.AddRange(new[]
+            {
+                new SelectListItem {Text = "Sale"},
+                new SelectListItem {Text = "Rent"}
+            });
+            ViewData.Add("DropDownItems2", dropdownItems2);
         }
-    
+        <div class="container-960 innerT">
+            <div class="widget widget-heading-simple widget-body-gray">
+                <div class="widget-body"><p class="lead center margin-none"><i class="fa fa-newspaper-o"></i> Create a Classified</p></div>
+            </div>
+        </div>
+            @using (Html.BeginForm("CreateClassified", "Classifieds", null, FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <fieldset>
+                    <!--Title-->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Article</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(x => x.Article, new { @class = "form-control", placeholder = "Article Title" })
+                        </div>
+                    </div>
+                    <!--END Title-->
+                    <!--Type-->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Business Type</label>
+                        <div class="col-lg-10">
+                            @Html.DropDownListFor(x => x.ArticleModel, ViewData["DropDownItems2"] as List<SelectListItem>, new { @class = "dropdown", @style = "width:150px" })
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Checkbox
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Type-->
+                    <!--Category-->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Category</label>
+                        <div class="col-lg-10">
+                            @Html.DropDownListFor(x => x.Category, ViewData["DropDownItems"] as List<SelectListItem>, new { @class = "dropdown", @style = "width:150px" })
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Checkbox
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Category-->
+                    <!--Location-->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Location</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(x => x.Location, new { @class = "form-control", placeholder = "State | Country" })
+                            <label style="color: red">@Html.ValidationMessageFor(x => x.Location)</label>
+
+                        </div>
+                    </div>
+                    <!--END Location-->
+                    <!--Price-->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Article</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(x => x.Price, new { @class = "form-control", placeholder = "$ 00.00" })
+                            <label style="color: red">@Html.ValidationMessageFor(x => x.Price)</label>
+
+                        </div>
+                    </div>
+                    <!--END Price-->
+                    <!--img URL-->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Image URL</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(x => x.UrlImage, new { @class = "form-control", placeholder = "Image URL here" })
+                            <label style="color: red">@Html.ValidationMessageFor(x => x.UrlImage)</label>
+
+                        </div>
+                    </div>
+                    <!--END img URL-->
+                    <!--vd URL-->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Video URL</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(x => x.UrlVideo, new { @class = "form-control", placeholder = "Video URL here" })
+                        </div>
+                    </div>
+                    <!--END vd URL-->
+                    <!--Description-->
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Description</label>
+                        <div class="col-lg-10">
+                            @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = "3" })
+                            <label style="color: red">@Html.ValidationMessageFor(x => x.Description)</label>
+
+                            <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+                        </div>
+                    </div>
+                    <!--End Description-->
+                    <button class=" btn " type="submit">Create&nbsp;&nbsp;&nbsp;<i class=" icon-chevron-sign-right"></i></button>
+
+                </fieldset>
+            }
+
 </body>
 </html>
