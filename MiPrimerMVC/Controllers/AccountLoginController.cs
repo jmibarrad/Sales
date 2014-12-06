@@ -216,5 +216,19 @@ namespace MiPrimerMVC.Controllers
             return RedirectToAction("ManageClassifieds");
         }
 
+        public ActionResult PublicProfile()
+        {
+            var publicUser = new ProfileModel();
+            return View();
+        }
+
+//        [Authorize]
+//        public ActionResult Follow(long id)
+//        {
+//            var model= new 
+//            return View(model);
+//        }
+
+
        }
 }

@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using System.Windows.Forms;
 using Domain.Entities;
 using Domain.Services;
-using MiPrimerMVC.Areas.Manager.Models;
 using MiPrimerMVC.Models;
 using MiPrimerMVC.ValidationAttributes;
 

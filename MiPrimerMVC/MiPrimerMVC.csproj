@@ -181,6 +181,7 @@
     <Compile Include="Models\ManageProfileModel.cs" />
     <Compile Include="Models\ManageUModel.cs" />
     <Compile Include="Models\MessagesModel.cs" />
+    <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationAttributes\DescriptionValidationAttribute.cs" />
@@ -3991,6 +3992,7 @@
     <Content Include="Views\AccountLogin\ManageClassifieds.cshtml" />
     <Content Include="Views\AccountLogin\ArchiveClassified.cshtml" />
     <Content Include="Views\AccountLogin\ActivateClassified.cshtml" />
+    <Content Include="Views\AccountLogin\PublicProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
