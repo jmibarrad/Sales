@@ -12,6 +12,7 @@ namespace Domain.Entities
 
         public virtual long Id { get; set; }
         public virtual bool Archived { get; protected set; }
+        public virtual bool AdminArchived { get; protected set; }
         public virtual string Category { get; set; }
         public virtual string Article { get; set; }
         public virtual string ArticleModel { get; set; }
@@ -37,6 +38,7 @@ namespace Domain.Entities
             Description = description;
             PostedDate= DateTime.Today;
             Archived = false;
+            AdminArchived = false;
             Likes = 0;
             Visited = 0;
             UrlImage = urlimage;
@@ -48,6 +50,7 @@ namespace Domain.Entities
              Archived = false;
              PostedDate = DateTime.Today;
              Likes = 0;
+             AdminArchived = false;
          }
 
 
@@ -61,5 +64,14 @@ namespace Domain.Entities
             Archived = false;
         }
 
+        public virtual void AdminArchive()
+        {
+            AdminArchived = true;
+        }
+
+        public virtual void AdminActivate()
+        {
+            AdminArchived = false;
+        }
     }
 }

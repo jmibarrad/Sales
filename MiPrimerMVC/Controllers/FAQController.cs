@@ -25,7 +25,7 @@ namespace MiPrimerMVC.Controllers
         [HttpGet]
         public ActionResult FAQ()
         {
-            List<Questions> questionsList = _readOnlyRepository.GetAll<Questions>().ToList();
+            List<Questions> questionsList = _readOnlyRepository.GetAll<Questions>().Where(x=>x.Archived).ToList();
             var questionModel = new QuestionModel();
             questionsList.Reverse();
             questionModel.QuestionList = questionsList;
@@ -43,7 +43,7 @@ namespace MiPrimerMVC.Controllers
         //check
                     MessageBox.Show("Question Added Succesfully");
             
-            List<Questions> questionsList = _readOnlyRepository.GetAll<Questions>().ToList();
+            List<Questions> questionsList = _readOnlyRepository.GetAll<Questions>().Where(x=>x.Archived).ToList();
             questionsList.Reverse();
             model.QuestionList = questionsList;
 

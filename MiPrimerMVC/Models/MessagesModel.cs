@@ -8,6 +8,9 @@ namespace MiPrimerMVC.Models
 {
     public class MessagesModel
     {
-        public List<Messages> MessagesList { get; set; } 
+        public List<Messages> MessagesList { get; set; }
+        public Messages SendMessage { get; set; }
+        public Classifieds ClassifiedsShown { get; set; }
+
     }
 }

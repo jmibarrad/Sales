@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Windows.Forms;
 using Domain.Entities;
 using Domain.Services;
+using MiPrimerMVC.Areas.Manager.Models;
 using MiPrimerMVC.Models;
 using MiPrimerMVC.ValidationAttributes;
 
@@ -51,21 +52,59 @@ namespace MiPrimerMVC.Controllers
         }
 
         [Authorize]
-        public ActionResult MyClassifieds()
+        public ActionResult MyClassifieds(long id=0)
         {
             var mcModel = new ClassiModel();
-            
-            var x = _readOnlyRepository.FirstOrDefault<AccountLogin>(z=>z.Email==HttpContext.User.Identity.Name);
-            mcModel.myClassifiedsList= x.AccountClassifieds.ToList();
+            if (id != 0)
+            {
+                mcModel.classifiedForDetail = _readOnlyRepository.FirstOrDefault<Classifieds>(z => z.Id == id);
+
+            }
+          
+            var x = _readOnlyRepository.FirstOrDefault<AccountLogin>(z=>z.Email==HttpContext.User.Identity.Name && !z.Archived);
+            mcModel.myClassifiedsList= x.AccountClassifieds.Where(z=>!z.Archived).ToList();
            
             return View(mcModel);
         }
 
+//        [Authorize]
+//        public ActionResult MyClassifieds(ClassiModel managerModel, long id, string action)
+//        {
+//            managerModel.classifiedForDetail = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
+//
+//            if (!managerModel.classifiedForDetail.Archived)
+//            {
+//                managerModel.classifiedForDetail.Archive();
+//            }
+//            else
+//            {
+//                managerModel.classifiedForDetail.Activate();
+//            }
+//
+//            _writeOnlyRepository.Update(managerModel.classifiedForDetail);
+//
+//            return View(managerModel);
+//        }
+
         [Authorize]
         [HttpPost]
-        public ActionResult MyClassifieds(ClassiModel model)
+        public ActionResult MyClassifieds(ClassiModel managerModel, long id)
         {
-            return View(model);
+             managerModel.classifiedForDetail = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
+             if (ModelState.IsValid)
+             {
+                 managerModel.classifiedForDetail.Article = managerModel.Article;
+                 managerModel.classifiedForDetail.ArticleModel = managerModel.ArticleModel;
+                 managerModel.classifiedForDetail.Category = managerModel.Category;
+                 managerModel.classifiedForDetail.Description = managerModel.Description;
+                 managerModel.classifiedForDetail.Price = managerModel.Price;
+                 managerModel.classifiedForDetail.UrlImage = managerModel.UrlImage;
+                 managerModel.classifiedForDetail.UrlVideo = managerModel.UrlVideo;
+
+             }
+            _writeOnlyRepository.Update(managerModel.classifiedForDetail);
+
+            return View(managerModel);
         }
 
         public static string EmailReceiver="";
@@ -105,15 +144,15 @@ namespace MiPrimerMVC.Controllers
             var allModel = new ClassiModel();
             switch (category)
             {
-                case "All": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList();
+                case "All": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x=>!x.Archived).ToList();
                     break;
-                case "Auto": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x=>x.Category == "Automoviles").ToList();
+                case "Auto": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x=>x.Category == "Automoviles" && !x.Archived).ToList();
                     break;
-                case "Inst": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "Instruments").ToList();
+                case "Inst": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "Instruments" && !x.Archived).ToList();
                     break;
-                case "VGC": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "VG. Consoles").ToList();
+                case "VGC": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "VG. Consoles" && !x.Archived).ToList();
                     break;
-                case "Tech": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "Technology").ToList();
+                case "Tech": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "Technology" && !x.Archived).ToList();
                     break;
             }
            
@@ -124,7 +163,7 @@ namespace MiPrimerMVC.Controllers
         {
             var cAdvancedSearch = new ClassiModel
             {
-                myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().ToList()
+                myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x=>!x.Archived).ToList()
             };
 
             return View(cAdvancedSearch);
@@ -133,21 +172,30 @@ namespace MiPrimerMVC.Controllers
         [HttpPost]
         public ActionResult AdvancedSearch(ClassiModel model)
         {
-            var filters = _readOnlyRepository.GetAll<Classifieds>().ToList();
+            var filters = new List<Classifieds>();
 
             if (model.Cas.Title != null && model.Cas.TitleBool)
             {
-                filters = filters.FindAll(x => x.Article.ToUpper().Contains(model.Cas.Title.ToUpper()));
+                for (var i = 0; i < filters.Count; i++)
+                {
+                    filters.Add(filters.FirstOrDefault(x => x.Article.ToUpper().Contains(model.Cas.Title.ToUpper()) && !x.Archived));
+                }
             }
 
             if (model.Cas.Category != null && model.Cas.CategoryBool)
             {
-                filters = filters.FindAll(x => x.Category.Contains(model.Cas.Category));
+                for (var i = 0; i < filters.Count; i++)
+                {
+                    filters.Add(filters.FirstOrDefault(x => x.Category.ToUpper().Contains(model.Cas.Category.ToUpper()) && !x.Archived));
+                }
             }
 
             if (model.Cas.Description != null && model.Cas.DescriptionBool)
             {
-                filters = filters.FindAll(x => x.Description.ToUpper().Contains(model.Cas.Description.ToUpper()));
+                for (var i = 0; i < filters.Count; i++)
+                {
+                    filters.Add(filters.FirstOrDefault(x => x.Description.ToUpper().Contains(model.Cas.Description.ToUpper()) && !x.Archived));
+                }
             }
 
             model.myClassifiedsList = filters;
@@ -155,7 +203,6 @@ namespace MiPrimerMVC.Controllers
             return View(model);
         }
 
-       [Authorize]
         public ActionResult MostVisited()
         {
             var classifiedVisited = _readOnlyRepository.GetAll<Classifieds>().ToList();
@@ -250,6 +297,37 @@ namespace MiPrimerMVC.Controllers
 
             //For ContactInfo
             public UserData ContactInfo { get; set; }
+
+            //For Edit
+            public string Category { get; set; }
+
+            [Required(ErrorMessage = "Article´s Name is required")]
+            [DataType(DataType.Text)]
+            [DescriptionValidation(MinimumAmountOfWords = 1, MaximumAmountOfCharacters = 100,
+            ErrorMessage = "The description must contains a minimum of 1 word and a maximum of 100 characters.")]
+            public string Article { get; set; }
+            public string ArticleModel { get; set; }
+
+            [Range(0.01, 10000.00, ErrorMessage = "Price must be between 0.01 and 10000.00")]
+            [Required(ErrorMessage = "Price is Required")]
+            [DataType(DataType.Currency)]
+            public float Price { get; set; }
+
+            [Required(ErrorMessage = "Location is required")]
+            [DataType(DataType.Text)]
+            public string Location { get; set; }
+
+            [Required(ErrorMessage = "Description is required")]
+            [DataType(DataType.MultilineText)]
+            [DescriptionValidation(MinimumAmountOfWords = 3, MaximumAmountOfCharacters = 255,
+            ErrorMessage = "The description must contains a minimum of 3 words and a maximum of 255 characters.")]
+            public string Description { get; set; }
+
+            [DataType(DataType.ImageUrl, ErrorMessage = "Url for image is not valid")]
+            public string UrlImage { get; set; }
+            
+            public string UrlVideo { get; set; }
+
         }
 
         public class CategoryAdvancedSearch

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using CaptchaMvc.HtmlHelpers;
 using Domain.Entities;
@@ -44,36 +43,6 @@ namespace MiPrimerMVC.Controllers
            return View(cModel);
         }
 
-        public static Boolean ValidateText(string message)
-        {
-
-            var wordCounter = message.Split(' ');
-            
-            if (wordCounter.Count() < 3&&!ValidateOnlyLetters(message))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public static Boolean ValidateOnlyLetters(string message)
-        {
-            Boolean correct = true;
-            foreach (char c in message)
-            {
-                if (char.IsDigit(c)) correct = false;
-                else if (char.IsSymbol(c)) correct = false;
-            }
-            return correct;
-        }
-
-        public static Boolean ValidateLength(string message)
-        {
-            if (message.Length > 250)
-            {
-                return false;
-            }
-            return true;
-        }
+       
     }
 }

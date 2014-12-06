@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
 using AcklenAvenue.Data.NHibernate;
 using Data;
 using Domain.Services;
 using FluentNHibernate.Cfg.Db;
-using MiPrimerMVC.Controllers;
 using NHibernate;
 using NHibernate.Context;
 using Ninject;
@@ -60,6 +59,28 @@ namespace MiPrimerMVC
             kernel.Bind<ISession>().ToMethod(x => SessionFactory.GetCurrentSession());
             //kernel.Bind<IMappingEngine>().ToConstant(Mapper.Engine);
             return kernel;
+        }
+
+        protected void Application_AuthenticateRequest(Object sender, EventArgs e)
+        {
+            if (Context.User != null)
+            {
+                string cookieName = FormsAuthentication.FormsCookieName;
+                HttpCookie authCookie = Context.Request.Cookies[cookieName];
+                if (authCookie == null)
+                    return;
+
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+
+                string[] roles = authTicket.UserData.Split(new[] { ';' });
+                var fi = (FormsIdentity)(Context.User.Identity);
+                Context.User = new GenericPrincipal(fi, roles);
+            }
+        }
+
+        protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
+        {
+
         }
     }
 }

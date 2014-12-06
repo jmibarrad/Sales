@@ -1,0 +1,72 @@
+﻿@model MiPrimerMVC.Models.MessagesModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+@{
+    var dropdownItems = new List<SelectListItem>();
+    dropdownItems.AddRange(new[]{
+                                    new SelectListItem { Text = "System Error" },
+                                    new SelectListItem { Text = "Reconsidered Appropiate" },
+                                    new SelectListItem { Text = "Revaluated Item" },
+                                    });
+    ViewData.Add("Subject", dropdownItems);
+}
+
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="panel">
+            <div class="panel-body">
+                <h4>@Model.ClassifiedsShown.Article<span class="text-muted small"> - @Model.ClassifiedsShown.Category</span></h4>
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="thumb media-object" src="@Model.ClassifiedsShown.UrlImage" alt="">
+                    </a>
+                    <div class="media-body">
+                        <address>
+                            <strong>@Model.ClassifiedsShown.Article</strong><br>
+                            @Model.ClassifiedsShown.Description<br>
+                            @Model.ClassifiedsShown.Location <br>
+                            <abbr title="Phone">P:</abbr> @Model.ClassifiedsShown.Price
+                        </address>
+                        <ul class="social-links">
+                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="@Model.ClassifiedsShown.PostedDate"><i class="fa fa-calendar"></i></a></li>
+                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="@Model.ClassifiedsShown.ArticleModel"><i class="fa fa-newspaper-o"></i></a></li>
+                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="$@Model.ClassifiedsShown.Price"><i class="fa fa-dollar"></i></a></li>
+                            <li><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="@Model.ClassifiedsShown.Likes"><i class="fa fa-thumbs-o-up"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <section class="panel">
+            <header class="panel-heading">
+                Iconic field
+            </header>
+            <div class="panel-body">
+                @using (Html.BeginForm("ActivateClassified", "AccountLogin", null, FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label><i class="fa fa-ban"></i>Reason:</label>
+                        @Html.DropDownListFor(x => x.SendMessage.Subject, ViewData["Subject"] as List<SelectListItem>, new { @class = "dropdown", @style = "width:300px" })
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary"><span class="fa fa-send"></span></button>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</div>
+

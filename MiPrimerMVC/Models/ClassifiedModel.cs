@@ -10,7 +10,7 @@ namespace MiPrimerMVC.Models
         [Required(ErrorMessage = "Article´s Name is required")]
         [DataType(DataType.Text)]
         [DescriptionValidation(MinimumAmountOfWords = 1, MaximumAmountOfCharacters = 100,
-            ErrorMessage = "The description must contains a minimum of 1 word and a maximum of 100 characters.")]
+            ErrorMessage = "The Article´s Tite must contains a minimum of 1 word and a maximum of 100 characters.")]
         public string Article { get; set; }
         public string ArticleModel { get; set; }
 

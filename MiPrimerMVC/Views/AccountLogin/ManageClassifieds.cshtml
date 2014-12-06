@@ -1,0 +1,106 @@
+﻿@model MiPrimerMVC.Models.ManageUModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Archive Classifieds
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    <a href="javascript:;" class="fa fa-times"></a>
+                </span>
+            </header>
+            <div class="panel-body">
+               
+                <div id="gallery" class="media-gal">
+                    @foreach(var x in Model.UserList){
+                       <div class="panel panel-success">@x.Name</div>
+                       <div class="title">Active Classifieds</div>
+                        foreach(var z in x.AccountClassifieds.Where(u=>u.Archived==false)){
+                        
+                            <div class="images item ">
+                                <a href="#myModal" data-toggle="modal">
+                                    <img src="@z.UrlImage" alt="" />
+                                </a>
+                                <p>@z.Article  <span class="fa fa-trash">@Html.ActionLink("", "ArchiveClassified", "AccountLogin", new { @id = x.Id },null)</span> </p>
+                            </div>
+                       }
+                       <div class="title">Archived Classifieds</div>
+                       foreach(var z in x.AccountClassifieds.Where(u=>u.Archived)){
+                        
+                            <div class="images item ">
+                                <a href="#myModal" data-toggle="modal">
+                                    <img src="@z.UrlImage" alt="" />
+                                </a>
+                                <p>@z.Article <span class="fa fa-undo">@Html.ActionLink("", "ActivateClassified", "AccountLogin", new { @id = x.Id }, null)</span></p>
+                            </div>
+                       }
+                   }
+
+                  
+                </div>
+                <div class="col-md-12 text-center clearfix">
+                    <ul class="pagination">
+                        <li><a href="#">«</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Edit Media Gallery</h4>
+                            </div>
+                            <div class="modal-body row">
+                                <div class="col-md-5 img-modal">
+                                    <img src="images/gallery/image1.jpg" alt="">
+                                    <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit Image</a>
+                                    <a href="#" class="btn btn-white btn-sm"><i class="fa fa-eye"></i> View Full Size</a>
+                                    <p class="mtop10"><strong>File Name:</strong> img01.jpg</p>
+                                    <p><strong>File Type:</strong> jpg</p>
+                                    <p><strong>Resolution:</strong> 300x200</p>
+                                    <p><strong>Uploaded By:</strong> <a href="#">ThemeBucket</a></p>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label> Name</label>
+                                        <input id="name" value="img01.jpg" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Tittle Text</label>
+                                        <input id="title" value="awesome image" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Description</label>
+                                        <textarea rows="2" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label> Link URL</label>
+                                        <input id="link" value="images/gallery/img01.jpg" class="form-control">
+                                    </div>
+                                    <div class="pull-right">
+                                        <button class="btn btn-danger btn-sm" type="button">Delete</button>
+                                        <button class="btn btn-success btn-sm" type="button">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal -->
+            </div>
+        </section>
+    </div>
+</div>

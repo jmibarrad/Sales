@@ -1,0 +1,269 @@
+﻿@model MiPrimerMVC.Models.ManageProfileModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+@{
+    var dropdownItems = new List<SelectListItem>();
+    dropdownItems.AddRange(new[]{
+                                    new SelectListItem { Text = "Male" },
+                                    new SelectListItem { Text = "Female" }
+                                 });
+                                 
+    ViewData.Add("Gender", dropdownItems);
+
+    var dropdownItems2 = new List<SelectListItem>();
+    dropdownItems2.AddRange(new[]{
+                                    new SelectListItem { Text = "EE.UU" },
+                                    new SelectListItem { Text = "Mexico" },
+                                    new SelectListItem { Text = "Honduras" },
+                                    new SelectListItem { Text = "Colombia" },
+                                    new SelectListItem { Text = "Canada" },
+                                    new SelectListItem { Text = "Spain" },
+                                    new SelectListItem { Text = "France" },
+                                    new SelectListItem { Text = "Italy" },
+                                    new SelectListItem { Text = "Belgium" },
+                                    new SelectListItem { Text = "Germany" },
+                                    new SelectListItem { Text = "Argentina" },
+                                    new SelectListItem { Text = "Other" }
+                                    });
+    ViewData.Add("Country", dropdownItems2);
+}
+
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="profile-pic text-center">
+                                <img alt="" src="@Model.CurrentUser.UserInfo.ProfileImg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <ul class="p-info">
+                                <li>
+                                    <div class="title">Gender</div>
+                                    <div class="desk">@Model.CurrentUser.UserInfo.Gender</div>
+                                </li>
+                                <li>
+                                    <div class="title">Country</div>
+                                    <div class="desk">@Model.CurrentUser.UserInfo.Country</div>
+                                </li>
+                                <li>
+                                    <div class="title">Cellphone</div>
+                                    <div class="desk">@Model.CurrentUser.UserInfo.Cellphone</div>
+                                </li>
+                                <li>
+                                    <div class="title">Office Phone</div>
+                                    <div class="desk">@Model.CurrentUser.UserInfo.OfficePhone</div>
+                                </li>
+                                <li>
+                                    <div class="title">Blog</div>
+                                    <div class="desk">@Model.CurrentUser.UserInfo.Blog</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body p-states">
+                            <div class="summary pull-left">
+                                <h4>Total <span>Classifieds</span></h4>
+                                <span>Lifetime Summary</span>
+                                <h3>@Model.CurrentUser.AccountClassifieds.Count()</h3>
+                            </div>
+                            <div id="expense" class="chart-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body p-states green-box">
+                            <div class="summary pull-left">
+                                <h4>Total <span>Sold</span></h4>
+                                <span>...</span>
+                                <h3>$ @Model.CurrentUser.UserInfo.TotalSold</h3>
+                            </div>
+                            <div id="pro-refund" class="chart-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="profile-desk">
+                                <h1>@Model.CurrentUser.Name</h1>
+                                <span class="designation">Role: @Model.CurrentUser.Role</span>
+                                <p>
+                                    @Model.CurrentUser.UserInfo.Description
+                                </p>
+                                <a class="btn p-follow-btn pull-left" href="#"> <i class="fa fa-check"></i> Following</a>
+                                <ul class="p-social-link pull-right">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <form>
+                            <textarea class="form-control input-lg p-text-area" rows="2" placeholder="Whats in your mind today?"></textarea>
+                        </form>
+                        <footer class="panel-footer">
+                            <button class="btn btn-post pull-right">Post</button>
+                            <ul class="nav nav-pills p-option">
+                                <li>
+                                    <a href="#"><i class="fa fa-user"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-camera"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa  fa-location-arrow"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-meh-o"></i></a>
+                                </li>
+                            </ul>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Account Edit</h3>
+                </div>
+                <div class="panel-body">
+                    Edit your Account Information
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="square-widget">
+                <div class="widget-container">
+                    <div class="stepy-tab">
+                    </div>
+                    @using (Html.BeginForm("Profile", "AccountLogin", null, FormMethod.Post, new { @id = "default", @class = "form-horizontal" })) {
+                    
+                        <fieldset title="Initial Info">
+                            <legend>Personal Information</legend>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">Full Name</label>
+                                <div class="col-md-6 col-sm-6">
+                                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Full Name" })
+                                    <label style="color:red">@Html.ValidationMessageFor(x => x.Name)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">Gender</label>
+                                <div class="col-md-6 col-sm-6">
+                                    @Html.DropDownListFor(x => x.Gender, ViewData["Gender"] as List<SelectListItem>, new { @class = "dropdown", @style = "width:300px" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">Country</label>
+                                <div class="iconic-input col-md-6 col-sm-6">
+                                    <i class="fa fa-flag"></i>@Html.DropDownListFor(x => x.Country, ViewData["Country"] as List<SelectListItem>, new { @class = "dropdown", @style = "width:300px" })
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset title="Contact Info">
+                            <legend>Contact Details</legend>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">Mobile</label>
+                                <div class="iconic-input col-md-6 col-sm-6">
+                                    <i class="fa fa-mobile"></i>@Html.TextBoxFor(x => x.Cellphone, new { @class = "form-control", placeholder = "(000)-000-0000" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">Phone</label>
+                                <div class="iconic-input col-md-6 col-sm-6">
+                                    <i class="fa fa-phone"></i>@Html.TextBoxFor(x => x.OfficePhone, new { @class = "form-control", placeholder = "(000)-000-0000" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">Description</label>
+                                <div class="col-md-6 col-sm-6">
+                                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = "4", placeholder="Brief description about you."})
+                                    <label style="color:red">@Html.ValidationMessageFor(x => x.Description)</label>                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset title="Optional Info">
+                            <legend>Billing Details</legend>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">Blog Url</label>
+                                <div class="iconic-input col-md-6 col-sm-6">
+                                    <i class="fa fa-file"></i>@Html.TextBoxFor(x => x.Blog, new { @class = "form-control", placeholder = "@blogURL" })
+                                    <label style="color:red">@Html.ValidationMessageFor(x => x.Blog)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">Profile URL</label>
+                                <div class="iconic-input col-md-6 col-sm-6">
+                                    <i class="fa fa-image"></i>@Html.TextBoxFor(x => x.ProfileImg, new { @class = "form-control", placeholder = "http://imageURL.com" })
+                                    <label style="color:red">@Html.ValidationMessageFor(x => x.ProfileImg)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label">Status</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <textarea rows="5" cols="60" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset title="Final Step">
+                            <legend>Final Step Information</legend>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <p>Congratulations This is the Final Step</p>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <button type="submit" class="btn btn-success finish">Finish</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--body wrapper end-->
+

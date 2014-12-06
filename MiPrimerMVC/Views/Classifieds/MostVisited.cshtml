@@ -1,4 +1,5 @@
-﻿@model MiPrimerMVC.Controllers.ClassifiedsController.ThreeListClassifiedsModel
+﻿@using System.Globalization
+@model MiPrimerMVC.Controllers.ClassifiedsController.ThreeListClassifiedsModel
 @{
     Layout = null;
 }
@@ -12,7 +13,7 @@
 <html class="front fluid top-full sticky-top">
 <!-- <![endif]-->
 <head>
-    <title>Quick Admin Template (v1.3.3)</title>
+    <title>Sales|JMID</title>
 
     <!-- Meta -->
     <meta charset="UTF-8" />
@@ -73,8 +74,6 @@
                         <a href="index_slider.html?lang=en&amp;style=style-flat" class="appbrand pull-left">Sales|JMID</a>
 
                         <ul class="topnav pull-right">
-
-                            <li class="hidden-phone"><a href="~/FAQ/FAQ" class="glyphicons shield"><i></i>FAQ</a></li>
                             <li class="glyphs hidden-phone">
                                 <ul>
                                     <li><a href="~/AccountLogin/Login" class="glyphicons unlock"><i></i> Sign in</a></li>
@@ -98,32 +97,14 @@
                     <ul class="topnav pull-left">
 
                         <li class="dropdown dd-1 active">
-                            <a href="" data-toggle="dropdown" class="glyphicons home"><i></i>Home pages <span class="caret"></span></a>
+                            <a href="" data-toggle="dropdown" class="glyphicons shopping_cart"><i></i>Classifieds <span class="caret"></span></a>
                             <ul class="dropdown-menu pull-left">
-                                <li class=""><a href="index_slider.html?lang=en&amp;style=style-flat">Revolution Slider Fixed</a></li>
-                                <li class=" active"><a href="index_slider_fullwidth.html?lang=en&amp;style=style-flat">Revolution Slider Wide</a></li>
-                                <li class=""><a href="index.html?lang=en&amp;style=style-flat">Home page #1</a></li>
-                                <li class=""><a href="index_2.html?lang=en&amp;style=style-flat">Home page #2</a></li>
+                                <li class="glyphicons glyphicon-tags"><a href="~/Classifieds/AllClassifieds"><i></i>All Clasifieds</a></li>
+                                <li class="glyphicons glyphicon-tag"><a href="~/Classifieds/AdvancedSearch">Advanced Search</a></li>
                             </ul>
                         </li>
-                        <li><a href="about.html?lang=en&amp;style=style-flat" class="glyphicons circle_info"><i></i> About</a></li>
-                        <li><a href="pricing.html?lang=en&amp;style=style-flat" class="glyphicons credit_card"><i></i> Pricing</a></li>
-                        <li class="dropdown dd-1">
-                            <a href="" data-toggle="dropdown" class="glyphicons shopping_cart"><i></i>Shop <span class="caret"></span></a>
-                            <ul class="dropdown-menu pull-left">
-                                <li class=""><a href="shop.html?lang=en&amp;style=style-flat">Catalog</a></li>
-                                <li class=""><a href="shop_product.html?lang=en&amp;style=style-flat">Product page</a></li>
-                                <li class=""><a href="shop_cart.html?lang=en&amp;style=style-flat">Shopping Cart</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown dd-1">
-                            <a href="" data-toggle="dropdown" class="glyphicons notes"><i></i>Blog <span class="caret"></span></a>
-                            <ul class="dropdown-menu pull-left">
-                                <li class=""><a href="blog.html?lang=en&amp;style=style-flat">Blog Posts</a></li>
-                                <li class=""><a href="blog_timeline.html?lang=en&amp;style=style-flat">Blog Timeline</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="~/Contact/Contact" class="glyphicons iphone"><i></i> Contact</a></li>
+                        <li><a href="#about" class="glyphicons circle_info"><i></i> About</a></li>
+                        <li><a href="~/Contact/Contact" class="glyphicons envelope"><i></i> Contact</a></li>
 
                     </ul>
 
@@ -482,7 +463,7 @@
                                                                                                            <div class="span5 relativeWrap">
                                                                                                                <div class="carousel-caption">
                                                                                                                    <h4>Get this item now!</h4>
-                                                                                                                   <p>Article: @Html.ValueForModel(Model.RecentList[0].Article)  |  @Html.ValueForModel(Model.RecentList[0].Description)<br /> <a href="" class="separator top" target="_blank">$ @Html.ValueForModel(Model.RecentList[0].Price.ToString())</a></p>
+                                                                                                                   <p>Article: @Html.ValueForModel(Model.RecentList[0].Article)  |  @Html.ValueForModel(Model.RecentList[0].Description)<br /> <a href="" class="separator top" target="_blank">$ @Html.ValueForModel(Model.RecentList[0].Price.ToString(CultureInfo.InvariantCulture))</a></p>
                                                                                                                </div>
                                                                                                            </div>
                                                                                                            <div class="span7">
@@ -659,8 +640,8 @@
                     <div class="span3">
                         <h4>Contact</h4>
                         <ul class="icons">
-                            <li class="glyphicons phone"><i></i>01 230 1958</li>
-                            <li class="glyphicons envelope"><i></i>contact@mosaicpro.biz</li>
+                            <li class="glyphicons phone"><i></i>(576) 874-0000</li>
+                            <li class="glyphicons envelope"><i></i>jmibarrad@gmail.com</li>
                         </ul>
 
                         <h4>Social</h4>
