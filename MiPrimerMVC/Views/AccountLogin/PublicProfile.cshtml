@@ -1,4 +1,4 @@
-﻿@model MiPrimerMVC.Areas.Manager.Models.ManageCModel
+﻿@model MiPrimerMVC.Models.ProfileModel
 
 @{
     ViewBag.Title = "Sales|JMID: Profile";
@@ -14,7 +14,7 @@
 <html class="front fluid top-full sticky-top">
 <!-- <![endif]-->
 <head>
-    <title>Advanced Search</title>
+    <title>Sales|JMID: Profile</title>
 
     <!-- Meta -->
     <meta charset="UTF-8" />
@@ -41,9 +41,6 @@
 
     <!-- JQueryUI -->
     <link href="../../../common/theme/scripts/plugins/system/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" />
-
-    <!-- MiniColors ColorPicker Plugin -->
-    <link href="../../../common/theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.css" rel="stylesheet" />
 
     <!-- Google Code Prettify Plugin -->
     <link href="../../../common/theme/scripts/plugins/other/google-code-prettify/prettify.css" rel="stylesheet" />
@@ -147,27 +144,15 @@
 
                                                                        <div class="innerR">
                                                                            <!-- Profile Photo -->
-                                                                           <a href="" class="thumb"><img data-src="holder.js/300x200" alt="Profile" /></a>
+                                                                           <a href="" class="thumb"><img data-src="@Model.PublicUser.Name" alt="Profile" /></a>
                                                                            <div class="separator bottom"></div>
                                                                            <!-- // Profile Photo END -->
                                                                            <!-- Social Icons -->
-                                                                           <a href="" class="glyphicons standard primary facebook"><i></i></a>
+                                                                           <a href="" class="glyphicons glyphicon-exclamation-sign"><i></i></a>
                                                                            <a href="" class="glyphicons standard twitter"><i></i></a>
                                                                            <a href="" class="glyphicons standard linked_in"><i></i></a>
                                                                            <div class="clearfix separator bottom"></div>
                                                                            <!-- // Social Icons END -->
-                                                                           <!-- Twitter Section -->
-                                                                           <h5 class="glyphicons single twitter"><i></i> Latest from Twitter</h5>
-                                                                           <section class="twitter-feed">
-                                                                               <div class="row-fluid">
-                                                                                   <div class="span12">
-                                                                                       <div class="tweet">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nunc lorem, rutrum non porta. <span class="label label-inverse">01/11/2012</span></div>
-                                                                                   </div>
-                                                                                   <div class="clearfix"></div>
-                                                                               </div>
-                                                                           </section>
-                                                                           <!-- Twitter Section END -->
-
                                                                        </div>
 
                                                                    </div>
@@ -179,9 +164,9 @@
 
                                                                                    <!-- About -->
                                                                                    <div class="widget widget-heading-simple widget-body-white margin-none">
-                                                                                       <div class="widget-head"><h4 class="heading glyphicons user"><i></i>Mr.Awesome</h4></div>
+                                                                                       <div class="widget-head"><h4 class="heading glyphicons user"><i></i>@Model.PublicUser.Email</h4></div>
                                                                                        <div class="widget-body">
-                                                                                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis porta purus, pulvinar mattis nulla tempus ut. Curabitur quis dui orci. Ut nisi dolor, dignissim a aliquet quis, vulputate id dui. Proin ultrices ultrices ligula, dictum varius turpis faucibus non. Curabitur faucibus ultrices nunc, nec aliquet leo tempor cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                                                           <p>@Model.PublicUser.UserInfo.Description</p>
                                                                                        </div>
                                                                                    </div>
                                                                                    <!-- // About END -->
@@ -194,10 +179,12 @@
                                                                                        <div class="widget-head"><h4 class="heading glyphicons calendar"><i></i>Bio <span>Personal information</span></h4></div>
                                                                                        <div class="widget-body">
                                                                                            <ul class="unstyled icons margin-none">
-                                                                                               <li class="glyphicons birthday_cake"><i></i> <span class="label">10</span> <span class="label">July</span> <span class="label">1986</span></li>
-                                                                                               <li class="glyphicons tie"><i></i> Working at <a href="http://www.mosaicpro.biz">MosaicPro</a></li>
-                                                                                               <li class="glyphicons certificate"><i></i> Adobe Photoshop Certification</li>
-                                                                                               <li class="glyphicons microphone"><i></i> English :: French :: Italian :: Romanian :: Polish</li>
+                                                                                               <li class="glyphicons user-mini"><i></i> <span class="label"> @Model.PublicUser.UserInfo.Gender</span> </li>
+                                                                                               <li class="glyphicons mobile"><i></i> @Model.PublicUser.UserInfo.Cellphone</li>
+                                                                                               <li class="glyphicons phone"><i></i>@Model.PublicUser.UserInfo.OfficePhone</li>
+                                                                                               <li class="glyphicons flag"><i></i>@Model.PublicUser.UserInfo.Country</li>
+                                                                                               <li class="glyphicons glyphicon-link"><i></i>@Model.PublicUser.UserInfo.Blog</li>
+
                                                                                            </ul>
                                                                                        </div>
                                                                                    </div>
@@ -220,38 +207,17 @@
 
                                                                                        <div class="widget-body list products">
                                                                                            <ul>
-
-                                                                                               <!-- List item -->
+                                                                                               @foreach (var x in Model.PublicUser.AccountClassifieds) { 
                                                                                                <li>
-                                                                                                   <span class="img">photo</span>
-                                                                                                   <span class="title">10 items<br /><strong>&euro;5,900.00</strong></span>
+                                                                                                   <span class="img"><img src="@x.UrlImage"/></span>
+                                                                                                   <span class="title">@x.Article<br /><strong>$ @x.Price</strong></span>
                                                                                                    <span class="count"></span>
                                                                                                </li>
-                                                                                               <!-- // List item END -->
-                                                                                               <!-- List item -->
-                                                                                               <li>
-                                                                                                   <span class="img">photo</span>
-                                                                                                   <span class="title">Product name<br /><strong>&euro;2,900</strong></span>
-                                                                                                   <span class="count"></span>
-                                                                                               </li>
-                                                                                               <!-- // List item END -->
-                                                                                               <!-- List item -->
-                                                                                               <li>
-                                                                                                   <span class="img">photo</span>
-                                                                                                   <span class="title">Product name<br /><strong>&euro;2,900</strong></span>
-                                                                                                   <span class="count"></span>
-                                                                                               </li>
-                                                                                               <!-- // List item END -->
-
+                                                                                               }
                                                                                            </ul>
                                                                                        </div>
                                                                                    </div>
                                                                                    <!-- // Latest Orders/List Widget END -->
-
-                                                                                   <div class="alert alert-primary">
-                                                                                       <a class="close" data-dismiss="alert">&times;</a>
-                                                                                       <p>Integer quis tempor mi. Donec venenatis dui in neque fringilla at iaculis libero ullamcorper. In velit sem, sodales id hendrerit ac, fringilla et est. Pellentesque at justo urna, eu pharetra tortor. Aenean aliquam, tellus vel suscipit luctus.</p>
-                                                                                   </div>
 
                                                                                </div>
                                                                                <div class="span5">
