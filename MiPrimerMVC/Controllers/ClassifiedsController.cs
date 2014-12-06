@@ -62,7 +62,7 @@ namespace MiPrimerMVC.Controllers
             }
           
             var x = _readOnlyRepository.FirstOrDefault<AccountLogin>(z=>z.Email==HttpContext.User.Identity.Name && !z.Archived);
-            mcModel.myClassifiedsList= x.AccountClassifieds.Where(z=>!z.Archived).ToList();
+            mcModel.myClassifiedsList= x.AccountClassifieds.Where(z=>!z.AdminArchived).ToList();
            
             return View(mcModel);
         }
@@ -144,15 +144,15 @@ namespace MiPrimerMVC.Controllers
             var allModel = new ClassiModel();
             switch (category)
             {
-                case "All": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x=>!x.Archived).ToList();
+                case "All": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x=>!x.Archived && !x.AdminArchived).ToList();
                     break;
-                case "Auto": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x=>x.Category == "Automoviles" && !x.Archived).ToList();
+                case "Auto": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "Automoviles" && !x.Archived && !x.AdminArchived).ToList();
                     break;
-                case "Inst": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "Instruments" && !x.Archived).ToList();
+                case "Inst": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "Instruments" && !x.Archived && !x.AdminArchived).ToList();
                     break;
-                case "VGC": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "VG. Consoles" && !x.Archived).ToList();
+                case "VGC": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "VG. Consoles" && !x.Archived && !x.AdminArchived).ToList();
                     break;
-                case "Tech": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "Technology" && !x.Archived).ToList();
+                case "Tech": allModel.myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x => x.Category == "Technology" && !x.Archived && !x.AdminArchived).ToList();
                     break;
             }
            
@@ -163,7 +163,7 @@ namespace MiPrimerMVC.Controllers
         {
             var cAdvancedSearch = new ClassiModel
             {
-                myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x=>!x.Archived).ToList()
+                myClassifiedsList = _readOnlyRepository.GetAll<Classifieds>().Where(x=>!x.Archived && !x.AdminArchived).ToList()
             };
 
             return View(cAdvancedSearch);
@@ -178,7 +178,7 @@ namespace MiPrimerMVC.Controllers
             {
                 for (var i = 0; i < filters.Count; i++)
                 {
-                    filters.Add(filters.FirstOrDefault(x => x.Article.ToUpper().Contains(model.Cas.Title.ToUpper()) && !x.Archived));
+                    filters.Add(filters.FirstOrDefault(x => x.Article.ToUpper().Contains(model.Cas.Title.ToUpper()) && !x.Archived && !x.AdminArchived));
                 }
             }
 
@@ -186,7 +186,7 @@ namespace MiPrimerMVC.Controllers
             {
                 for (var i = 0; i < filters.Count; i++)
                 {
-                    filters.Add(filters.FirstOrDefault(x => x.Category.ToUpper().Contains(model.Cas.Category.ToUpper()) && !x.Archived));
+                    filters.Add(filters.FirstOrDefault(x => x.Category.ToUpper().Contains(model.Cas.Category.ToUpper()) && !x.Archived && !x.AdminArchived));
                 }
             }
 
@@ -194,7 +194,7 @@ namespace MiPrimerMVC.Controllers
             {
                 for (var i = 0; i < filters.Count; i++)
                 {
-                    filters.Add(filters.FirstOrDefault(x => x.Description.ToUpper().Contains(model.Cas.Description.ToUpper()) && !x.Archived));
+                    filters.Add(filters.FirstOrDefault(x => x.Description.ToUpper().Contains(model.Cas.Description.ToUpper()) && !x.Archived && !x.AdminArchived));
                 }
             }
 
@@ -206,7 +206,7 @@ namespace MiPrimerMVC.Controllers
         public ActionResult MostVisited()
         {
             var classifiedVisited = _readOnlyRepository.GetAll<Classifieds>().ToList();
-            classifiedVisited = classifiedVisited.FindAll(x => x.Visited > 0);
+            classifiedVisited = classifiedVisited.FindAll(x => x.Visited > 0 && !x.AdminArchived && !x.Archived);
 
             var top = new List<Classifieds>();
 
@@ -241,7 +241,7 @@ namespace MiPrimerMVC.Controllers
 
         public List<Classifieds> MostRecent()
         {
-            var l = _readOnlyRepository.GetAll<Classifieds>().ToList();
+            var l = _readOnlyRepository.GetAll<Classifieds>().Where(x => !x.Archived && !x.AdminArchived).ToList();
             l.Reverse();
 
             if (l.Count > 5)
@@ -254,7 +254,7 @@ namespace MiPrimerMVC.Controllers
 
         public List<Classifieds> Featured()
         {
-            var alles = _readOnlyRepository.GetAll<Classifieds>().ToList();
+            var alles = _readOnlyRepository.GetAll<Classifieds>().Where(x => !x.Archived && !x.AdminArchived).ToList();
             var toModel = new List<Classifieds>();
 
             if (alles.Count > 10)
