@@ -26,11 +26,24 @@
                     @foreach (var x in @Model.myClassifiedsList) { 
                         <div class="@x.Category item ">
                             <a ><img src="@x.UrlImage" alt="" /></a>
-                            @Html.ActionLink(@x.Article,"MyClassifieds","Classifieds",new{@id=x.Id} ,new {href="#myModal", data_toggle="modal"})
+                            @Html.ActionLink(@x.Article,"ManageClassifieds","Classifieds",new{@id=x.Id},null)}) <i class="fa fa-ban"></i><span>@Html.ActionLink("", "Archive", "Classifieds", null, new { @class = "btn btn-danger" })</span>
+
                         </div>
                     }
                 </div>
+                <div class="span10">
+                    <h2>Archived Classifieds</h2>
+                </div>
+                <div id="gallery" class="media-gal">
+                    @foreach (var x in @Model.myClassifiedsListArchived)
+                    {
+                        <div class="@x.Category item ">
+                            <a><img src="@x.UrlImage" alt="" /></a>
+                            @Html.ActionLink(@x.Article, "ManageClassifieds", "Classifieds", new { @id = x.Id }, null)}) <i class="fa fa-check-square"></i><span>@Html.ActionLink("","Activate","Classifieds",null,new{@class ="btn btn-success" })</span>
 
+                        </div>
+                    }
+                </div>
                 <div class="col-md-12 text-center clearfix">
                     <ul class="pagination">
                         <li><a href="#">«</a></li>
@@ -42,84 +55,84 @@
                         <li><a href="#">»</a></li>
                     </ul>
                 </div>
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Edit Classified</h4>
-                            </div>
-                            @using (Html.BeginForm("MyClassifieds", "Classifieds", null, FormMethod.Post)) {   
-                                <div class="modal-body row">
-                                    <div class="col-md-5 img-modal">
-                                        <img src="images/gallery/image1.jpg" alt="">
-                                        <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit Image</a>
-                                        <a href="#" class="btn btn-white btn-sm"><i class="fa fa-eye"></i> View Full Size</a>
-                                        <p class="mtop10"><strong>Article Name:</strong>@Html.ValueFor(x=>x.Price)</p>
-                                        <p><strong>File Type:</strong> jpg</p>
-                                        <p><strong>Resolution:</strong> 300x200</p>
-                                        <p><strong>Uploaded By:</strong> <a href="#">ThemeBucket</a></p>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <label> Name</label>
-                                            <input id="name" value="img01.jpg" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label> Tittle Text</label>
-                                            <input id="title" value="awesome image" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label> Description</label>
-                                            <textarea rows="2" class="form-control"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label> Link URL</label>
-                                            <input id="link" value="images/gallery/img01.jpg" class="form-control">
-                                        </div>
-                                        <div class="pull-right">
-                                            <button class="btn btn-danger btn-sm" type="button">Delete</button>
-                                            <button class="btn btn-success btn-sm" type="submit">Save changes</button>
-                                        </div>
-                                    </div>
+                @*<!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Edit Classified</h4>
                                 </div>
-                            }
+                                @using (Html.BeginForm("MyClassifieds", "Classifieds", null, FormMethod.Post)) {
+                                    <div class="modal-body row">
+                                        <div class="col-md-5 img-modal">
+                                            <img src="images/gallery/image1.jpg" alt="">
+                                            <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit Image</a>
+                                            <a href="#" class="btn btn-white btn-sm"><i class="fa fa-eye"></i> View Full Size</a>
+                                            <p class="mtop10"><strong>Article Name:</strong>@Html.ValueFor(x=>x.Price)</p>
+                                            <p><strong>File Type:</strong> jpg</p>
+                                            <p><strong>Resolution:</strong> 300x200</p>
+                                            <p><strong>Uploaded By:</strong> <a href="#">ThemeBucket</a></p>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="form-group">
+                                                <label> Name</label>
+                                                <input id="name" value="img01.jpg" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label> Tittle Text</label>
+                                                <input id="title" value="awesome image" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label> Description</label>
+                                                <textarea rows="2" class="form-control"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label> Link URL</label>
+                                                <input id="link" value="images/gallery/img01.jpg" class="form-control">
+                                            </div>
+                                            <div class="pull-right">
+                                                <button class="btn btn-danger btn-sm" type="button">Delete</button>
+                                                <button class="btn btn-success btn-sm" type="submit">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </div>
+                    <!-- modal -->*@
                 </div>
-                <!-- modal -->
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
-</div>
 
-<script src="~/adminX/js/jquery-1.10.2.min.js"></script>
-<script src="~/adminX/js/jquery-ui-1.9.2.custom.min.js"></script>
-<script src="~/adminX/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="~/adminX/js/bootstrap.min.js"></script>
-<script src="~/adminX/js/modernizr.min.js"></script>
-<script src="~/adminX/js/jquery.nicescroll.js"></script>
-<script src="~/adminX/js/jquery.isotope.js"></script>
-<!--common scripts for all pages-->
-<script src="~/adminX/js/scripts.js"></script>
-<script type="text/javascript">
-    $(function () {
-        var $container = $('#gallery');
-        $container.isotope({
-            itemSelector: '.item',
-            animationOptions: {
-                duration: 750,
-                easing: 'linear',
-                queue: false
-            }
-        });
+    <script src="~/adminX/js/jquery-1.10.2.min.js"></script>
+    <script src="~/adminX/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="~/adminX/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/adminX/js/bootstrap.min.js"></script>
+    <script src="~/adminX/js/modernizr.min.js"></script>
+    <script src="~/adminX/js/jquery.nicescroll.js"></script>
+    <script src="~/adminX/js/jquery.isotope.js"></script>
+    <!--common scripts for all pages-->
+    <script src="~/adminX/js/scripts.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $container = $('#gallery');
+            $container.isotope({
+                itemSelector: '.item',
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false
+                }
+            });
 
-        // filter items when filter link is clicked
-        $('#filters a').click(function () {
-            var selector = $(this).attr('data-filter');
-            $container.isotope({ filter: selector });
-            return false;
+            // filter items when filter link is clicked
+            $('#filters a').click(function () {
+                var selector = $(this).attr('data-filter');
+                $container.isotope({ filter: selector });
+                return false;
+            });
         });
-    });
-</script>
+    </script>

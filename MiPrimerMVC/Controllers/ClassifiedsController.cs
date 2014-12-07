@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Domain.Entities;
 using Domain.Services;
 using MiPrimerMVC.Models;
@@ -72,30 +73,10 @@ namespace MiPrimerMVC.Controllers
             }
           
             var x = _readOnlyRepository.FirstOrDefault<AccountLogin>(z=>z.Email==HttpContext.User.Identity.Name && !z.Archived);
-            mcModel.myClassifiedsList= x.AccountClassifieds.Where(z=>!z.AdminArchived).ToList();
+            mcModel.myClassifiedsList= x.AccountClassifieds.Where(z=>!z.AdminArchived && !z.Archived).ToList();
+            mcModel.myClassifiedsListArchived = x.AccountClassifieds.Where(z => !z.AdminArchived && z.Archived).ToList();
            
             return View(mcModel);
-        }
-
-        [Authorize]
-        [HttpPost]
-        public ActionResult MyClassifieds(ClassiModel managerModel, long id)
-        {
-             managerModel.classifiedForDetail = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
-             if (ModelState.IsValid)
-             {
-                 managerModel.classifiedForDetail.Article = managerModel.Article;
-                 managerModel.classifiedForDetail.ArticleModel = managerModel.ArticleModel;
-                 managerModel.classifiedForDetail.Category = managerModel.Category;
-                 managerModel.classifiedForDetail.Description = managerModel.Description;
-                 managerModel.classifiedForDetail.Price = managerModel.Price;
-                 managerModel.classifiedForDetail.UrlImage = managerModel.UrlImage;
-                 managerModel.classifiedForDetail.UrlVideo = managerModel.UrlVideo;
-
-             }
-            _writeOnlyRepository.Update(managerModel.classifiedForDetail);
-
-            return View(managerModel);
         }
 
         public static string EmailReceiver="";
@@ -128,6 +109,77 @@ namespace MiPrimerMVC.Controllers
             MessageBox.Show("Email sent successfully");
             
             return View(model);
+        }
+
+        [Authorize]
+        public ActionResult ManageClassifieds(long id)
+        {
+            var mClassified = new ManageClassifiedsModel();
+            mClassified.ClassifiedToBeEdited = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
+
+
+            return View(mClassified);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult ManageClassifieds(ManageClassifiedsModel model)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                if (model.ClassifiedToBeEdited.Article != model.Article || model.Article.Trim() == "")
+                    model.ClassifiedToBeEdited.Article = model.Article;
+
+                if (model.ClassifiedToBeEdited.ArticleModel != model.ArticleModel)
+                    model.ClassifiedToBeEdited.ArticleModel = model.ArticleModel;
+
+                if (model.ClassifiedToBeEdited.Description != model.Description || model.Description.Trim() == "")
+                    model.ClassifiedToBeEdited.Description = model.Description;
+
+                if (model.ClassifiedToBeEdited.Price != model.Price)
+                    model.ClassifiedToBeEdited.Price = model.Price;
+
+                model.ClassifiedToBeEdited.UrlImage = model.UrlImage;
+                model.ClassifiedToBeEdited.UrlImage1 = model.UrlImage1;
+                model.ClassifiedToBeEdited.UrlImage2 = model.UrlImage2;
+                model.ClassifiedToBeEdited.UrlImage3 = model.UrlImage3;
+                model.ClassifiedToBeEdited.UrlImage4 = model.UrlImage4;
+
+                if (model.ClassifiedToBeEdited.Location != model.Location || model.Location.Trim()!="")
+                    model.ClassifiedToBeEdited.Location = model.Location;
+
+                if (model.ClassifiedToBeEdited.Category != model.Category)
+                    model.ClassifiedToBeEdited.Category = model.Category;
+
+                if (model.ClassifiedToBeEdited.UrlVideo != model.UrlVideo || model.UrlVideo.Trim() == "")
+                    model.ClassifiedToBeEdited.UrlVideo = model.UrlVideo;
+
+                _writeOnlyRepository.Update(model.ClassifiedToBeEdited);
+
+            } ModelState.AddModelError("", "Something went wrong.");
+
+            return RedirectToAction("MyClassifieds");
+        }
+
+        [Authorize]
+        public ActionResult Archive(long id)
+        {
+            var classifiedToBeArchived = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
+            classifiedToBeArchived.Archive();
+            _writeOnlyRepository.Update(classifiedToBeArchived);
+
+            return RedirectToAction("MyClassifieds");
+        }
+
+        [Authorize]
+        public ActionResult Activate(long id)
+        {
+            var classifiedToBeActivated = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
+            classifiedToBeActivated.Activate();
+            _writeOnlyRepository.Update(classifiedToBeActivated);
+
+            return RedirectToAction("MyClassifieds");
         }
 
         public ActionResult AllClassifieds(string category="All")
@@ -284,6 +336,8 @@ namespace MiPrimerMVC.Controllers
             
             //For Filters
             public List<Classifieds> myClassifiedsList { get; set; }
+            public List<Classifieds> myClassifiedsListArchived { get; set; }
+
             public CategoryAdvancedSearch Cas { get; set; }
 
             //For ContactInfo

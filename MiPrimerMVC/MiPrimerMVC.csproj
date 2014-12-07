@@ -177,6 +177,7 @@
     <Compile Include="Models\ClassifiedModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ForgotPasswordModel.cs" />
+    <Compile Include="Models\ManageClassifiedsModel.cs" />
     <Compile Include="Models\ManageCModel.cs" />
     <Compile Include="Models\ManageProfileModel.cs" />
     <Compile Include="Models\ManageUModel.cs" />
@@ -3993,6 +3994,7 @@
     <Content Include="Views\AccountLogin\ArchiveClassified.cshtml" />
     <Content Include="Views\AccountLogin\ActivateClassified.cshtml" />
     <Content Include="Views\AccountLogin\PublicProfile.cshtml" />
+    <Content Include="Views\Classifieds\ManageClassifieds.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
