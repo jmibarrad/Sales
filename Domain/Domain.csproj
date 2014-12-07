@@ -67,7 +67,7 @@
     <Compile Include="Entities\Messages.cs" />
     <Compile Include="Entities\Notifications.cs" />
     <Compile Include="Entities\Questions.cs" />
-    <Compile Include="Entities\Subscribers.cs" />
+    <Compile Include="Entities\Subscriptions.cs" />
     <Compile Include="Entities\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Hasher.cs" />

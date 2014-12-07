@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Domain.Entities;
 using Domain.Services;
-using Microsoft.Ajax.Utilities;
 using MiPrimerMVC.Models;
 
 namespace MiPrimerMVC.Controllers
@@ -217,20 +216,21 @@ namespace MiPrimerMVC.Controllers
             return RedirectToAction("ManageClassifieds");
         }
 
-        private long _forRedirect;
-        private string _toStore;
         public ActionResult PublicProfile(long id)
         {
-            _forRedirect = id;
+            
             var publicUser = new ProfileModel();
             publicUser.PublicUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == id);
-            _toStore=publicUser.PublicUser.Email;
-            var activeUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == HttpContext.User.Identity.Name);
-            if (activeUser.UserSubscriptions.Following == null)
-            {
-                publicUser.IsFollowing = false;
-            } else { 
-                if (activeUser.UserSubscriptions.Following.Where(x => x.Email == _toStore).ToList().Count == 0)
+
+            if (HttpContext.User.Identity.Name != string.Empty) { 
+                var activeUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == HttpContext.User.Identity.Name);
+                
+                if (activeUser.Id == id)
+                {
+                    return RedirectToAction("Profile");
+                }
+
+                if (!_readOnlyRepository.GetAll<Subscriptions>().ToList().FindAll(x => x.Follower == activeUser.Id && x.Following == publicUser.PublicUser.Id && !x.Archived).Any())
                 {
                     publicUser.IsFollowing = false;
                 }
@@ -239,34 +239,43 @@ namespace MiPrimerMVC.Controllers
                     publicUser.IsFollowing = true;
                 }
             }
-            return View();
+
+            return View(publicUser);
         }
 
         [Authorize]
-        public ActionResult Follow()
+        public ActionResult Follow(long id)
         {
             var activeUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == HttpContext.User.Identity.Name);
-            var userprofile = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == _toStore);
-            activeUser.UserSubscriptions.Following.ToList().Add(userprofile);
-            userprofile.UserSubscriptions.Followers.ToList().Add(activeUser);
+            var userprofile = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == id);
+            var subscriptionToBeActivated=_readOnlyRepository.FirstOrDefault<Subscriptions>(x => x.Follower == activeUser.Id && x.Following == userprofile.Id);
+
+            if (subscriptionToBeActivated!=null)
+            {
+                subscriptionToBeActivated.Activate();
+                _writeOnlyRepository.Update(subscriptionToBeActivated);
+            }
+            else
+            {
+               _writeOnlyRepository.Create(new Subscriptions(activeUser.Id, userprofile.Id));
+            }
+            var notify = new Notifications(activeUser.Email,activeUser.Name);
+            userprofile.Notifications.ToList().Add(notify);
             _writeOnlyRepository.Update(userprofile);
-            _writeOnlyRepository.Update(activeUser);
-            
-            return RedirectToAction("PublicProfile",_forRedirect);
+
+            return RedirectToAction("PublicProfile", new{id});
         }
 
         [Authorize]
-        public ActionResult UnFollow()
+        public ActionResult UnFollow(long id)
         {
             var activeUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == HttpContext.User.Identity.Name);
-            var userprofile = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == _toStore);
-            activeUser.UserSubscriptions.Following.ToList().Remove(userprofile);
-            userprofile.UserSubscriptions.Followers.ToList().Remove(activeUser);
-            _writeOnlyRepository.Update(userprofile);
-            _writeOnlyRepository.Update(activeUser);
+            var userprofile = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == id);
+            var subscriptionToBeArchived = _readOnlyRepository.FirstOrDefault<Subscriptions>(x => x.Follower == activeUser.Id && x.Following == userprofile.Id);
+            subscriptionToBeArchived.Archive();
+            _writeOnlyRepository.Update(subscriptionToBeArchived);
 
-
-            return RedirectToAction("PublicProfile", _forRedirect);
+            return RedirectToAction("PublicProfile", new{id});
         }
 
        }

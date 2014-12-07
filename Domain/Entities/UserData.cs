@@ -20,10 +20,10 @@
             AmountOfClassifieds = 0;
             TotalSold = 0;
             Gender = gender;
-            Country = (country ?? "");
+            Country = (country ?? "####");
             Cellphone = (cellphone ?? "(000) 000-0000");
             OfficePhone = (officephone ?? "(000) 000-0000");
-            ProfileImg = (profileimg ?? "http://t0.gstatic.com/images?q=tbn:ANd9GcQCBtudYm6AzY3K3wcsZkpQ-izIyIBx5LvtRqKNxJNgtvEdPeq ");
+            ProfileImg = (profileimg ?? "http://i.imgur.com/kq6yTN8.png");
             Description = (description ?? "No description provided.");
             Blog = (blog ?? "@no-link-available"); ;
         }
@@ -32,10 +32,10 @@
         {
             AmountOfClassifieds = 0;
             TotalSold = 0;
-            Country = "";
+            Country = "Honduras";
             Cellphone = "(000) 000-0000";
             OfficePhone = "(000) 000-0000";
-            ProfileImg = "http://t0.gstatic.com/images?q=tbn:ANd9GcQCBtudYm6AzY3K3wcsZkpQ-izIyIBx5LvtRqKNxJNgtvEdPeq ";
+            ProfileImg = "http://i.imgur.com/kq6yTN8.png";
             Description = "No description provided.";
             Blog = "@no-link-available"; ;
             Archived = false;

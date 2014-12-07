@@ -116,7 +116,7 @@
 
             <div class="container-960 innerT">
                 <div class="widget widget-heading-simple widget-body-gray">
-                    <div class="widget-body"><p class="lead center margin-none"><i class="fa fa-user"></i> Public User Profile</p></div>
+                    <div class="widget-body"><p class="lead center margin-none"><i class="fa fa-user"></i> Public User Profile: @Model.PublicUser.Name</p></div>
                 </div>
                 <!--Startttttt-->
                                        <div class="innerLR">
@@ -144,12 +144,19 @@
 
                                                                        <div class="innerR">
                                                                            <!-- Profile Photo -->
-                                                                           <a href="" class="thumb"><img data-src="@Model.PublicUser.Name" alt="Profile" /></a>
                                                                            <div class="separator bottom"></div>
+                                                                           <a href="" class="thumb"><img data-src="@Model.PublicUser.UserInfo.ProfileImg" /></a>
                                                                            <!-- // Profile Photo END -->
                                                                            <!-- Social Icons -->
-                                                                           @(Model.IsFollowing ? Html.ActionLink("Unfollow", "Unfollow", "AccountLogin", new {@id = Model.PublicUser.Id}, new {@class = "btn btn-danger"}) : Html.ActionLink("Follow", "Follow", "AccountLogin", new {@id = Model.PublicUser.Id}, new {@class = "btn btn-Info"}))
-                                                                           
+
+                                                                           @if (Model.IsFollowing==false)
+                                                                           {
+                                                                               @Html.ActionLink("Subscribe", "Follow", "AccountLogin", new {@id = Model.PublicUser.Id}, new {@class = "btn btn-success"});
+                                                                           }
+                                                                           else
+                                                                           {
+                                                                               @Html.ActionLink("Unsubscribe", "Unfollow", "AccountLogin", new {@id = Model.PublicUser.Id}, new {@class = "btn btn-danger"});
+                                                                           }
                                                                            <div class="clearfix separator bottom"></div>
                                                                            <!-- // Social Icons END -->
                                                                        </div>
