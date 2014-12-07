@@ -182,6 +182,17 @@ namespace MiPrimerMVC.Controllers
             return RedirectToAction("MyClassifieds");
         }
 
+        public ActionResult Report(long id)
+        {
+            var classifiedToBeReported = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id==id);
+            var notifyReport = new Notifications(classifiedToBeReported.Email,classifiedToBeReported.Article,"Report");
+            var adminUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == 1);
+            adminUser.Notifications.ToList().Add(notifyReport);
+            _writeOnlyRepository.Update(adminUser); 
+
+
+            return RedirectToAction("Detailed", new{id});
+        }
         public ActionResult AllClassifieds(string category="All")
         {
             var allModel = new ClassiModel();

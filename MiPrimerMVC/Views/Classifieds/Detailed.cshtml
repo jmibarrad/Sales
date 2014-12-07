@@ -25,7 +25,7 @@
     <!-- Bootstrap -->
     <link href="../../../common/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="../../../common/bootstrap/css/responsive.css" rel="stylesheet" type="text/css" />
-
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css">
     <!-- Glyphicons Font Icons -->
     <link href="../../../common/theme/fonts/glyphicons/css/glyphicons.css" rel="stylesheet" />
 
@@ -211,9 +211,9 @@
                                                 <a href="shop_cart.html?lang=en&amp;style=style-default" class="btn btn-icon btn-large glyphicons cart_in btn-success btn-block"><i></i>Add to cart</a>
                                             </div>
                                             <div class="text-right share">
-                                                Share <a href="" class="glyphicons standard facebook"><i></i></a><a href="" class="glyphicons standard twitter"><i></i></a>
+                                                <i class="fa fa-ban"></i><span>@Html.ActionLink("Report", "Report", "Classifieds", new { @id = Model.classifiedForDetail.Id }, new{@class="btn btn-danger"})</span>
                                             </div>
-                                            <div class="ribbon-wrapper"><div class="ribbon success">50% Off</div></div>
+                                            <div class="ribbon-wrapper"><div class="ribbon success">@Model.classifiedForDetail.ArticleModel</div></div>
                                         </div>
                                         <!-- // Purchase Options END -->
 
