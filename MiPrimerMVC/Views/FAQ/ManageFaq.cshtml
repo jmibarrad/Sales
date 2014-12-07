@@ -1,0 +1,51 @@
+﻿@model MiPrimerMVC.Controllers.QuestionModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-body">
+        <h1 class="text-center cmnt-head">Frequently Asked Questions</h1>
+        @foreach(var x in Model.QuestionList){
+        <div class="media blog-cmnt">
+            <a href="javascript:;" class="pull-left">
+                <img alt="" src="http://cdn.web-savvy-marketing.com/wp-content/uploads/2013/03/Question-Answer-300x225.jpg" class="media-object">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">
+                    <a href="#">jones</a>
+                </h4>
+                <div class="bl-status">
+                    <span class="pull-left">@x.PostedQuestionDate</span>
+                    <span>@Html.ActionLink("Archive", "ArchiveQuestion", "FAQ", new { @id = x.Id }, new { @class = "pull-right reply" })</span>
+                </div>
+                <p class="mp-less">
+                    @x.QuestionText
+                </p>
+                @foreach(var z in x.QuestionAnswers){
+                    <div class="media blog-cmnt">
+                        <a href="javascript:;" class="pull-left">
+                            <img alt="" src="images/blog/blog-avatar-2.jpg" class="media-object-child">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <a href="#">JMIBARRA</a>
+                            </h4>
+                            <div class="bl-status">
+                                <span class="pull-left">@z.PostedAnswerDate</span>
+                                <!--<a href="#" class="pull-right reply">Reply</a>-->
+                            </div>
+                            <p class="mp-less">
+                                @z.AnswerText
+                            </p>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+</div>

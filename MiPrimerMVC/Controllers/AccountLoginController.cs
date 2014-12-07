@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Domain.Entities;
 using Domain.Services;
+using Microsoft.Ajax.Utilities;
 using MiPrimerMVC.Models;
 
 namespace MiPrimerMVC.Controllers
@@ -279,5 +280,26 @@ namespace MiPrimerMVC.Controllers
             return RedirectToAction("PublicProfile", new{id});
         }
 
+        [Authorize]
+        public PartialViewResult RenderNavBar()
+        {
+            var authenticatedUser =_readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == HttpContext.User.Identity.Name);
+            var model = new PartialModel
+            {
+                UserActive = authenticatedUser,
+                NotificationAmount = authenticatedUser.Notifications.ToList().Count,
+                MailAmount = authenticatedUser.AccountMessages.ToList().Count
+            };
+
+            return PartialView(model);
+        }
+
+
        }
+    public class PartialModel
+    {
+        public AccountLogin UserActive { get; set; }
+        public int NotificationAmount { get; set; }
+        public int MailAmount { get; set; }
+    }
 }

@@ -25,7 +25,7 @@ namespace MiPrimerMVC.Controllers
         [HttpGet]
         public ActionResult FAQ()
         {
-            List<Questions> questionsList = _readOnlyRepository.GetAll<Questions>().Where(x=>x.Archived).ToList();
+            var questionsList = _readOnlyRepository.GetAll<Questions>().Where(x=>!x.Archived).ToList();
             var questionModel = new QuestionModel();
             questionsList.Reverse();
             questionModel.QuestionList = questionsList;
@@ -48,6 +48,16 @@ namespace MiPrimerMVC.Controllers
             model.QuestionList = questionsList;
 
             return View(model);
+        }
+
+        [Authorize(Roles = "ADMIN")]
+        public ActionResult ManageFaq()
+        {
+            var questionsList = _readOnlyRepository.GetAll<Questions>().Where(x=>!x.Archived).ToList();
+            var questionModel = new QuestionModel();
+            questionsList.Reverse();
+            questionModel.QuestionList = questionsList;
+            return View(questionModel);
         }
 
         [Authorize(Roles = "ADMIN")]

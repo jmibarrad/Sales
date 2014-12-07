@@ -3996,6 +3996,8 @@
     <Content Include="Views\AccountLogin\PublicProfile.cshtml" />
     <Content Include="Views\Classifieds\ManageClassifieds.cshtml" />
     <Content Include="Views\FAQ\AnswerQuestions.cshtml" />
+    <Content Include="Views\FAQ\ManageFaq.cshtml" />
+    <Content Include="Views\AccountLogin\RenderNavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
