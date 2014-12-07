@@ -3995,6 +3995,7 @@
     <Content Include="Views\AccountLogin\ActivateClassified.cshtml" />
     <Content Include="Views\AccountLogin\PublicProfile.cshtml" />
     <Content Include="Views\Classifieds\ManageClassifieds.cshtml" />
+    <Content Include="Views\FAQ\AnswerQuestions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

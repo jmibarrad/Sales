@@ -145,14 +145,23 @@
                                             </a>
                                         </div>
                                          <div id="collapse-4" class="accordion-body collapse">
-                                             @* @if (x.QuestionAnswers != null) {
-                                                foreach(var z in x.QuestionAnswers){
+                                             @if (x.QuestionAnswers != null)
+                                             {
+                                                 foreach (var z in x.QuestionAnswers)
+                                                 {
+                                                     <div class="accordion-inner">
+                                                         <p><i class="fa fa-hand-o-right"></i> @z.AnswerText  | <small style="color: blue">@z.PostedAnswerDate</small></p>
+                                                     </div>
+                                                     <br/>
+                                                 }
+                                             }
+                                             else
+                                             {
                                                     <div class="accordion-inner">
-                                                        <p><i class="fa fa-hand-o-right"></i> @z.AnswerText  | <small style="color:blue">@z.PostedAnswerDate</small></p>
+                                                        <p><i class="fa fa-warning"></i>Not answered yet.</p>
                                                     </div>
-                                                    <br/>
-                                                }
-                                            }*@
+                                                    <br />
+                                             }
                                          </div>
                                     </div>
                                 }
@@ -161,115 +170,7 @@
                                 </div>
                             </div>
                             <!-- // Tab content END -->
-                            <!-- Tab content -->
-                            <div id="tabAccount" class="tab-pane">
-
-                                <!-- Accordion -->
-                                <div class="accordion accordion-2" id="tabAccountAccordion">
-
-                                    <!-- Accordion Group -->
-                                    <div class="accordion-group">
-
-                                        <!-- Heading -->
-                                        <div class="accordion-heading">
-                                            <a class="accordion-toggle glyphicons right_arrow" data-toggle="collapse" data-parent="#tabAccountAccordion" href="#collapse-1-1">
-                                                <i></i>Lorem ipsum dolor sit amet?
-                                            </a>
-                                        </div>
-                                        <!-- // Heading END -->
-                                        <!-- Body -->
-                                        <div id="collapse-1-1" class="accordion-body collapse in">
-                                            <div class="accordion-inner">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique rutrum libero, vel bibendum nunc consectetur sed. Sed nibh metus, sodales non porttitor non, euismod ut magna. Etiam viverra pharetra facilisis. Aenean augue risus, molestie eu semper at, ornare at velit. Maecenas erat dui, placerat sed facilisis at, laoreet at ligula. Maecenas eu rutrum lacus. Curabitur at turpis ligula. Phasellus pharetra tellus in augue viverra id vehicula eros pretium. Donec consectetur mattis lorem, eget dictum lectus tristique vel. Ut vehicula consequat mi at fringilla.
-                                            </div>
-                                        </div>
-                                        <!-- // Body END -->
-
-                                    </div>
-                                    <!-- // Accordion Group END -->
-                                    <!-- Accordion Group -->
-                                    <div class="accordion-group">
-
-                                        <!-- Heading -->
-                                        <div class="accordion-heading">
-                                            <a class="accordion-toggle glyphicons right_arrow" data-toggle="collapse" data-parent="#tabAccountAccordion" href="#collapse-2-1">
-                                                <i></i>Quisque porttitor elit ac mauris?
-                                            </a>
-                                        </div>
-                                        <!-- // Heading END -->
-                                        <!-- Body -->
-                                        <div id="collapse-2-1" class="accordion-body collapse">
-                                            <div class="accordion-inner">
-                                                Quisque porttitor elit ac mauris aliquam sollicitudin. Nam imperdiet ligula et dolor pulvinar consequat. Sed in turpis id erat vehicula gravida. Nunc sed mauris ante. Pellentesque at convallis dolor. Nulla pharetra risus ut neque consequat in dapibus est feugiat. Fusce dapibus adipiscing lectus, a fringilla odio dictum et. Quisque eu tortor lacus. In elementum posuere dapibus. Duis ut neque nisi, vel vulputate dolor. Donec sem est, ultricies nec auctor vel, iaculis lobortis metus.
-                                            </div>
-                                        </div>
-                                        <!-- // Body END -->
-
-                                    </div>
-                                    <!-- // Accordion Group END -->
-                                    <!-- Accordion Group -->
-                                    <div class="accordion-group">
-
-                                        <!-- Heading -->
-                                        <div class="accordion-heading">
-                                            <a class="accordion-toggle glyphicons right_arrow" data-toggle="collapse" data-parent="#tabAccountAccordion" href="#collapse-3-1">
-                                                <i></i>Vivamus eros tortor consequat sed?
-                                            </a>
-                                        </div>
-                                        <!-- // Heading -->
-                                        <!-- Body -->
-                                        <div id="collapse-3-1" class="accordion-body collapse">
-                                            <div class="accordion-inner">
-                                                Vivamus eros tortor, consequat sed posuere non, tempus non ligula. Integer pharetra sem eu dolor rhoncus euismod. Vestibulum fermentum sollicitudin augue eu porta. In quis magna elit, in congue urna. Vivamus vitae blandit nisi. Aliquam lacinia magna eget lorem auctor vel facilisis ante rhoncus. Nulla ut sapien sit amet justo molestie tincidunt ut mollis lacus. Sed at felis lorem. Nam tincidunt vehicula ipsum, in aliquet turpis tempor et. Donec lacinia, nulla et tincidunt fringilla, turpis nulla sodales quam, sed viverra magna eros quis ipsum. Pellentesque vulputate gravida sodales. Fusce pulvinar vestibulum malesuada. Suspendisse eget lectus sit amet lacus tincidunt fringilla. Donec posuere neque risus, non viverra justo.
-                                            </div>
-                                        </div>
-                                        <!-- // Body END -->
-
-                                    </div>
-                                    <!-- // Accordion Group END -->
-                                    <!-- Accordion Group -->
-                                    <div class="accordion-group">
-
-                                        <!-- Heading -->
-                                        <div class="accordion-heading">
-                                            <a class="accordion-toggle glyphicons right_arrow" data-toggle="collapse" data-parent="#tabAccountAccordion" href="#collapse-4-1">
-                                                <i></i>Etiam suscipit leo tincidunt mi volutpat?
-                                            </a>
-                                        </div>
-                                        <!-- // Heading END -->
-                                        <!-- Body -->
-                                        <div id="collapse-4-1" class="accordion-body collapse">
-                                            <div class="accordion-inner">
-                                                Etiam suscipit leo tincidunt mi volutpat commodo. Morbi tempor interdum dictum. In hac habitasse platea dictumst. Morbi quis turpis sed felis mattis tempus vel vitae nibh. In feugiat consectetur felis et sodales. Aliquam gravida elit nec augue mattis ut mollis nibh eleifend. Aliquam vulputate pulvinar libero et pellentesque. Vivamus hendrerit varius metus quis congue. Ut scelerisque tincidunt aliquam.
-                                            </div>
-                                        </div>
-                                        <!-- // Body END -->
-
-                                    </div>
-                                    <!-- // Accordion Group END -->
-
-                                </div>
-                            </div>
-                            <!-- // Tab content END -->
-                            <!-- Tab content -->
-                            <div id="tabPayments" class="tab-pane widget-body-regular">
-                                <h5>Payments tab content</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ante est, tempor ut posuere nec, venenatis sed arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis in purus ut mauris sodales sollicitudin. Mauris cursus imperdiet dignissim. Phasellus risus felis, rutrum in laoreet vel, posuere vel dolor. Sed venenatis vehicula tempus. Nam at rutrum enim. Sed massa quam, mattis in viverra ut, ullamcorper et massa. Phasellus sapien diam, faucibus ac tempor a, condimentum quis est. Donec nec velit ante, vel mattis metus. Ut nec libero diam, id auctor sapien. Suspendisse eget lorem ante, in fringilla dui. In hac habitasse platea dictumst.</p>
-                            </div>
-                            <!-- // Tab content END -->
-                            <!-- Tab content -->
-                            <div id="tabSupport" class="tab-pane widget-body-regular">
-                                <h5>Support tab content</h5>
-                                <p>Integer porttitor, enim eu egestas ullamcorper, odio mauris semper quam, in facilisis dui ligula eget ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas dolor leo, consectetur nec tristique pretium, ornare quis purus. Nullam pulvinar, enim eu molestie venenatis, turpis nisl vehicula eros, et ultricies risus urna sed diam. Suspendisse potenti. Nullam tincidunt tellus nisi. Aenean felis eros, congue vitae hendrerit id, mattis quis mi.</p>
-                            </div>
-                            <!-- // Tab content END -->
-                            <!-- Tab content -->
-                            <div id="tabFeatures" class="tab-pane widget-body-regular">
-                                <h5>Features tab content</h5>
-                                <p>Nunc aliquet lacus laoreet odio consectetur tempus. In id nisl diam, congue vehicula sapien. Nulla facilisi. Donec sagittis cursus sollicitudin. Aenean leo tellus, eleifend quis facilisis vel, tempus ac elit. Nam eget turpis nec erat vestibulum fringilla. Donec et felis ipsum. Fusce feugiat ultricies lacus a ultrices. Nunc ultrices, orci ut convallis pulvinar, diam nunc tincidunt augue, sit amet lacinia ante mi a augue. Sed feugiat, neque eget porttitor varius, tellus nisi sollicitudin libero, nec aliquam ante dui gravida ipsum. Fusce cursus rhoncus lectus, quis malesuada sapien facilisis eu. Aenean vitae massa sed urna condimentum porttitor ac at risus.</p>
-                            </div>
-                            <!-- // Tab content END -->
-
+                          
                         </div>
                     </div>
                 </div>

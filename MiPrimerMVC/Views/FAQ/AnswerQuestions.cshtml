@@ -1,0 +1,27 @@
+﻿@model MiPrimerMVC.Controllers.AnswerModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Manage FAQ
+            </header>
+            <div class="panel-body">
+                <div><p>Question: @Model.FaqQuestion.QuestionText</p></div>
+                @using(Html.BeginForm("AnswerQuestions","FAQ",null,FormMethod.Post,new{@class="form-horizontal adminex-form"})){
+                
+                    <div class="form-group">
+                        @Html.TextAreaFor(x => x.AnswerText, new { @class = "form-control", rows = "3" })
+                        <label style="color: red">@Html.ValidationMessageFor(x => x.AnswerText)</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Answer</button>
+                }
+            </div>
+        </section>
+    </div>
+</div>

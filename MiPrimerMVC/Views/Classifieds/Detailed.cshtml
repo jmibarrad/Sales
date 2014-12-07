@@ -136,14 +136,14 @@
                         
                         <!-- Product Gallery -->
                         <div class="span4" data-toggle="modal-gallery" data-target="#modal-gallery" id="gallery-5" data-delegate="#gallery-5">
-                            <a class="thumb" href="../../../common/theme/images/fashion/female/1.jpg" data-gallery="gallery"><img src="../../../common/theme/images/fashion/female/1.jpg" alt="photo" /></a>
+                            <a class="thumb" href="#" data-gallery="gallery"><img src="@Html.ValueFor(x=>x.classifiedForDetail.UrlImage)" alt="photo" /></a>
                             <div class="separator bottom"></div>
                             <div class="gallery">
                                 <ul class="row-fluid">
-                                    <li class="span3"><a class="thumb" href="../../../common/theme/images/fashion/female/1.jpg" data-gallery="gallery"><img src="@Html.ValueFor(x=>x.classifiedForDetail.UrlImage)" alt="photo" /></a></li>
-                                    <li class="span3"><a class="thumb" href="../../../common/theme/images/fashion/female/2.jpg" data-gallery="gallery"><img src="../../../common/theme/images/fashion/female/2.jpg" alt="photo" /></a></li>
-                                    <li class="span3"><a class="thumb" href="../../../common/theme/images/fashion/female/3.jpg" data-gallery="gallery"><img src="../../../common/theme/images/fashion/female/3.jpg" alt="photo" /></a></li>
-                                    <li class="span3"><a class="thumb" href="../../../common/theme/images/fashion/female/4.jpg" data-gallery="gallery"><img src="../../../common/theme/images/fashion/female/4.jpg" alt="photo" /></a></li>
+                                    <li class="span3"><a class="thumb" href="#" data-gallery="gallery"><img src="@Html.ValueFor(x=>x.classifiedForDetail.UrlImage1)" alt="photo" /></a></li>
+                                    <li class="span3"><a class="thumb" href="#" data-gallery="gallery"><img src="@Html.ValueFor(x=>x.classifiedForDetail.UrlImage2)" alt="photo" /></a></li>
+                                    <li class="span3"><a class="thumb" href="#" data-gallery="gallery"><img src="@Html.ValueFor(x=>x.classifiedForDetail.UrlImage3)" alt="photo" /></a></li>
+                                    <li class="span3"><a class="thumb" href="#" data-gallery="gallery"><img src="@Html.ValueFor(x=>x.classifiedForDetail.UrlImage4)" alt="photo" /></a></li>
                                 </ul>
                             </div>
                             <!--<iframe width="320" height="290" src="http://www.youtube.com/embed/MpltnLLNb7w" frameborder="0" allowfullscreen></iframe>
@@ -158,14 +158,13 @@
                                     <div class="widget widget-heading-simple widget-body-gray">
                                         <div class="widget-head"><h4 class="heading glyphicons notes strong"><i></i>Product description</h4></div>
                                         <div class="widget-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis porta purus, pulvinar mattis nulla tempus ut. Curabitur quis dui orci. Ut nisi dolor, dignissim a aliquet quis, vulputate id dui. Proin ultrices ultrices ligula.</p>
-                                            <p>@Model.classifiedForDetail.Description Dictum varius turpis faucibus non. Curabitur faucibus ultrices nunc, nec aliquet leo tempor cursus. Pellentesque sed felis ipsum.</p>
+                                            <p>@Model.classifiedForDetail.Description</p>
                                         </div>
                                     </div>
                                     <!-- // Product description END -->
                                     <div class="widget widget-heading-simple widget-body-gray">
                                         <div class="widget-head"><h4 class="heading glyphicons warning_sign strong" style="color:crimson"><i></i>Important note</h4></div>
-                                        <div class="widget-body"><p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi erat massa, ultricies sit amet.</p></div>
+                                        <div class="widget-body"><p class="margin-none">If the content of this classified is inappropiated you have all the right to report it. Thanks for prefering us.</p></div>
                                     </div>
                                 </div>
                                 <div class="span5">
@@ -175,16 +174,16 @@
                                         <div class="box-generic">
                                             <div class="separator bottom">
                                                 <span class="text-large">&dollar; @Model.classifiedForDetail.Price.ToString()</span><br />
-                                                <span class="text-faded">&dollar;1,119 incl. VAT</span>
+                                                <span class="text-faded">&dollar; 0.00 incl. VAT</span>
                                             </div>
-                                            <label class="strong">Select size</label>
+                                            <label class="strong">Select color</label>
                                             <select class="selectpicker span12" data-style="btn-default btn-small">
-                                                <option>Option</option>
-                                                <option>Option</option>
-                                                <option>Option</option>
+                                                <option>RED</option>
+                                                <option>BLACK</option>
+                                                <option>BLUE</option>
                                             </select>
 
-                                            <label class="strong">Qty</label>
+                                            <label class="strong">Quantity</label>
                                             <input type="text" class="input-block-level" value="1" />
                                             <div class="separator bottom">
                                                 <a href="shop_cart.html?lang=en&amp;style=style-default" class="btn btn-icon btn-large glyphicons cart_in btn-success btn-block"><i></i>Add to cart</a>
@@ -216,7 +215,9 @@
 
                                         <!-- Delivery Tab -->
                                         <div class="tab-pane" id="deliveryTab">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis porta purus, pulvinar mattis nulla tempus ut. Curabitur quis dui orci. Ut nisi dolor, dignissim a aliquet quis, vulputate id dui. Proin ultrices ultrices ligula, dictum varius turpis faucibus non. Curabitur faucibus ultrices nunc, nec aliquet leo tempor cursus. Pellentesque sed felis ipsum. Quisque in lacus sed ante malesuada condimentum et a risus. Morbi accumsan euismod rutrum. Etiam vitae turpis eu est lacinia condimentum a sit amet erat. Sed augue turpis, lobortis ac feugiat eget, cursus ac justo.</p>
+                                            <p>Sorry delivery options have not been implemented. </p>
+                                            <p>-Shipping</p>
+                                            <p>-Air Cargo</p>
                                         </div>
                                         <!-- // Delivery Tab END -->
                                         <!-- Reviews Tab -->
@@ -224,7 +225,7 @@
 
                                             <div class="separator bottom">
                                                 <i class="icon-quote-right icon-5x pull-right icon-muted"></i>
-                                                <strong>Customer name</strong><br />
+                                                <strong>Customer email: @Model.classifiedForDetail.Email</strong><br />
                                                 <span class="rating text-left text-faded read-only">
                                                     <span class="star"></span>
                                                     <span class="star active"></span>
@@ -234,8 +235,8 @@
                                                 </span>&nbsp;
                                                 <span class="text-faded"><i class="icon-fixed-width icon-calendar"></i> on 22th June, 2013</span>
                                                 <br />
-                                                Aliquam rutrum, sem at scelerisque tempor, nulla diam pulvinar tortor, id pulvinar massa velit eu purus. Curabitur eu fringilla diam, sed suscipit lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras iaculis enim vel odio imperdiet faucibus. Aliquam erat volutpat.
-                                            </div>
+                                                At the bottom part you are able to send a message to the ower for more information; remember you can´t buy any item if yourn´t registered!
+                                             </div>
                                            
                                         </div>
                                         <!-- // Reviews Tab END -->

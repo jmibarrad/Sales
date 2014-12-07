@@ -39,18 +39,51 @@ namespace MiPrimerMVC.Controllers
           
             var questionToBePushed = new Questions(model.QuestionText,model.Email, model.Name);
 
-                    var createdOperation = _writeOnlyRepository.Create(questionToBePushed);
+             _writeOnlyRepository.Create(questionToBePushed);
         //check
                     MessageBox.Show("Question Added Succesfully");
             
-            List<Questions> questionsList = _readOnlyRepository.GetAll<Questions>().Where(x=>x.Archived).ToList();
+            var questionsList = _readOnlyRepository.GetAll<Questions>().Where(x=>!x.Archived).ToList();
             questionsList.Reverse();
             model.QuestionList = questionsList;
 
             return View(model);
         }
 
+        [Authorize(Roles = "ADMIN")]
+        public ActionResult AnswerQuestions(long id)
+        {
+            var questionToBeAnswered = _readOnlyRepository.FirstOrDefault<Questions>(x => x.Id == id && !x.Archived);
+            var answermodel = new AnswerModel {FaqQuestion = questionToBeAnswered};
+
+            return View(answermodel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "ADMIN")]
+        public ActionResult AnswerQuestions(AnswerModel model)
+        {
+            var questionToBeSaved = _readOnlyRepository.FirstOrDefault<Questions>(x=>x.Id==model.FaqQuestion.Id);
+            var list = questionToBeSaved.QuestionAnswers.ToList();
+            list.Add(new Answers(model.AnswerText));
+            questionToBeSaved.QuestionAnswers = list;
+            _writeOnlyRepository.Update(questionToBeSaved);
+
+            return View(model);
+        }
+
+        [Authorize(Roles = "ADMIN")]
+        public ActionResult ArchiveQuestion(long id)
+        {
+            var questionToBeArchived = _readOnlyRepository.FirstOrDefault<Questions>(x => x.Id == id);
+            questionToBeArchived.Archive();
+            _writeOnlyRepository.Update(questionToBeArchived);
+
+            return RedirectToAction("FAQ");
+        }
+
     }
+
 
     public class QuestionModel
     {
@@ -78,5 +111,6 @@ namespace MiPrimerMVC.Controllers
         [DataType(DataType.Text)]
         [StringLength(50, ErrorMessage = "First name should be between 1 and 50 characters.", MinimumLength = 1)]
         public string AnswerText { get; set; }
+        public Questions FaqQuestion { get; set; }
     }
 }
