@@ -71,21 +71,20 @@
                     <div class="container-960">
 
                         <!-- Brand -->
-                        <a href="index_slider.html?lang=en&amp;style=style-default" class="appbrand pull-left">Quick</a>
+                        <a href="index_slider.html?lang=en&amp;style=style-flat" class="appbrand pull-left">Sales|JMID</a>
 
                         <ul class="topnav pull-right">
-
-                            <li class="hidden-phone"><a href="contact.html?lang=en&amp;style=style-default" class="glyphicons shield"><i></i> Get Help</a></li>
                             <li class="glyphs hidden-phone">
                                 <ul>
                                     @if (Context.User.Identity.IsAuthenticated)
-                                    {
+                                   {
                                         <li><a href="~/AccountLogin/Logout" class="glyphicons lock"><i></i> Sign out</a></li>
-                                    }
-                                    else
-                                    {
+                                   }
+                                   else
+                                   {
                                         <li><a href="~/AccountLogin/Login" class="glyphicons unlock"><i></i> Sign in</a></li>
-                                    }
+                                   }
+                                    <li><a href="~/Register/Register" class="glyphicons user_add"><i></i> Sign up</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -103,41 +102,21 @@
                     <!-- // Menu Toggle Button END -->
 
                     <ul class="topnav pull-left">
-
-                        <li class="dropdown dd-1">
-                            <a href="" data-toggle="dropdown" class="glyphicons home"><i></i>Home pages <span class="caret"></span></a>
-                            <ul class="dropdown-menu pull-left">
-                                <li class=""><a href="index_slider.html?lang=en&amp;style=style-default">Revolution Slider Fixed</a></li>
-                                <li class=""><a href="index_slider_fullwidth.html?lang=en&amp;style=style-default">Revolution Slider Wide</a></li>
-                                <li class=""><a href="index.html?lang=en&amp;style=style-default">Home page #1</a></li>
-                                <li class=""><a href="index_2.html?lang=en&amp;style=style-default">Home page #2</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="about.html?lang=en&amp;style=style-default" class="glyphicons circle_info"><i></i> About</a></li>
-                        <li><a href="pricing.html?lang=en&amp;style=style-default" class="glyphicons credit_card"><i></i> Pricing</a></li>
+                        <li><a href="~/Classifieds/MostVisited" class="glyphicons home"><i></i> Home</a></li>
                         <li class="dropdown dd-1 active">
-                            <a href="" data-toggle="dropdown" class="glyphicons shopping_cart"><i></i>Shop <span class="caret"></span></a>
+                            <a href="" data-toggle="dropdown" class="glyphicons shopping_cart"><i></i>Classifieds <span class="caret"></span></a>
                             <ul class="dropdown-menu pull-left">
-                                <li class=""><a href="shop.html?lang=en&amp;style=style-default">Catalog</a></li>
-                                <li class=" active"><a href="shop_product.html?lang=en&amp;style=style-default">Product page</a></li>
-                                <li class=""><a href="shop_cart.html?lang=en&amp;style=style-default">Shopping Cart</a></li>
+                                <li class="glyphicons glyphicon-tags"><a href="~/Classifieds/AllClassifieds"><i></i>All Clasifieds</a></li>
+                                <li class="glyphicons glyphicon-tag"><a href="~/Classifieds/AdvancedSearch">Advanced Search</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown dd-1">
-                            <a href="" data-toggle="dropdown" class="glyphicons notes"><i></i>Blog <span class="caret"></span></a>
-                            <ul class="dropdown-menu pull-left">
-                                <li class=""><a href="blog.html?lang=en&amp;style=style-default">Blog Posts</a></li>
-                                <li class=""><a href="blog_timeline.html?lang=en&amp;style=style-default">Blog Timeline</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html?lang=en&amp;style=style-default" class="glyphicons iphone"><i></i> Contact</a></li>
+                        <li><a href="#about" class="glyphicons circle_info"><i></i> About</a></li>
+                        <li><a href="~/Contact/Contact" class="glyphicons envelope"><i></i> Contact</a></li>
 
                     </ul>
 
                     <!-- Top Menu Right -->
-                    <ul class="topnav pull-right border-none hidden-tablet">
-                        
-                    </ul>
+                    <ul class="topnav pull-right border-none hidden-tablet"></ul>
                     <div class="clearfix"></div>
                     <!-- // Top Menu Right END -->
 

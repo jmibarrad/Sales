@@ -50,7 +50,9 @@ namespace MiPrimerMVC.Controllers
                 foreach (var x in notifyList)
                 {
                     var userToBeNotify = _readOnlyRepository.FirstOrDefault<AccountLogin>(z => z.Id == x.Follower);
-                    userToBeNotify.Notifications.ToList().Add(new Notifications(user.Email,model.Article,"Classi"));
+                    var list = userToBeNotify.Notifications.ToList();
+                    list.Add(new Notifications(user.Email,model.Article,"Classi"));
+                    userToBeNotify.Notifications = list;
                     _writeOnlyRepository.Update(userToBeNotify);
                 }
 
@@ -185,9 +187,10 @@ namespace MiPrimerMVC.Controllers
         public ActionResult Report(long id)
         {
             var classifiedToBeReported = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id==id);
-            var notifyReport = new Notifications(classifiedToBeReported.Email,classifiedToBeReported.Article,"Report");
             var adminUser = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Id == 1);
-            adminUser.Notifications.ToList().Add(notifyReport);
+            var list = adminUser.Notifications.ToList();
+            list.Add(new Notifications(classifiedToBeReported.Email, classifiedToBeReported.Article, "Report"));
+            adminUser.Notifications = list;
             _writeOnlyRepository.Update(adminUser); 
 
 
