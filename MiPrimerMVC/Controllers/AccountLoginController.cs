@@ -259,7 +259,7 @@ namespace MiPrimerMVC.Controllers
             {
                _writeOnlyRepository.Create(new Subscriptions(activeUser.Id, userprofile.Id));
             }
-            var notify = new Notifications(activeUser.Email,activeUser.Name);
+            var notify = new Notifications(activeUser.Email,activeUser.Name, "Subs");
             userprofile.Notifications.ToList().Add(notify);
             _writeOnlyRepository.Update(userprofile);
 

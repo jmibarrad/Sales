@@ -78,8 +78,14 @@
                             <li class="hidden-phone"><a href="contact.html?lang=en&amp;style=style-default" class="glyphicons shield"><i></i> Get Help</a></li>
                             <li class="glyphs hidden-phone">
                                 <ul>
-                                    <li><a href="login.html?lang=en&amp;style=style-default" class="glyphicons unlock"><i></i> Sign in</a></li>
-                                    <li><a href="signup.html?lang=en&amp;style=style-default" class="glyphicons user_add"><i></i> Sign up</a></li>
+                                    @if (Context.User.Identity.IsAuthenticated)
+                                    {
+                                        <li><a href="~/AccountLogin/Logout" class="glyphicons lock"><i></i> Sign out</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="~/AccountLogin/Login" class="glyphicons unlock"><i></i> Sign in</a></li>
+                                    }
                                 </ul>
                             </li>
                         </ul>

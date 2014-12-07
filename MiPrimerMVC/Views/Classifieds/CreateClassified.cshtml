@@ -101,7 +101,22 @@
                         <div class="col-lg-10">
                             @Html.TextBoxFor(x => x.UrlImage, new { @class = "form-control", placeholder = "Image URL here" })
                             <label style="color: red">@Html.ValidationMessageFor(x => x.UrlImage)</label>
-
+                        </div>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(x => x.UrlImage1, new { @class = "form-control", placeholder = "Image URL here*" })
+                            <label style="color: red">@Html.ValidationMessageFor(x => x.UrlImage1)</label>
+                        </div>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(x => x.UrlImage2, new { @class = "form-control", placeholder = "Image URL here*" })
+                            <label style="color: red">@Html.ValidationMessageFor(x => x.UrlImage2)</label>
+                        </div>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(x => x.UrlImage3, new { @class = "form-control", placeholder = "Image URL here*" })
+                            <label style="color: red">@Html.ValidationMessageFor(x => x.UrlImage3)</label>
+                        </div>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(x => x.UrlImage4, new { @class = "form-control", placeholder = "Image URL here^*" })
+                            <label style="color: red">@Html.ValidationMessageFor(x => x.UrlImage4)</label>
                         </div>
                     </div>
                     <!--END img URL-->

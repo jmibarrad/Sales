@@ -29,9 +29,21 @@ namespace MiPrimerMVC.Models
             ErrorMessage = "The description must contains a minimum of 3 words and a maximum of 255 characters.")]
         public string Description { get; set; }
 
+        
         [DataType(DataType.ImageUrl, ErrorMessage = "Url for image is not valid")]
         public string UrlImage { get; set; }
 
+        [DataType(DataType.ImageUrl, ErrorMessage = "Url for image is not valid")]
+        public string UrlImage1 { get; set; }
+
+        [DataType(DataType.ImageUrl, ErrorMessage = "Url for image is not valid")]
+        public string UrlImage2 { get; set; }
+
+        [DataType(DataType.ImageUrl, ErrorMessage = "Url for image is not valid")]
+        public string UrlImage3 { get; set; }
+
+        [DataType(DataType.ImageUrl, ErrorMessage = "Url for image is not valid")]
+        public string UrlImage4 { get; set; }
 
         public string UrlVideo { get; set; }
     }

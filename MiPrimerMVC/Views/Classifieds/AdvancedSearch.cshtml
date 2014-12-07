@@ -73,8 +73,14 @@
 
                             <li class="glyphs hidden-phone">
                                 <ul>
-                                    <li><a href="~/AccountLogin/Login" class="glyphicons unlock"><i></i> Sign in</a></li>
-                                    <li><a href="~/Register/Register" class="glyphicons user_add"><i></i> Sign up</a></li>
+                                    @if (Context.User.Identity.IsAuthenticated)
+                                    {
+                                        <li><a href="~/AccountLogin/Logout" class="glyphicons lock"><i></i> Sign out</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="~/AccountLogin/Login" class="glyphicons unlock"><i></i> Sign in</a></li>
+                                    }
                                 </ul>
                             </li>
                         </ul>

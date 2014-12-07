@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using System.Windows.Forms;
 using Domain.Entities;
@@ -37,11 +38,21 @@ namespace MiPrimerMVC.Controllers
                         var classifiedsList = user.AccountClassifieds.ToList();
 
                         classifiedsList.Add(new Classifieds(model.Category, model.Article, model.ArticleModel, model.Location,
-                          model.Price, model.Description, user.Email, model.UrlImage, validate.Embed(model.UrlVideo)));
+                          model.Price, model.Description, user.Email, model.UrlImage, model.UrlImage1, model.UrlImage2, model.UrlImage3, model.UrlImage4, validate.Embed(model.UrlVideo)));
 
                         user.AccountClassifieds = classifiedsList;
                         _writeOnlyRepository.Update(user);
-                        
+
+                var notifyList = _readOnlyRepository.GetAll<Subscriptions>().Where(x => x.Following == user.Id && !x.Archived);
+                
+                if(!notifyList.Any())
+                foreach (var x in notifyList)
+                {
+                    var userToBeNotify = _readOnlyRepository.FirstOrDefault<AccountLogin>(z => z.Id == x.Follower);
+                    userToBeNotify.Notifications.ToList().Add(new Notifications(user.Email,model.Article,"Classi"));
+                    _writeOnlyRepository.Update(userToBeNotify);
+                }
+
                 //check
                 MessageBox.Show("Classified added successfully");
 
@@ -65,25 +76,6 @@ namespace MiPrimerMVC.Controllers
            
             return View(mcModel);
         }
-
-//        [Authorize]
-//        public ActionResult MyClassifieds(ClassiModel managerModel, long id, string action)
-//        {
-//            managerModel.classifiedForDetail = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
-//
-//            if (!managerModel.classifiedForDetail.Archived)
-//            {
-//                managerModel.classifiedForDetail.Archive();
-//            }
-//            else
-//            {
-//                managerModel.classifiedForDetail.Activate();
-//            }
-//
-//            _writeOnlyRepository.Update(managerModel.classifiedForDetail);
-//
-//            return View(managerModel);
-//        }
 
         [Authorize]
         [HttpPost]

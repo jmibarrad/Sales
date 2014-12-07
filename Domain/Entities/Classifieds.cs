@@ -21,13 +21,18 @@ namespace Domain.Entities
         public virtual string Location { get; set; }
         public virtual string UrlVideo { get; set; }
         public virtual string UrlImage { get; set; }
+        public virtual string UrlImage1 { get; set; }
+        public virtual string UrlImage2 { get; set; }
+        public virtual string UrlImage3 { get; set; }
+        public virtual string UrlImage4 { get; set; }
+
         public virtual DateTime PostedDate { get; set; }
         public virtual int Likes { get; set; }
         public virtual int Visited { get; set; }
         public virtual string Email { get; set; }
         public virtual bool TermsAndConditionsAccepted { get; protected set; }
 
-        public Classifieds(string Category, string Article, string ArticleModel, string Location, float Price, string description, string email, string urlimage, string urlvideo)
+        public Classifieds(string Category, string Article, string ArticleModel, string Location, float Price, string description, string email, string urlimage, string urlimage1, string urlimage2, string urlimage3,string urlimage4, string urlvideo)
          {
             this.Category = Category;
             this.Article = Article;
@@ -43,6 +48,11 @@ namespace Domain.Entities
             Visited = 0;
             UrlImage = urlimage;
             UrlVideo=urlvideo;
+
+            UrlImage1 = urlimage1=="" ? "http://fpoimg.com/300x300?text=Advertisement" : urlimage1;
+            UrlImage2 = urlimage1 == "" ? "http://fpoimg.com/300x300?text=Advertisement" : urlimage2;
+            UrlImage3 = urlimage1 == "" ? "http://fpoimg.com/300x300?text=Advertisement" : urlimage3;
+            UrlImage4 = urlimage1 == "" ? "http://fpoimg.com/300x300?text=Advertisement" : urlimage4;
          }
 
          public Classifieds()
