@@ -62,123 +62,186 @@
         <script src="~/common/theme/scripts/plugins/system/less.min.js"></script>
     </head>
     <body>
+        <div class="navbar main hidden-print">
+
+            <div class="secondary">
+                <div class="container-960">
+
+                    <!-- Brand -->
+                    <a href="#" class="appbrand pull-left">Sales|JMID</a>
+
+                    <ul class="topnav pull-right">
+
+                        <li class="glyphs hidden-phone">
+                            <ul>
+                                @if (Context.User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="~/AccountLogin/Profile" class="glyphicons user"><i></i> Profile</a></li>
+                                    <li><a href="~/AccountLogin/Logout" class="glyphicons lock"><i></i> Sign out</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="~/AccountLogin/Login" class="glyphicons unlock"><i></i> Sign in</a></li>
+                                    <li><a href="~/Register/Register" class="glyphicons user_add"><i></i> Sign up</a></li>
+                                }
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+
+            <div class="container-960">
+
+                <!-- Menu Toggle Button -->
+                <button type="button" class="btn btn-navbar visible-phone">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <!-- // Menu Toggle Button END -->
+
+                <ul class="topnav pull-left">
+
+
+                    <li><a href="~/Classifieds/MostVisited" class="glyphicons home"><i></i> Home</a></li>
+                    <li class="dropdown dd-1 active">
+                        <a href="" data-toggle="dropdown" class="glyphicons shopping_cart"><i></i>Classifieds <span class="caret"></span></a>
+                        <ul class="dropdown-menu pull-left">
+                            <li class="glyphicons glyphicon-tags"><a href="~/Classifieds/AllClassifieds"><i></i>All Clasifieds</a></li>
+                            <li class="glyphicons glyphicon-tag"><a href="~/Classifieds/AdvancedSearch">Advanced Search</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="~#" class="glyphicons circle_info"><i></i> About</a></li>
+                    <li><a href="~/Contact/Contact" class="glyphicons iphone"><i></i> Contact</a></li>
+
+                </ul>
+
+                <!-- Top Menu Right -->
+                <ul class="topnav pull-right border-none hidden-tablet"></ul>
+                <div class="clearfix"></div>
+                <!-- // Top Menu Right END -->
+
+            </div>
+
+        </div>
+
         <h3>Frequently Asked Questions</h3>
         <div class="innerLR">
             
-                <!-- Widget -->
-                <div class="widget widget-tabs widget-tabs-double-2">
+            <!-- Widget -->
+            <div class="widget widget-tabs widget-tabs-double-2">
 
-                    <!-- Widget heading -->
-                    <div class="widget-head">
-                        <ul>
-                            <li class="active"><a class="glyphicons list" href="#tabAll" data-toggle="tab"><i></i><span>All topics</span></a></li>
-                        </ul>
-                    </div>
-                    <!-- // Widget heading END -->
+                <!-- Widget heading -->
+                <div class="widget-head">
+                    <ul>
+                        <li class="active"><a class="glyphicons list" href="#tabAll" data-toggle="tab"><i></i><span>All topics</span></a></li>
+                    </ul>
+                </div>
+                <!-- // Widget heading END -->
 
-                    <div class="widget-body">
-                        <div class="tab-content">
+                <div class="widget-body">
+                    <div class="tab-content">
 
-                            <!-- Tab content -->
-                            <div id="tabAll" class="tab-pane active">
-                                <div class="accordion accordion-2" id="accordion">
-                                    <div class="accordion-group">
-                                        <div class="accordion-heading">
-                                            <a class="accordion-toggle glyphicons font" data-toggle="collapse" data-parent="#accordion" href="#collapse-1">
-                                                <i></i>What is Sales|JMID?
-                                            </a>
-                                        </div>
-                                        <div id="collapse-1" class="accordion-body collapse in">
-                                            <div class="accordion-inner">
+                        <!-- Tab content -->
+                        <div id="tabAll" class="tab-pane active">
+                            <div class="accordion accordion-2" id="accordion">
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle glyphicons font" data-toggle="collapse" data-parent="#accordion" href="#collapse-1">
+                                            <i></i>What is Sales|JMID?
+                                        </a>
+                                    </div>
+                                    <div id="collapse-1" class="accordion-body collapse in">
+                                        <div class="accordion-inner">
                                             It´s a site where people can post their own items for sale or rent.
-                                            </div>
                                         </div>
                                     </div>
-                                    <div class="accordion-group">
-                                        <div class="accordion-heading">
-                                            <a class="accordion-toggle glyphicons circle_question_mark" data-toggle="collapse" data-parent="#accordion" href="#collapse-2">
-                                                <i></i>How is it use?
-                                            </a>
-                                        </div>
-                                        <div id="collapse-2" class="accordion-body collapse">
-                                            <div class="accordion-inner">
-                                                Same selling page protocol; you have to sign up and continue to dashboard and post an item with all its requirements. 
-                                            </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle glyphicons circle_question_mark" data-toggle="collapse" data-parent="#accordion" href="#collapse-2">
+                                            <i></i>How is it use?
+                                        </a>
+                                    </div>
+                                    <div id="collapse-2" class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            Same selling page protocol; you have to sign up and continue to dashboard and post an item with all its requirements. 
                                         </div>
                                     </div>
-                                    <div class="accordion-group">
-                                        <div class="accordion-heading">
-                                            <a class="accordion-toggle glyphicons flag" data-toggle="collapse" data-parent="#accordion" href="#collapse-3">
-                                                <i></i>Where does it come from?
-                                            </a>
-                                        </div>
-                                        <div id="collapse-3" class="accordion-body collapse">
-                                            <div class="accordion-inner">
-                                                <p>It was inspired in Amazon</p>
-                                                <p>BUt firts of all; was an attempt on classifieds project for UNITEC</p>
-                                            </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle glyphicons flag" data-toggle="collapse" data-parent="#accordion" href="#collapse-3">
+                                            <i></i>Where does it come from?
+                                        </a>
+                                    </div>
+                                    <div id="collapse-3" class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            <p>It was inspired in Amazon</p>
+                                            <p>BUt firts of all; was an attempt on classifieds project for UNITEC</p>
                                         </div>
                                     </div>
-                                    <div class="accordion-group">
-                                        <div class="accordion-heading">
-                                            <a class="accordion-toggle glyphicons download_alt" data-toggle="collapse" data-parent="#accordion" href="#collapse-4">
-                                                <i></i>Where its located?
-                                            </a>
-                                        </div>
-                                        <div id="collapse-4" class="accordion-body collapse">
-                                            <div class="accordion-inner">
-                                                Honduras; Central America
-                                            </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle glyphicons download_alt" data-toggle="collapse" data-parent="#accordion" href="#collapse-4">
+                                            <i></i>Where its located?
+                                        </a>
+                                    </div>
+                                    <div id="collapse-4" class="accordion-body collapse">
+                                        <div class="accordion-inner">
+                                            Honduras; Central America
                                         </div>
                                     </div>
+                                </div>
                                 <!--Code Begins-->                                    
                                 @foreach(var x in Model.QuestionList)
                                 {
-                                     <div class="accordion-group">
+                                    <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle glyphicons download_alt" data-toggle="collapse" data-parent="#accordion" href="#collapse-4">
-                                             @x.QuestionText    |     <small>@x.Name</small>     |     <small>@x.Email                                                   |<i style="text-align: right"></i>@x.PostedQuestionDate.ToShortDateString()</small>
+                                                @x.QuestionText    |     <small>@x.Name</small>     |     <small>@x.Email                                                   |<i style="text-align: right"></i>@x.PostedQuestionDate.ToShortDateString()</small>
                                             </a>
                                         </div>
-                                         <div id="collapse-4" class="accordion-body collapse">
-                                             @if (x.QuestionAnswers != null)
-                                             {
-                                                 foreach (var z in x.QuestionAnswers)
-                                                 {
-                                                     <div class="accordion-inner">
-                                                         <p><i class="fa fa-hand-o-right"></i> @z.AnswerText  | <small style="color: blue">@z.PostedAnswerDate</small></p>
-                                                     </div>
-                                                     <br/>
-                                                 }
-                                             }
-                                             else
-                                             {
+                                        <div id="collapse-4" class="accordion-body collapse">
+                                            @if (x.QuestionAnswers != null)
+                                            {
+                                                foreach (var z in x.QuestionAnswers)
+                                                {
                                                     <div class="accordion-inner">
-                                                        <p><i class="fa fa-warning"></i>Not answered yet.</p>
+                                                        <p><i class="fa fa-hand-o-right"></i> @z.AnswerText  | <small style="color: blue">@z.PostedAnswerDate</small></p>
                                                     </div>
-                                                    <br />
-                                             }
-                                         </div>
+                                                    <br/>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="accordion-inner">
+                                                    <p><i class="fa fa-warning"></i>Not answered yet.</p>
+                                                </div>
+                                                <br />
+                                            }
+                                        </div>
                                     </div>
                                 }
-                               <!--Code Ends-->
+                                <!--Code Ends-->
 
-                                </div>
                             </div>
-                            <!-- // Tab content END -->
-                          
                         </div>
+                        <!-- // Tab content END -->
+                          
                     </div>
                 </div>
-                <!-- // Widget END -->
-
             </div>
-            <h3>Question</h3>
-            <div class="row-fluid row-merge border-bottom border-top">
+            <!-- // Widget END -->
+
+        </div>
+        <h3>Question</h3>
+        <div class="row-fluid row-merge border-bottom border-top">
                
-                 <!--Form BEGINS HERE-->
+            <!--Form BEGINS HERE-->
                 
-                @using (Html.BeginForm("FAQ", "FAQ", null, FormMethod.Post, new { @class = "form-horizontal" })) { 
+            @using (Html.BeginForm("FAQ", "FAQ", null, FormMethod.Post, new { @class = "form-horizontal" })) { 
                 <div class="span7">
                     <div class="innerAll">
                         <h4 class="separator bottom margin-none">Send us a message</h4>
@@ -196,26 +259,26 @@
                         </form>
                     </div>
                 </div>
-                }
-                <!--Form ENDS HERE-->
+            }
+            <!--Form ENDS HERE-->
 
-                <div class="span5">
-                    <div class="innerAll">
-                        <div class="well margin-none">
-                            <address class="margin-none">
-                                <h2>Jose M. Ibarra</h2>
-                                <strong>Business manager</strong> at
-                                <strong><a href="#">Business</a></strong><br>
-                                <abbr title="Work email">e-mail:</abbr> <a href="~/Contact/Contact">jmibarrad@gmail.com</a><br />
-                                <abbr title="Work Phone">phone:</abbr> (504) 992-048<br />
-                                <abbr title="Work Fax">fax:</abbr> (012) 678-132-901
-                                <div class="separator line"></div>
-                                <p class="margin-none"><strong>SalesJMID.es</strong></p>
-                            </address>
-                        </div>
+            <div class="span5">
+                <div class="innerAll">
+                    <div class="well margin-none">
+                        <address class="margin-none">
+                            <h2>Jose M. Ibarra</h2>
+                            <strong>Business manager</strong> at
+                            <strong><a href="#">Business</a></strong><br>
+                            <abbr title="Work email">e-mail:</abbr> <a href="~/Contact/Contact">jmibarrad@gmail.com</a><br />
+                            <abbr title="Work Phone">phone:</abbr> (504) 992-048<br />
+                            <abbr title="Work Fax">fax:</abbr> (012) 678-132-901
+                            <div class="separator line"></div>
+                            <p class="margin-none"><strong>SalesJMID.es</strong></p>
+                        </address>
                     </div>
                 </div>
             </div>
+        </div>
 
         
         
