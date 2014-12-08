@@ -47,6 +47,7 @@ namespace MiPrimerMVC.Controllers
                             return Redirect(returnUrl);
                         }
 
+                        Session["User"] = user;
 
                         return RedirectToAction("ToInbox");
                 
@@ -59,6 +60,7 @@ namespace MiPrimerMVC.Controllers
 
         public ActionResult LogOut()
         {
+            Session["User"] = null;
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "AccountLogin");
         }
@@ -281,15 +283,14 @@ namespace MiPrimerMVC.Controllers
         }
 
         [Authorize]
-        public PartialViewResult RenderNavBar()
+        public ActionResult RenderNavBar(PartialModel model)
         {
             var authenticatedUser =_readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == HttpContext.User.Identity.Name);
-            var model = new PartialModel
-            {
-                UserActive = authenticatedUser,
-                NotificationAmount = authenticatedUser.Notifications.ToList().Count,
-                MailAmount = authenticatedUser.AccountMessages.ToList().Count
-            };
+
+            model.UserActive = authenticatedUser;
+            model.NotificationAmount = authenticatedUser.Notifications.ToList().Count;
+            model.MailAmount = authenticatedUser.AccountMessages.ToList().Count;
+            
 
             return PartialView(model);
         }
