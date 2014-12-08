@@ -13,7 +13,7 @@
             </header>
             <div class="panel-body">
                 <div><p>Question: @Model.FaqQuestion.QuestionText   
-                    @using(Html.BeginForm("AnswerQuestions","FAQ",null,FormMethod.Post,new{@class="form-horizontal adminex-form"})){
+                    @using(Html.BeginForm("AnswerQuestions","FAQ",new{@id=Model.FaqQuestion.Id},FormMethod.Post,new{@class="form-horizontal adminex-form"})){
                 
                         <div class="form-group">
                             @Html.TextAreaFor(x => x.AnswerText, new { @class = "form-control", rows = "3" })

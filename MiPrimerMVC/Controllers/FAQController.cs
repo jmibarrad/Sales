@@ -71,9 +71,9 @@ namespace MiPrimerMVC.Controllers
 
         [HttpPost]
         [Authorize(Roles = "ADMIN")]
-        public ActionResult AnswerQuestions(AnswerModel model)
+        public ActionResult AnswerQuestions(AnswerModel model, long id)
         {
-            var questionToBeSaved = _readOnlyRepository.FirstOrDefault<Questions>(x=>x.Id==model.FaqQuestion.Id);
+            var questionToBeSaved = _readOnlyRepository.FirstOrDefault<Questions>(x=>x.Id==id);
             var list = questionToBeSaved.QuestionAnswers.ToList();
             list.Add(new Answers(model.AnswerText));
             questionToBeSaved.QuestionAnswers = list;

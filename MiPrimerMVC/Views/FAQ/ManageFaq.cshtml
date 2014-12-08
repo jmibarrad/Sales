@@ -15,7 +15,7 @@
             </a>
             <div class="media-body">
                 <h4 class="media-heading">
-                    <a href="#">jones</a>
+                    <span>@Html.ActionLink(x.Name, "AnswerQuestions", "FAQ", new { @id = x.Id }, new { @class = "label label-success" })</span>
                 </h4>
                 <div class="bl-status">
                     <span class="pull-left">@x.PostedQuestionDate</span>
