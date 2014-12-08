@@ -177,7 +177,6 @@ namespace MiPrimerMVC.Controllers
         {
             var explanationMessage = new MessagesModel();
             explanationMessage.ClassifiedsShown = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
-            explanationMessage.MyId = id;
 
             return View(explanationMessage);
         }
@@ -204,23 +203,26 @@ namespace MiPrimerMVC.Controllers
         [Authorize(Roles = "ADMIN")]
         public ActionResult ActivateClassified(long id)
         {
+            var explanationMessage = new MessagesModel();
+            explanationMessage.ClassifiedsShown = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
             
-            return View();
+            return View(explanationMessage);
         }
 
         [Authorize(Roles = "ADMIN")]
         [HttpPost]
-        public ActionResult ActivateClassified(MessagesModel model)
+        public ActionResult ActivateClassified(MessagesModel model, long id)
         {
-            var classifiedToBeArtivated = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == model.MyId);
+            var classifiedToBeArtivated = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
             classifiedToBeArtivated.AdminActivate();
             _writeOnlyRepository.Update(classifiedToBeArtivated);
 
             var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(z => z.Email == classifiedToBeArtivated.Email);
             model.SendMessage.Name = HttpContext.User.Identity.Name;
             model.SendMessage.Message += "The classified: " + classifiedToBeArtivated.Article + " has been restored because: " + model.SendMessage.Message;
-            user.AddMessage(model.SendMessage);
-            _writeOnlyRepository.Update(user);
+            var list = user.AccountMessages.ToList();
+            list.Add(model.SendMessage);
+            user.AccountMessages = list; _writeOnlyRepository.Update(user);
 
             return RedirectToAction("ManageClassifieds");
         }
