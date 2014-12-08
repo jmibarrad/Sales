@@ -17,6 +17,7 @@ namespace Domain.Entities
         public virtual IEnumerable<Notifications> Notifications { get; set; }
         public AccountLogin(string email, string name, string password, string role)
         {
+            UserInfo = new UserData();
             Role = role;
             Name = name;
             Email = email;
