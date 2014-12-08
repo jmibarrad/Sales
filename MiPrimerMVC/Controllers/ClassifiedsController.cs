@@ -96,7 +96,7 @@ namespace MiPrimerMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Detailed(ClassiModel model)
+        public ActionResult Detailed(ClassiModel model, string classifiedName)
         {
                     
                     var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == EmailReceiver);
@@ -105,6 +105,7 @@ namespace MiPrimerMVC.Controllers
                     user.AccountMessages = messageList;
                     _writeOnlyRepository.Update(user);
                     MailTo.SendSimpleMessage(EmailReceiver, model.sendEmail.Name, model.sendEmail.Message);
+                    SendSms(model.sendEmail.Message, EmailReceiver, user.Name, classifiedName, user.UserInfo.Cellphone);
                   
             //check
             MessageBox.Show("Email sent successfully");
@@ -437,17 +438,16 @@ namespace MiPrimerMVC.Controllers
             public List<Classifieds> RecentList { get; set; }
             public List<Classifieds> FeaturedList { get; set; }
         }
-    }
-     public class TwilioService
-    {
-        public static void SendSms(string mensaje,string correo,string nombre,string titulo)
+
+        public static void SendSms(string messageUser, string email, string nombre, string title, string phone)
         {
             const string accountSid = "AC010bb6f81be3f9f15e22429cb5186712";
             const string authToken = "ba658d41edc179f84106a18d0f4b6d26";
             var twilio = new TwilioRestClient(accountSid, authToken);
 
-            var message = twilio.SendMessage("+17476002179", "+504 3191-8027", nombre+" le ha enviado una pregunta. Clasificado: "+titulo+
-                ". Pregunta: "+mensaje+". Correo: "+correo);
+            var message = twilio.SendMessage("+12248032385", phone, nombre + " has sent request information about the [Classified:] " + title +
+                "||Question: " + messageUser + "||Email: " + email);
         }
     }
+    
 }

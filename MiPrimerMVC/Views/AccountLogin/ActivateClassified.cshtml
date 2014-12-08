@@ -54,7 +54,7 @@
                 Iconic field
             </header>
             <div class="panel-body">
-                @using (Html.BeginForm("ActivateClassified", "AccountLogin", new{@id=Model.ClassifiedsShown.Id}, FormMethod.Post),new{@class="form-group"})
+                @using (Html.BeginForm("ActivateClassified", "AccountLogin", new{@id=Model.ClassifiedsShown.Id}, FormMethod.Post, new{@class="form-group"}))
                 {
                     <div class="form-group">
                         <label><i class="fa fa-ban"></i>Reason:</label>

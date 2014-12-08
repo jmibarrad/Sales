@@ -257,7 +257,7 @@
 
                 <!--Send Email Contact-->
                 <div class="row-fluid">
-                    @using (Html.BeginForm("Detailed", "Classifieds", null, FormMethod.Post, new { @class = "form-horizontal" }))
+                    @using (Html.BeginForm("Detailed", "Classifieds", new { @classifiedName = Model.classifiedForDetail.Article}, FormMethod.Post, new { @class = "form-horizontal" }))
                     {
                     <div class="span7">
                         <form class="row-fluid margin-none">
