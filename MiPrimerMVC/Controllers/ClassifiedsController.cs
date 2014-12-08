@@ -445,7 +445,7 @@ namespace MiPrimerMVC.Controllers
             const string authToken = "ba658d41edc179f84106a18d0f4b6d26";
             var twilio = new TwilioRestClient(accountSid, authToken);
 
-            var message = twilio.SendMessage("+12248032385", phone, nombre + " has sent request information about the Classified: " + title +
+            twilio.SendMessage("+12248032385", phone, nombre + " has sent request information about the Classified: " + title +
                 "::Question: " + messageUser + "::Email: " + email);
         }
     }

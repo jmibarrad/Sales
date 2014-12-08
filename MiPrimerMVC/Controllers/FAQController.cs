@@ -79,7 +79,7 @@ namespace MiPrimerMVC.Controllers
             questionToBeSaved.QuestionAnswers = list;
             _writeOnlyRepository.Update(questionToBeSaved);
 
-            return View(model);
+            return RedirectToAction("ManageFaq");
         }
 
         [Authorize(Roles = "ADMIN")]
