@@ -172,30 +172,30 @@ namespace MiPrimerMVC.Controllers
             return View(model);
         }
 
-        long _tempId;
         [Authorize(Roles = "ADMIN")]
         public ActionResult ArchiveClassified(long id)
         {
-            _tempId = id;
             var explanationMessage = new MessagesModel();
             explanationMessage.ClassifiedsShown = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
-
+            explanationMessage.MyId = id;
 
             return View(explanationMessage);
         }
     
         [Authorize(Roles = "ADMIN")]
         [HttpPost]
-        public ActionResult ArchivedClassified(MessagesModel model)
+        public ActionResult ArchiveClassified(MessagesModel model, long id)
         {
-            var classifiedToBeArchived = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == _tempId);
+            var classifiedToBeArchived = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
             classifiedToBeArchived.AdminArchive();
             _writeOnlyRepository.Update(classifiedToBeArchived);
 
             var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(z => z.Email == classifiedToBeArchived.Email);
             model.SendMessage.Name = HttpContext.User.Identity.Name;
             model.SendMessage.Message += "The classified: " + classifiedToBeArchived.Article + " has been removed for: " + model.SendMessage.Message;
-            user.AddMessage(model.SendMessage);
+            var list = user.AccountMessages.ToList();
+            list.Add(model.SendMessage);
+            user.AccountMessages = list;
             _writeOnlyRepository.Update(user);
 
             return RedirectToAction("ManageClassifieds");
@@ -204,7 +204,6 @@ namespace MiPrimerMVC.Controllers
         [Authorize(Roles = "ADMIN")]
         public ActionResult ActivateClassified(long id)
         {
-            _tempId = id;
             
             return View();
         }
@@ -213,7 +212,7 @@ namespace MiPrimerMVC.Controllers
         [HttpPost]
         public ActionResult ActivateClassified(MessagesModel model)
         {
-            var classifiedToBeArtivated = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == _tempId);
+            var classifiedToBeArtivated = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == model.MyId);
             classifiedToBeArtivated.AdminActivate();
             _writeOnlyRepository.Update(classifiedToBeArtivated);
 

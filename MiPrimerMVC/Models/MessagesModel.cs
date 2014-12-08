@@ -11,6 +11,6 @@ namespace MiPrimerMVC.Models
         public List<Messages> MessagesList { get; set; }
         public Messages SendMessage { get; set; }
         public Classifieds ClassifiedsShown { get; set; }
-
+        public long MyId { get; set; }
     }
 }
