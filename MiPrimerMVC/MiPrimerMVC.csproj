@@ -168,7 +168,6 @@
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\ForgotPasswordController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
-    <Compile Include="Controllers\Terms.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -3976,7 +3975,6 @@
     <Content Include="TmpLogin\styles\font\fontawesome-webfont_51500cb8.ttf" />
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\ForgotPassword\ForgotPassword.cshtml" />
-    <Content Include="Views\Terms\Terms.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\AccountLogin\ToInbox.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />

@@ -25,7 +25,7 @@
                 <h4>@Model.ClassifiedsShown.Article<span class="text-muted small"> - @Model.ClassifiedsShown.Category</span></h4>
                 <div class="media">
                     <a class="pull-left" href="#">
-                        <img class="thumb media-object" src="@Model.ClassifiedsShown.UrlImage" alt="">
+                        <img class="thumb media-object" src="@Model.ClassifiedsShown.UrlImage" alt="" style="width: 200px; height: 100px">
                     </a>
                     <div class="media-body">
                         <address>
@@ -49,19 +49,19 @@
     <div class="col-lg-6">
         <section class="panel">
                   <header class="panel-heading">
-                      Iconic field
+                      Archive Classified
                   </header>
                   <div class="panel-body">
-                      @using (Html.BeginForm("ArchiveClassified", "AccountLogin", null, FormMethod.Post))
+                      @using (Html.BeginForm("ArchiveClassified", "AccountLogin", null, FormMethod.Post, new{@class="form-group"}))
                       {
                           <div class="form-group">
                               <label><i class="fa fa-ban"></i>Reason:</label>
                               @Html.DropDownListFor(x => x.SendMessage.Subject, ViewData["Subject"] as List<SelectListItem>, new { @class = "dropdown", @style = "width:300px" })
                           </div>
                           
-                          <div class="form-group">
-                             <button type="submit" class="btn btn-primary"><span class="fa fa-send"></span></button>
-                          </div>
+                          
+                             <button type="submit" class="btn btn-primary"><span class="fa fa-send"></span>Send</button>
+                          
                       }
                   </div>
               </section>

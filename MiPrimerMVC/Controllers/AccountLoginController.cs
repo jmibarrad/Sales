@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
@@ -7,7 +8,6 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Domain.Entities;
 using Domain.Services;
-using Microsoft.Ajax.Utilities;
 using MiPrimerMVC.Models;
 
 namespace MiPrimerMVC.Controllers
@@ -47,6 +47,12 @@ namespace MiPrimerMVC.Controllers
                             return Redirect(returnUrl);
                         }
 
+                    //JUST to avoid LazyInitialization
+                        var userAux = new AccountLogin();
+                        userAux.AccountMessages = user.AccountMessages;
+                        userAux.Notifications = user.Notifications;
+
+                        Session["User"] = null;
                         Session["User"] = user;
 
                         return RedirectToAction("ToInbox");
@@ -172,14 +178,14 @@ namespace MiPrimerMVC.Controllers
         {
             _tempId = id;
             var explanationMessage = new MessagesModel();
-            explanationMessage.ClassifiedsShown = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == _tempId);
+            explanationMessage.ClassifiedsShown = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == id);
 
 
             return View(explanationMessage);
         }
-
-        [HttpPost]
+    
         [Authorize(Roles = "ADMIN")]
+        [HttpPost]
         public ActionResult ArchivedClassified(MessagesModel model)
         {
             var classifiedToBeArchived = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == _tempId);
@@ -203,8 +209,8 @@ namespace MiPrimerMVC.Controllers
             return View();
         }
 
-        [HttpPost]
         [Authorize(Roles = "ADMIN")]
+        [HttpPost]
         public ActionResult ActivateClassified(MessagesModel model)
         {
             var classifiedToBeArtivated = _readOnlyRepository.FirstOrDefault<Classifieds>(x => x.Id == _tempId);

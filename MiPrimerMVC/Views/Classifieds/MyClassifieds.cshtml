@@ -28,7 +28,7 @@
                     @foreach (var x in @Model.myClassifiedsList) { 
                         <div class="@x.Category item ">
                             <a ><img src="@x.UrlImage" alt="" /></a>
-                            @Html.ActionLink(@x.Article,"ManageClassifieds","Classifieds",new{@id=x.Id},null)}) <i class="fa fa-ban"></i><span>@Html.ActionLink("", "Archive", "Classifieds", null, new { @class = "btn btn-danger" })</span>
+                            @Html.ActionLink(@x.Article,"ManageClassifieds","Classifieds",new{@id=x.Id},null)      <span>@Html.ActionLink("Archive", "Archive", "Classifieds", new { @id = x.Id }, new { @class = "btn btn-danger" })</span>
 
                         </div>
                     }
@@ -41,7 +41,7 @@
                     {
                         <div class="@x.Category item ">
                             <a><img src="@x.UrlImage" alt="" /></a>
-                            @Html.ActionLink(@x.Article, "ManageClassifieds", "Classifieds", new { @id = x.Id }, null)}) <i class="fa fa-check-square"></i><span>@Html.ActionLink("","Activate","Classifieds",null,new{@class ="btn btn-success" })</span>
+                            @Html.ActionLink(@x.Article, "ManageClassifieds", "Classifieds", new { @id = x.Id }, null)     <span>@Html.ActionLink("Activate", "Activate", "Classifieds", new { @id = x.Id }, new { @class = "btn btn-success" })</span>
 
                         </div>
                     }

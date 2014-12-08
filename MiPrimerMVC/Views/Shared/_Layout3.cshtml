@@ -15,7 +15,7 @@
     <link href="~/adminX/js/iCheck/skins/square/red.css" rel="stylesheet">
     <link href="~/adminX/js/iCheck/skins/square/blue.css" rel="stylesheet">
     <link href="~/adminX/css/jquery.stepy.css" rel="stylesheet">
-  
+    <link href="~/Content/font-awesome.css" rel="stylesheet"/>
     <!--common-->
     <link href="~/adminX/css/style.css" rel="stylesheet">
     <link href="~/adminX/css/style-responsive.css" rel="stylesheet">
@@ -63,8 +63,8 @@
                     <li class="menu-list">
                         <a href="~/Classifieds/MyClassifieds"><i class="fa fa-newspaper-o"></i> <span>Classifieds</span></a>
                         <ul class="sub-menu-list">
+                            <li><a href="~/Classifieds/MyClassifieds"> My Classifieds</a></li>
                             <li><a href="~/Classifieds/CreateClassified"> Create Classified</a></li>
-                            <li><a href="~/Classifieds/ManageClassifieds"> Manage Classifieds</a></li>
                             <li><a href="~/AccountLogin/ManageClassifieds"> Manage my Classifieds</a></li>
                         </ul>
                     </li>
@@ -88,8 +88,7 @@
         <div class="main-content">
             <!-- header section start-->
            @{
-                var user = (AccountLogin)@HttpContext.Current.Session["User"];
-
+               var user = (AccountLogin)Session["User"];
 
                 <div class="header-section">
                     <a class="toggle-btn"><i class="fa fa-bars"></i></a>
@@ -141,7 +140,7 @@
                                                 <li class="new">
                                                     <a href="">
                                                         <span class="label label-warning"><i class="fa fa-bolt"></i></span>
-                                                        <span class="name">@x.Name has created a new clssified. </span>
+                                                        <span class="name">@x.Name has created a new classified. </span>
                                                         <em class="small">@x.Email</em>
                                                     </a>
                                                 </li>

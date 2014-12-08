@@ -1,340 +1,247 @@
-﻿<!DOCTYPE html>
+﻿@using Domain.Entities
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>DevOOPS</title>
-    <meta name="description" content="description">
-    <meta name="author" content="DevOOPS">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/devoops/plugins/bootstrap/bootstrap.css" rel="stylesheet">
-    <link href="~/devoops/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-    <link href="~/devoops/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
-    <link href="~/devoops/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
-    <link href="~/devoops/plugins/xcharts/xcharts.min.css" rel="stylesheet">
-    <link href="~/devoops/plugins/select2/select2.css" rel="stylesheet">
-    <link href="~/Content/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+    <title>Sales|JMID</title>
+    <!--icheck-->
+    <link href="~/adminX/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="~/adminX/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="~/adminX/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="~/adminX/js/iCheck/skins/square/blue.css" rel="stylesheet">
+    <link href="~/adminX/css/jquery.stepy.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!--common-->
+    <link href="~/adminX/css/style.css" rel="stylesheet">
+    <link href="~/adminX/css/style-responsive.css" rel="stylesheet">
+
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-            <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
-            <script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-    <!--Start Header-->
-    <div id="screensaver">
-        <canvas id="canvas"></canvas>
-        <i class="fa fa-lock" id="screen_unlock"></i>
-    </div>
-    <div id="modalbox">
-        <div class="devoops-modal">
-            <div class="devoops-modal-header">
-                <div class="modal-header-name">
-                    <span>Basic table</span>
-                </div>
-                <div class="box-icons">
-                    <a class="close-link">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </div>
+<body class="sticky-header">
+    <section>
+        <!-- left side start-->
+        <div class="left-side sticky-left-side">
+            <!--logo and iconic logo start-->
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt=""></a>
             </div>
-            <div class="devoops-modal-inner">
+            <div class="logo-icon text-center">
+                <a href="index.html"><img src="images/logo_icon.png" alt=""></a>
             </div>
-            <div class="devoops-modal-bottom">
-            </div>
-        </div>
-    </div>
-    <header class="navbar">
-        <div class="container-fluid expanded-panel">
-            <div class="row">
-                <div id="logo" class="col-xs-12 col-sm-2">
-                    <a href="~/devoops/index.html">Sales|JMID </a>
-                </div>
-                <div id="top-panel" class="col-xs-12 col-sm-10">
-                    <div class="row">
-                        <div class="col-xs-8 col-sm-4">
-                            <a href="#" class="show-sidebar">
-                                <i class="fa fa-bars"></i>
-                            </a>
-                            <div id="search">
-                                <input type="text" placeholder="search" />
-                                <i class="fa fa-search"></i>
-                            </div>
-                        </div>
-                        <div class="col-xs-4 col-sm-8 top-panel-right">
-                            <ul class="nav navbar-nav pull-right panel-menu">
-                                <li class="hidden-xs">
-                                    <a href="index.html" class="modal-link">
-                                        <i class="fa fa-bell"></i>
-                                        <span class="badge">7</span>
-                                    </a>
-                                </li>
-                                <li class="hidden-xs">
-                                    <a class="ajax-link" href="~/ajax/calendar.html">
-                                        <i class="fa fa-calendar"></i>
-                                        <span class="badge">7</span>
-                                    </a>
-                                </li>
-                                <li class="hidden-xs">
-                                    <a href="~/AccountLogin/ToInbox">
-                                        <i class="fa fa-envelope"></i>
-                                        <span class="badge">7</span>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle account" data-toggle="dropdown">
-                                        <div class="avatar">
-                                            <img src="~/devoops/img/avatar.jpg" class="img-rounded" alt="avatar" />
-                                        </div>
-                                        <i class="fa fa-angle-down pull-right"></i>
-                                        <div class="user-mini pull-right">
-                                            <span class="welcome">Welcome,</span>
-                                            <span>Jane Devoops</span>
-                                        </div>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-user"></i>
-                                                <span>Profile</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="~/AccountLogin/ToInbox">
-                                                <i class="fa fa-envelope"></i>
-                                                <span>Messages</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="~/ajax/gallery_simple.html" class="ajax-link">
-                                                <i class="fa fa-picture-o"></i>
-                                                <span>Albums</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="~/ajax/calendar.html" class="ajax-link">
-                                                <i class="fa fa-tasks"></i>
-                                                <span>Tasks</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-cog"></i>
-                                                <span>Settings</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-power-off"></i>
-                                                <span>@Html.ActionLink("Logout", "Logout", "AccountLogin")</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+            <!--logo and iconic logo end-->
+            <div class="left-side-inner">
+                <!-- visible to small devices only -->
+                <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                    <div class="media logged-user">
+                        <img alt="" src="images/photos/user-avatar.png" class="media-object">
+                        <div class="media-body">
+                            <h4><a href="#">@Context.User.Identity.Name</a></h4>
+                            <span>"Welcome..."</span>
                         </div>
                     </div>
+                    <h5 class="left-nav-title">Account Information</h5>
+                    <ul class="nav nav-pills nav-stacked custom-nav">
+                        <li><a href="~/AccountLogin/Signout"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+                    </ul>
                 </div>
+                <!--sidebar nav start-->
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li class="active"><a href="~/Classifieds/MostVisited"><i class="fa fa-home"></i> <span>HOME</span></a></li>
+                    <li>
+                        <a href="~/AccountLogin/Profile"><i class="fa fa-user"></i> <span>Profile</span></a>
+                    </li>
+                    <li class="menu-list">
+                        <a href="~/Classifieds/MyClassifieds"><i class="fa fa-newspaper-o"></i> <span>Classifieds</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a href="~/Classifieds/CreateClassified"> Create Classified</a></li>
+                            <li><a href="~/Classifieds/ManageClassifieds"> Manage Classifieds</a></li>
+                            <li><a href="~/AccountLogin/ManageClassifieds"> Manage my Classifieds</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-envelope"></i> <span>Mail</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a href="~/AccountLogin/ToInbox"> Inbox</a></li>
+                            <li><a href="#"> Compose Mail</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="~/FAQ/ManageFaq"><i class="fa fa-user"></i> <span>Manage FAQ</span></a></li>
+                    <li><a href="~/FAQ/ManageFaq"><i class="fa fa-user"></i> <span>Manage FAQ</span></a></li>
+
+
+                </ul>
+                <!--sidebar nav end-->
             </div>
         </div>
-    </header>
-    <!--End Header-->
-    <!--Start Container-->
-    <div id="main" class="container-fluid">
-        <div class="row">
-            <div id="sidebar-left" class="col-xs-2 col-sm-2">
-                <ul class="nav main-menu">
-                    <li>
-                        <a href="~/Classifieds/MostVisited">
+        <!-- left side end-->
+        <!-- main content start-->
+        <div class="main-content">
+            <!-- header section start-->
+            @{
+                var user = (AccountLogin)@HttpContext.Current.Session["User"];
 
-                            <i class="fa fa-dashboard"></i>
-                            <span class="hidden-xs">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-users"></i>
-                            <span class="hidden-xs">Users</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="~/AccountLogin/Login">Login</a></li>
-                            <li><a href="~/Register/Register">Register</a></li>
-                            <li><a href="~/ForgotPassword/ForgotPassword">Password Recover</a></li>
-                            <li><a href="~/Content/Contact">Contact Company</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-bookmark"></i>
-                            <span class="hidden-xs">Classifieds</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="~/Classifieds/CreateClassified">Create Classified</a></li>
-                            <li><a href="~/Classifieds/SimpleSearch">Simple Search</a></li>
-                            <li><a href="~/Classifieds/ByCategory">Search by Category</a></li>
-                            <li><a href="~/Classifieds/AdvancedSearch">Advanced Search</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-pencil-square-o"></i>
-                            <span class="hidden-xs">View Classifieds</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="~/Classifieds/MostRecent">Recent Classifieds</a></li>
-                            <li><a href="~/Classifieds/MostVisited">Most Visited</a></li>
-                            <li><a href="~/Classifieds/Featured">Featured</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-desktop"></i>
-                            <span class="hidden-xs">UI Elements[NOT USED]</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="ajax-link" href="~/ajax/ui_grid.html">Grid</a></li>
-                            <li><a class="ajax-link" href="~/ajax/ui_buttons.html">Buttons</a></li>
-                            <li><a class="ajax-link" href="~/ajax/ui_progressbars.html">Progress Bars</a></li>
-                            <li><a class="ajax-link" href="~/ajax/ui_jquery-ui.html">Jquery UI</a></li>
-                            <li><a class="ajax-link" href="~/ajax/ui_icons.html">Icons</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-list"></i>
-                            <span class="hidden-xs">Pages[NOT USED]</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="~/ajax/page_login.html">Login</a></li>
-                            <li><a href="~/ajax/page_register.html">Register</a></li>
-                            <li><a id="locked-screen" class="submenu" href="~/ajax/page_locked.html">Locked Screen</a></li>
-                            <li><a class="ajax-link" href="~/ajax/page_contacts.html">Contacts</a></li>
-                            <li><a class="ajax-link" href="~/ajax/page_feed.html">Feed</a></li>
-                            <li><a class="add-full" href="~/AccountLogin/ToInbox">Messages</a></li>
-                            <li><a class="ajax-link" href="~/ajax/page_pricing.html">Pricing</a></li>
-                            <li><a class="ajax-link" href="~/ajax/page_invoice.html">Invoice</a></li>
-                            <li><a class="ajax-link" href="~/ajax/page_search.html">Search Results</a></li>
-                            <li><a class="ajax-link" href="~/ajax/page_404.html">Error 404</a></li>
-                            <li><a href="~/ajax/page_500.html">Error 500</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-map-marker"></i>
-                            <span class="hidden-xs">Maps[NOT USED]</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="ajax-link" href="~/ajax/maps.html">OpenStreetMap</a></li>
-                            <li><a class="ajax-link" href="~/ajax/map_fullscreen.html">Fullscreen map</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-picture-o"></i>
-                            <span class="hidden-xs">Gallery[NOT USED]</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="ajax-link" href="~/devoops/ajax/gallery_simple.html">Simple Gallery</a></li>
-                            <li><a class="ajax-link" href="~/devoops/ajax/gallery_flickr.html">Flickr Gallery</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="ajax-link" href="~/devoops/ajax/typography.html">
-                            <i class="fa fa-font"></i>
-                            <span class="hidden-xs">Typography[NOT USED]</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="ajax-link" href="~/devoops/ajax/calendar.html">
-                            <i class="fa fa-calendar"></i>
-                            <span class="hidden-xs">Calendar[NOT USED]</span>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="fa fa-picture-o"></i>
-                            <span class="hidden-xs">Multilevel menu[NOT USED]</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">First level menu</a></li>
-                            <li><a href="#">First level menu</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle">
-                                    <i class="fa fa-plus-square"></i>
-                                    <span class="hidden-xs">Second level menu group</span>
+
+                <div class="header-section">
+                    <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+                    <div class="menu-right">
+                        <ul class="notification-menu">
+                            <li>
+                                <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge">@user.AccountMessages.ToList().Count</span>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Second level menu</a></li>
-                                    <li><a href="#">Second level menu</a></li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle">
-                                            <i class="fa fa-plus-square"></i>
-                                            <span class="hidden-xs">Three level menu group</span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Three level menu</a></li>
-                                            <li><a href="#">Three level menu</a></li>
-                                            <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle">
-                                                    <i class="fa fa-plus-square"></i>
-                                                    <span class="hidden-xs">Four level menu group</span>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="#">Four level menu</a></li>
-                                                    <li><a href="#">Four level menu</a></li>
-                                                    <li class="dropdown">
-                                                        <a href="#" class="dropdown-toggle">
-                                                            <i class="fa fa-plus-square"></i>
-                                                            <span class="hidden-xs">Five level menu group</span>
-                                                        </a>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a href="#">Five level menu</a></li>
-                                                            <li><a href="#">Five level menu</a></li>
-                                                            <li class="dropdown">
-                                                                <a href="#" class="dropdown-toggle">
-                                                                    <i class="fa fa-plus-square"></i>
-                                                                    <span class="hidden-xs">Six level menu group</span>
-                                                                </a>
-                                                                <ul class="dropdown-menu">
-                                                                    <li><a href="#">Six level menu</a></li>
-                                                                    <li><a href="#">Six level menu</a></li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Three level menu</a></li>
-                                        </ul>
-                                    </li>
+                                <!--Mail Begin-->
+                                <div class="dropdown-menu dropdown-menu-head pull-right">
+                                    <h5 class="title">You have @user.AccountMessages.ToList().Count Mails </h5>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                                    <i class="fa fa-bell-o"></i>
+                                    <span class="badge">@user.Notifications.ToList().Count</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-head pull-right">
+                                    <h5 class="title">Notifications</h5>
+                                    <ul class="dropdown-list normal-list">
+                                        @foreach (var x in user.Notifications)
+                                        {
+                                            if (x.Type == "Report")
+                                            {
+                                                <li class="new">
+                                                    <a href="">
+                                                        <span class="label label-danger"><i class="fa fa-ban"></i></span>
+                                                        <span class="name">The Classified @x.Name has been reported.  </span>
+                                                        <em class="small">@x.Email</em>
+                                                    </a>
+                                                </li>
+                                            }
+                                            else if (x.Type == "Subs")
+                                            {
+                                                <li class="new">
+                                                    <a href="">
+                                                        <span class="label label-success"><i class="fa fa-eye"></i></span>
+                                                        <span class="name">@x.Name is now following...  </span>
+                                                        <em class="small">@x.Email</em>
+                                                    </a>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li class="new">
+                                                    <a href="">
+                                                        <span class="label label-warning"><i class="fa fa-bolt"></i></span>
+                                                        <span class="name">@x.Name has created a new clssified. </span>
+                                                        <em class="small">@x.Email</em>
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                        <li class="new"><a href="">See All Notifications</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <img src="@user.UserInfo.ProfileImg" alt="" />
+                                    @user.Name
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                                    <li><a href="#"><i class="fa fa-user"></i>  Profile</a></li>
+                                    <li><a href="#"><i class="fa fa-cog"></i>  Settings</a></li>
+                                    <li><a href="~/AccountLogin/Logout"><i class="fa fa-sign-out"></i> Log Out</a></li>
                                 </ul>
                             </li>
                         </ul>
-                    </li>
-                </ul>
-            </div>
-            <!--Start Content-->
-            <div id="content" class="col-xs-12 col-sm-10">
-                @RenderBody()
+                    </div>
+                    <!--notification menu end -->
+                </div>
+            }
 
+            <!--body wrapper start-->
+            <div class="wrapper">
+                @RenderBody()
             </div>
-            <!--End Content-->
+            <!--body wrapper end-->
+            <!--footer section start-->
+
+            <footer>
+                2014 &copy; Sales | JMID
+            </footer>
+            <!--footer section end-->
+
         </div>
-    </div>
-    <!--End Container-->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!--<script src="http://code.jquery.com/jquery.js"></script>-->
-    <script src="~/devoops/plugins/jquery/jquery-2.1.0.min.js"></script>
-    <script src="~/devoops/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="~/devoops/plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="~/devoops/plugins/justified-gallery/jquery.justifiedgallery.min.js"></script>
-    <script src="~/devoops/plugins/tinymce/tinymce.min.js"></script>
-    <script src="~/devoops/plugins/tinymce/jquery.tinymce.min.js"></script>
-    <!-- All functions for this theme + document.ready processing -->
-    <script src="~/Scripts/devoops.js"></script>
+        <!-- main content end-->
+    </section>
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <script src="~/adminX/js/jquery-1.10.2.min.js"></script>
+    <script src="~/adminX/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="~/adminX/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/adminX/js/bootstrap.min.js"></script>
+    <script src="~/adminX/js/modernizr.min.js"></script>
+    <script src="~/adminX/js/jquery.nicescroll.js"></script>
+
+    <!--icheck -->
+    <script src="~/adminX/js/iCheck/jquery.icheck.js"></script>
+    <script src="~/adminX/js/icheck-init.js"></script>
+
+    <!--common scripts for all pages-->
+    <script src="~/adminX/js/scripts.js"></script>
+    <script src="~/adminX/js/jquery.validate.min.js"></script>
+    <script src="~/adminX/js/jquery.stepy.js"></script>
+    <script>
+        /*=====STEPY WIZARD====*/
+        $(function () {
+            $('#default').stepy({
+                backLabel: 'Previous',
+                block: true,
+                nextLabel: 'Next',
+                titleClick: true,
+                titleTarget: '.stepy-tab'
+            });
+        });
+        /*=====STEPY WIZARD WITH VALIDATION====*/
+        $(function () {
+            $('#stepy_form').stepy({
+                backLabel: 'Back',
+                nextLabel: 'Next',
+                errorImage: true,
+                block: true,
+                description: true,
+                legend: false,
+                titleClick: true,
+                titleTarget: '#top_tabby',
+                validate: true
+            });
+            $('#stepy_form').validate({
+                errorPlacement: function (error, element) {
+                    $('#stepy_form div.stepy-error').append(error);
+                },
+                rules: {
+                    'name': 'required',
+                    'email': 'required'
+                },
+                messages: {
+                    'name': {
+                        required: 'Name field is required!'
+                    },
+                    'email': {
+                        required: 'Email field is requerid!'
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-
-

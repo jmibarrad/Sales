@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using Domain.Entities;
 using Domain.Services;
 using MiPrimerMVC.Models;
