@@ -76,8 +76,17 @@
                         <ul class="topnav pull-right">
                             <li class="glyphs hidden-phone">
                                 <ul>
-                                    <li><a href="~/AccountLogin/Login" class="glyphicons unlock"><i></i> Sign in</a></li>
-                                    <li><a href="~/Register/Register" class="glyphicons user_add"><i></i> Sign up</a></li>
+                                    @if (Context.User.Identity.IsAuthenticated)
+                                    {
+                                        <li><a href="~/AccountLogin/Profile" class="glyphicons user"><i></i> Profile</a></li>
+                                        <li><a href="~/AccountLogin/Logout" class="glyphicons lock"><i></i> Sign out</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="~/AccountLogin/Login" class="glyphicons unlock"><i></i> Sign in</a></li>
+                                        <li><a href="~/Register/Register" class="glyphicons user_add"><i></i> Sign up</a></li>
+
+                                    }
                                 </ul>
                             </li>
                         </ul>
