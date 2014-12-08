@@ -257,17 +257,17 @@
 
                 <!--Send Email Contact-->
                 <div class="row-fluid">
-                    @using (Html.BeginForm("Detailed", "Classifieds", new { @classifiedName = Model.classifiedForDetail.Article}, FormMethod.Post, new { @class = "form-horizontal" }))
+                    @using (Html.BeginForm("Detailed", "Classifieds", new{@id = @Model.classifiedForDetail.Article}, FormMethod.Post, new { @class = "form-horizontal" }))
                     {
                     <div class="span7">
                         <form class="row-fluid margin-none">
                             <div class="span6">
-                                @Html.TextBoxFor(x => x.sendEmail.Name, new { @class = "span12", placeholder = "NAME", type = "text", @required = "required" })
+                                @Html.TextBoxFor(x => x.sendEmail.Name, new { @class = "span12", placeholder = "NAME"})
                                 </div>
                             <div class="span6">
-                                @Html.TextBoxFor(x => x.sendEmail.Email, new { @class = "span12", placeholder = "EMAIL", type = "email", @required = "required" })
+                                @Html.TextBoxFor(x => x.sendEmail.Email, new { @class = "span12", placeholder = "EMAIL"})
                             </div>
-                            @Html.TextAreaFor(x => x.sendEmail.Message, new { @class = "span12", placeholder = "YOUR MESSAGE", rows = "5", type = "text", @required = "required" })
+                            @Html.TextAreaFor(x => x.sendEmail.Message, new { @class = "span12", placeholder = "YOUR MESSAGE", rows = "5"})
                     
                             <div class="right">
                                 <button class="btn btn-danger btn-icon glyphicons envelope black"><i></i> Send message</button>

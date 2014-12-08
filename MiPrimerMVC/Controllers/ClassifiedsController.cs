@@ -96,21 +96,21 @@ namespace MiPrimerMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Detailed(ClassiModel model, string classifiedName)
+        public ActionResult Detailed(ClassiModel model, string id)
         {
                     
                     var user = _readOnlyRepository.FirstOrDefault<AccountLogin>(x => x.Email == EmailReceiver);
                     var messageList = user.AccountMessages.ToList();
                     messageList.Add(new Messages(model.sendEmail.Email, model.sendEmail.Name, model.sendEmail.Message, "Classified|Info"));
                     user.AccountMessages = messageList;
+                    SendSms(model.sendEmail.Message, EmailReceiver, user.Name, id, user.UserInfo.Cellphone);
                     _writeOnlyRepository.Update(user);
                     MailTo.SendSimpleMessage(EmailReceiver, model.sendEmail.Name, model.sendEmail.Message);
-                    SendSms(model.sendEmail.Message, EmailReceiver, user.Name, classifiedName, user.UserInfo.Cellphone);
                   
             //check
             MessageBox.Show("Email sent successfully");
             
-            return View(model);
+            return RedirectToAction("AllClassifieds");
         }
 
         [Authorize]
@@ -362,8 +362,8 @@ namespace MiPrimerMVC.Controllers
 
             [Required(ErrorMessage = "Article´s Name is required")]
             [DataType(DataType.Text)]
-            [DescriptionValidation(MinimumAmountOfWords = 1, MaximumAmountOfCharacters = 100,
-            ErrorMessage = "The description must contains a minimum of 1 word and a maximum of 100 characters.")]
+            //[DescriptionValidation(MinimumAmountOfWords = 1, MaximumAmountOfCharacters = 100,
+            //ErrorMessage = "The description must contains a minimum of 1 word and a maximum of 100 characters.")]
             public string Article { get; set; }
             public string ArticleModel { get; set; }
 
@@ -378,8 +378,8 @@ namespace MiPrimerMVC.Controllers
 
             [Required(ErrorMessage = "Description is required")]
             [DataType(DataType.MultilineText)]
-            [DescriptionValidation(MinimumAmountOfWords = 3, MaximumAmountOfCharacters = 255,
-            ErrorMessage = "The description must contains a minimum of 3 words and a maximum of 255 characters.")]
+            //[DescriptionValidation(MinimumAmountOfWords = 3, MaximumAmountOfCharacters = 255,
+            //ErrorMessage = "The description must contains a minimum of 3 words and a maximum of 255 characters.")]
             public string Description { get; set; }
 
             [DataType(DataType.ImageUrl, ErrorMessage = "Url for image is not valid")]
