@@ -23,14 +23,14 @@ namespace MiPrimerMVC.Models
         [DataType(DataType.Password)]
         [StringLength(20, ErrorMessage = "Password should be between 8 and 20 characters.", MinimumLength = 8)]
         [Compare("ConfirmPassword", ErrorMessage = "Password and Confirm Password should be the same")]
-        [RegularExpression("^(?i)(?=.*[a-z])(?=.*[0-9])(?=.*[@#_])[a-z][a-z0-9@#_]{6,}[a-z0-9]$", ErrorMessage = "Password can only accept letters and numbers")]
+        [RegularExpression("[a-zA-Z0-9]*", ErrorMessage = "Password can only accept letters and numbers")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Confirm Password is required")]
         [DataType(DataType.Password)]
         [StringLength(20, ErrorMessage = "Password should be between 8 and 20 characters.", MinimumLength = 8)]
         [Compare("Password", ErrorMessage = "Password and Confirm Password should be the same")]
-        [RegularExpression("^(?i)(?=.*[a-z])(?=.*[0-9])(?=.*[@#_])[a-z][a-z0-9@#_]{6,}[a-z0-9]$", ErrorMessage = "Password can only accept letters and numbers")]
+        [RegularExpression("[a-zA-Z0-9]*", ErrorMessage = "Password can only accept letters and numbers")]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Accept Terms & Conditions")]

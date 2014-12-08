@@ -98,56 +98,82 @@
                             <li>
                                 <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
                                     <i class="fa fa-envelope-o"></i>
-                                    <span class="badge">@user.AccountMessages.ToList().Count</span>
+                                    @if (@user.AccountMessages.ToList().Count == 0)
+                                    {
+                                        <span class="badge">0</span>
+                                    }
+                                    else { 
+                                        <span class="badge">@user.AccountMessages.ToList().Count</span>
+                                    }
                                 </a>
                                 <!--Mail Begin-->
                                 <div class="dropdown-menu dropdown-menu-head pull-right">
-                                    <h5 class="title">You have @user.AccountMessages.ToList().Count Mails </h5>
+                                    @if (@user.AccountMessages.ToList().Count == 0)
+                                    {
+                                        <h5 class="title">You have 0 Mails </h5>
+                                    }
+                                    else
+                                    {
+                                        <h5 class="title">You have @user.AccountMessages.ToList().Count Mails </h5>
+                                    }
                                 </div>
                             </li>
 
                             <li>
                                 <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
+                                    @if (@user.AccountMessages.ToList().Count == 0)
+                                    {
+                                    <span class="badge">0</span>
+                                    }
+                                    else
+                                    {
                                     <span class="badge">@user.Notifications.ToList().Count</span>
+                                    }
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-head pull-right">
                                     <h5 class="title">Notifications</h5>
                                     <ul class="dropdown-list normal-list">
-                                        @foreach (var x in user.Notifications)
+                                        @if (user.Notifications != null)
                                         {
-                                            if (x.Type == "Report")
+                                            foreach (var x in user.Notifications)
                                             {
-                                                <li class="new">
-                                                    <a href="">
-                                                        <span class="label label-danger"><i class="fa fa-ban"></i></span>
-                                                        <span class="name">The Classified @x.Name has been reported.  </span>
-                                                        <em class="small">@x.Email</em>
-                                                    </a>
-                                                </li>
-                                            }
-                                            else if (x.Type == "Subs")
-                                            {
-                                                <li class="new">
-                                                    <a href="">
-                                                        <span class="label label-success"><i class="fa fa-eye"></i></span>
-                                                        <span class="name">@x.Name is now following...  </span>
-                                                        <em class="small">@x.Email</em>
-                                                    </a>
-                                                </li>
-                                            }
-                                            else
-                                            {
-                                                <li class="new">
-                                                    <a href="">
-                                                        <span class="label label-warning"><i class="fa fa-bolt"></i></span>
-                                                        <span class="name">@x.Name has created a new clssified. </span>
-                                                        <em class="small">@x.Email</em>
-                                                    </a>
-                                                </li>
+                                                if (x.Type == "Report")
+                                                {
+                                                    <li class="new">
+                                                        <a href="">
+                                                            <span class="label label-danger"><i class="fa fa-ban"></i></span>
+                                                            <span class="name">The Classified @x.Name has been reported.  </span>
+                                                            <em class="small">@x.Email</em>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                else if (x.Type == "Subs")
+                                                {
+                                                    <li class="new">
+                                                        <a href="">
+                                                            <span class="label label-success"><i class="fa fa-eye"></i></span>
+                                                            <span class="name">@x.Name is now following...  </span>
+                                                            <em class="small">@x.Email</em>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="new">
+                                                        <a href="">
+                                                            <span class="label label-warning"><i class="fa fa-bolt"></i></span>
+                                                            <span class="name">@x.Name has created a new clssified. </span>
+                                                            <em class="small">@x.Email</em>
+                                                        </a>
+                                                    </li>
+                                                }
                                             }
                                         }
-                                        <li class="new"><a href="">See All Notifications</a></li>
+                                        else
+                                        {
+                                            <li class="new"><a href="">No Notifications</a></li>
+                                        }
                                     </ul>
                                 </div>
                             </li>

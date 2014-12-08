@@ -89,7 +89,7 @@ namespace MiPrimerMVC.Controllers
             questionToBeArchived.Archive();
             _writeOnlyRepository.Update(questionToBeArchived);
 
-            return RedirectToAction("FAQ");
+            return RedirectToAction("ManageFaq");
         }
 
     }

@@ -53,15 +53,19 @@
                                     @Html.AntiForgeryToken()
                                      @Html.ValidationSummary(true)
                                     
-                                    <label>Username</label>
+                                    <label>Email</label>
                                     @Html.TextBoxFor(x => x.Email, new { @class = "input-block-level", placeholder = "First.Last@example.com"})
+                                    <label style="color:red">@Html.ValidationMessageFor(x=>x.Email)</label>
                                     <label>Full Name</label>
                                     @Html.TextBoxFor(x => x.Name, new { @class = "input-block-level"})
+                                    <label style="color:red">@Html.ValidationMessageFor(x=>x.Name)</label>
                                     <label>Password </label>
                                     @Html.PasswordFor(x => x.Password, new { @class = "input-block-level"})
+                                    <label style="color:red">@Html.ValidationMessageFor(x=>x.Password)</label>
                                     <label>Repeat Password</label>
                                     @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "input-block-level" })
-                                   
+                                    <label style="color:red">@Html.ValidationMessageFor(x=>x.ConfirmPassword)</label>
+
                                      <label>
                                         <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
                                         &nbsp;&nbsp;&nbsp;I Aggree With <a role="button" href="#TabsModal" data-toggle="modal">Terms &amp; Conditions</a>
