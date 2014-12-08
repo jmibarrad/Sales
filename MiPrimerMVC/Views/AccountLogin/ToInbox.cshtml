@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Sales|JMID: Inbox";
-    Layout = "~/Views/Shared/_Layout3.cshtml";
+    Layout = Context.User.Identity.Name == "jmibarrad@gmail.com" ? "~/Views/Shared/_Layout3.cshtml" : "~/Views/Shared/_Layout2.cshtml";
 }
 
 <div class="mail-box">

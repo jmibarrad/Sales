@@ -7,6 +7,7 @@ using Domain.Entities;
 using Domain.Services;
 using MiPrimerMVC.Models;
 using MiPrimerMVC.ValidationAttributes;
+using Twilio;
 
 namespace MiPrimerMVC.Controllers
 {
@@ -435,6 +436,18 @@ namespace MiPrimerMVC.Controllers
             public List<Classifieds> MostVisitedList { get; set; }
             public List<Classifieds> RecentList { get; set; }
             public List<Classifieds> FeaturedList { get; set; }
+        }
+    }
+     public class TwilioService
+    {
+        public static void SendSms(string mensaje,string correo,string nombre,string titulo)
+        {
+            const string accountSid = "AC010bb6f81be3f9f15e22429cb5186712";
+            const string authToken = "ba658d41edc179f84106a18d0f4b6d26";
+            var twilio = new TwilioRestClient(accountSid, authToken);
+
+            var message = twilio.SendMessage("+17476002179", "+504 3191-8027", nombre+" le ha enviado una pregunta. Clasificado: "+titulo+
+                ". Pregunta: "+mensaje+". Correo: "+correo);
         }
     }
 }

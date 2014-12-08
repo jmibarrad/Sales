@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Classifieds";
-    Layout = "~/Views/Shared/_Layout3.cshtml";
+    Layout = Context.User.Identity.Name == "jmibarrad@gmail.com" ? "~/Views/Shared/_Layout3.cshtml" : "~/Views/Shared/_Layout2.cshtml";
 }
 
 <!DOCTYPE html>
@@ -102,20 +102,24 @@
                             @Html.TextBoxFor(x => x.UrlImage, new { @class = "form-control", placeholder = "Image URL here" })
                             <label style="color: red">@Html.ValidationMessageFor(x => x.UrlImage)</label>
                         </div>
+                        <label class="col-lg-2 control-label">Image URL1</label>
                         <div class="col-lg-10">
-                            @Html.TextBoxFor(x => x.UrlImage1, new { @class = "form-control", placeholder = "Image URL here*" })
+                            @Html.TextBoxFor(x => x.UrlImage1, new { @class = "form-control", placeholder = "Image1 URL here*" })
                             <label style="color: red">@Html.ValidationMessageFor(x => x.UrlImage1)</label>
                         </div>
+                        <label class="col-lg-2 control-label">Image URL2</label>
                         <div class="col-lg-10">
-                            @Html.TextBoxFor(x => x.UrlImage2, new { @class = "form-control", placeholder = "Image URL here*" })
+                            @Html.TextBoxFor(x => x.UrlImage2, new { @class = "form-control", placeholder = "Image2 URL here*" })
                             <label style="color: red">@Html.ValidationMessageFor(x => x.UrlImage2)</label>
                         </div>
+                        <label class="col-lg-2 control-label">Image URL3</label>
                         <div class="col-lg-10">
-                            @Html.TextBoxFor(x => x.UrlImage3, new { @class = "form-control", placeholder = "Image URL here*" })
+                            @Html.TextBoxFor(x => x.UrlImage3, new { @class = "form-control", placeholder = "Image3 URL here*" })
                             <label style="color: red">@Html.ValidationMessageFor(x => x.UrlImage3)</label>
                         </div>
+                        <label class="col-lg-2 control-label">Image URL4</label>
                         <div class="col-lg-10">
-                            @Html.TextBoxFor(x => x.UrlImage4, new { @class = "form-control", placeholder = "Image URL here^*" })
+                            @Html.TextBoxFor(x => x.UrlImage4, new { @class = "form-control", placeholder = "Image4 URL here^*" })
                             <label style="color: red">@Html.ValidationMessageFor(x => x.UrlImage4)</label>
                         </div>
                     </div>
