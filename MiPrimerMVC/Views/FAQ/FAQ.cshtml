@@ -56,315 +56,330 @@
         <link media="screen" href="~/common/theme/scripts/plugins/other/pageguide/css/pageguide.css" rel="stylesheet" /><!--<![endif]-->
         <!-- Main Theme Stylesheet :: CSS -->
         <link href="~/common/theme/css/style-flat.css?1372280967" rel="stylesheet" type="text/css" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
 
+        <!-- Bootstrap -->
+        <link href="../../../common/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="../../../common/bootstrap/css/responsive.css" rel="stylesheet" type="text/css" />
+
+        <!-- Glyphicons Font Icons -->
+        <link href="../../../common/theme/fonts/glyphicons/css/glyphicons.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="../../../common/theme/fonts/font-awesome/css/font-awesome.min.css">
+        <!--[if IE 7]><link rel="stylesheet" href="../../../common/theme/fonts/font-awesome/css/font-awesome-ie7.min.css"><![endif]-->
+        <!-- Uniform Pretty Checkboxes -->
+        <link href="../../../common/theme/scripts/plugins/forms/pixelmatrix-uniform/css/uniform.default.css" rel="stylesheet" />
+
+        <!-- Bootstrap Extended -->
+        <link href="../../../common/bootstrap/extend/bootstrap-select/bootstrap-select.css" rel="stylesheet" />
+
+        <!-- JQueryUI -->
+        <link href="../../../common/theme/scripts/plugins/system/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" />
+
+        <!-- MiniColors ColorPicker Plugin -->
+        <link href="../../../common/theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.css" rel="stylesheet" />
+
+        <!-- Google Code Prettify Plugin -->
+        <link href="../../../common/theme/scripts/plugins/other/google-code-prettify/prettify.css" rel="stylesheet" />
+
+        <!-- Main Theme Stylesheet :: CSS -->
+        <link href="../../../common/theme/css/style-default.css?1372280995" rel="stylesheet" />
+
+        <link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+        <!-- LESS.js Library -->
+        <script src="../../../common/theme/scripts/plugins/system/less.min.js"></script>
 
         <!-- LESS.js Library -->
         <script src="~/common/theme/scripts/plugins/system/less.min.js"></script>
     </head>
-    <body>
-        <div class="navbar main hidden-print">
+<body>
+    <div class="container-fluid">
 
-            <div class="secondary">
+        <!-- Content -->
+        <div id="content">
+            <div class="navbar main hidden-print">
+
+                <div class="secondary">
+                    <div class="container-960">
+
+                        <!-- Brand -->
+                        <a href="#" class="appbrand pull-left">Sales|JMID</a>
+
+                        <ul class="topnav pull-right">
+
+                            <li class="glyphs hidden-phone">
+                                <ul>
+                                    @if (Context.User.Identity.IsAuthenticated)
+                                    {
+                                        <li><a href="~/AccountLogin/Profile" class="glyphicons user"><i></i> Profile</a></li>
+                                        <li><a href="~/AccountLogin/Logout" class="glyphicons lock"><i></i> Sign out</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="~/AccountLogin/Login" class="glyphicons unlock"><i></i> Sign in</a></li>
+                                        <li><a href="~/Register/Register" class="glyphicons user_add"><i></i> Sign up</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+
                 <div class="container-960">
 
-                    <!-- Brand -->
-                    <a href="#" class="appbrand pull-left">Sales|JMID</a>
+                    <!-- Menu Toggle Button -->
+                    <button type="button" class="btn btn-navbar visible-phone">
+                        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                    <!-- // Menu Toggle Button END -->
 
-                    <ul class="topnav pull-right">
+                    <ul class="topnav pull-left">
 
-                        <li class="glyphs hidden-phone">
-                            <ul>
-                                @if (Context.User.Identity.IsAuthenticated)
-                                {
-                                    <li><a href="~/AccountLogin/Profile" class="glyphicons user"><i></i> Profile</a></li>
-                                    <li><a href="~/AccountLogin/Logout" class="glyphicons lock"><i></i> Sign out</a></li>
-                                }
-                                else
-                                {
-                                    <li><a href="~/AccountLogin/Login" class="glyphicons unlock"><i></i> Sign in</a></li>
-                                    <li><a href="~/Register/Register" class="glyphicons user_add"><i></i> Sign up</a></li>
-                                }
+
+                        <li><a href="~/Classifieds/MostVisited" class="glyphicons home"><i></i> Home</a></li>
+                        <li class="dropdown dd-1 active">
+                            <a href="" data-toggle="dropdown" class="glyphicons shopping_cart"><i></i>Classifieds <span class="caret"></span></a>
+                            <ul class="dropdown-menu pull-left">
+                                <li class="glyphicons glyphicon-tags"><a href="~/Classifieds/AllClassifieds"><i></i>All Clasifieds</a></li>
+                                <li class="glyphicons glyphicon-tag"><a href="~/Classifieds/AdvancedSearch">Advanced Search</a></li>
                             </ul>
                         </li>
+                        <li><a href="~#" class="glyphicons circle_info"><i></i> About</a></li>
+                        <li><a href="~/Contact/Contact" class="glyphicons iphone"><i></i> Contact</a></li>
+
                     </ul>
+
+                    <!-- Top Menu Right -->
+                    <ul class="topnav pull-right border-none hidden-tablet"></ul>
                     <div class="clearfix"></div>
+                    <!-- // Top Menu Right END -->
 
                 </div>
+
             </div>
 
-            <div class="container-960">
+            <h3>Frequently Asked Questions</h3>
+            <div class="innerLR">
 
-                <!-- Menu Toggle Button -->
-                <button type="button" class="btn btn-navbar visible-phone">
-                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-                </button>
-                <!-- // Menu Toggle Button END -->
-
-                <ul class="topnav pull-left">
-
-
-                    <li><a href="~/Classifieds/MostVisited" class="glyphicons home"><i></i> Home</a></li>
-                    <li class="dropdown dd-1 active">
-                        <a href="" data-toggle="dropdown" class="glyphicons shopping_cart"><i></i>Classifieds <span class="caret"></span></a>
-                        <ul class="dropdown-menu pull-left">
-                            <li class="glyphicons glyphicon-tags"><a href="~/Classifieds/AllClassifieds"><i></i>All Clasifieds</a></li>
-                            <li class="glyphicons glyphicon-tag"><a href="~/Classifieds/AdvancedSearch">Advanced Search</a></li>
+                <!-- Widget -->
+                <div class="widget widget-tabs widget-tabs-double-2">
+                    <!-- Widget heading -->
+                    <div class="widget-head">
+                        <ul>
+                            <li class="active"><a class="glyphicons list" href="#tabAll" data-toggle="tab"><i></i><span>All topics</span></a></li>
                         </ul>
-                    </li>
-                    <li><a href="~#" class="glyphicons circle_info"><i></i> About</a></li>
-                    <li><a href="~/Contact/Contact" class="glyphicons iphone"><i></i> Contact</a></li>
-
-                </ul>
-
-                <!-- Top Menu Right -->
-                <ul class="topnav pull-right border-none hidden-tablet"></ul>
-                <div class="clearfix"></div>
-                <!-- // Top Menu Right END -->
-
-            </div>
-
-        </div>
-
-        <h3>Frequently Asked Questions</h3>
-        <div class="innerLR">
-            
-            <!-- Widget -->
-            <div class="widget widget-tabs widget-tabs-double-2">
-
-                <!-- Widget heading -->
-                <div class="widget-head">
-                    <ul>
-                        <li class="active"><a class="glyphicons list" href="#tabAll" data-toggle="tab"><i></i><span>All topics</span></a></li>
-                    </ul>
-                </div>
-                <!-- // Widget heading END -->
-
-                <div class="widget-body">
-                    <div class="tab-content">
-
-                        <!-- Tab content -->
-                        <div id="tabAll" class="tab-pane active">
-                            <div class="accordion accordion-2" id="accordion">
-                                <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                        <a class="accordion-toggle glyphicons font" data-toggle="collapse" data-parent="#accordion" href="#collapse-1">
-                                            <i></i>What is Sales|JMID?
-                                        </a>
-                                    </div>
-                                    <div id="collapse-1" class="accordion-body collapse in">
-                                        <div class="accordion-inner">
-                                            It´s a site where people can post their own items for sale or rent.
+                    </div>
+                    <!-- // Widget heading END -->
+                    <div class="widget-body">
+                        <div class="tab-content">
+                            <!-- Tab content -->
+                            <div id="tabAll" class="tab-pane active">
+                                <div class="accordion accordion-2" id="accordion">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons font" data-toggle="collapse" data-parent="#accordion" href="#collapse-1">
+                                                <i></i>What is Sales|JMID?
+                                            </a>
+                                        </div>
+                                        <div id="collapse-1" class="accordion-body collapse in">
+                                            <div class="accordion-inner">
+                                                It´s a site where people can post their own items for sale or rent.
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                        <a class="accordion-toggle glyphicons circle_question_mark" data-toggle="collapse" data-parent="#accordion" href="#collapse-2">
-                                            <i></i>How is it use?
-                                        </a>
-                                    </div>
-                                    <div id="collapse-2" class="accordion-body collapse">
-                                        <div class="accordion-inner">
-                                            Same selling page protocol; you have to sign up and continue to dashboard and post an item with all its requirements. 
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons circle_question_mark" data-toggle="collapse" data-parent="#accordion" href="#collapse-2">
+                                                <i></i>How is it use?
+                                            </a>
+                                        </div>
+                                        <div id="collapse-2" class="accordion-body collapse">
+                                            <div class="accordion-inner">
+                                                Same selling page protocol; you have to sign up and continue to dashboard and post an item with all its requirements.
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                        <a class="accordion-toggle glyphicons flag" data-toggle="collapse" data-parent="#accordion" href="#collapse-3">
-                                            <i></i>Where does it come from?
-                                        </a>
-                                    </div>
-                                    <div id="collapse-3" class="accordion-body collapse">
-                                        <div class="accordion-inner">
-                                            <p>It was inspired in Amazon</p>
-                                            <p>BUt firts of all; was an attempt on classifieds project for UNITEC</p>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a class="accordion-toggle glyphicons flag" data-toggle="collapse" data-parent="#accordion" href="#collapse-3">
+                                                <i></i>Where does it come from?
+                                            </a>
+                                        </div>
+                                        <div id="collapse-3" class="accordion-body collapse">
+                                            <div class="accordion-inner">
+                                                <p>It was inspired in Amazon</p>
+                                                <p>BUt firts of all; was an attempt on classifieds project for UNITEC</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                        <a class="accordion-toggle glyphicons download_alt" data-toggle="collapse" data-parent="#accordion" href="#collapse-4">
-                                            <i></i>Where its located?
-                                        </a>
-                                    </div>
-                                    <div id="collapse-4" class="accordion-body collapse">
-                                        <div class="accordion-inner">
-                                            Honduras; Central America
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Code Begins-->                                    
-                                @foreach(var x in Model.QuestionList)
-                                {
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
                                             <a class="accordion-toggle glyphicons download_alt" data-toggle="collapse" data-parent="#accordion" href="#collapse-4">
-                                                @x.QuestionText    |     <small>@x.Name</small>     |     <small>@x.Email                                                   |<i style="text-align: right"></i>@x.PostedQuestionDate.ToShortDateString()</small>
+                                                <i></i>Where its located?
                                             </a>
                                         </div>
                                         <div id="collapse-4" class="accordion-body collapse">
-                                            @if (x.QuestionAnswers != null)
-                                            {
-                                                foreach (var z in x.QuestionAnswers)
-                                                {
-                                                    <div class="accordion-inner">
-                                                        <p><i class="fa fa-hand-o-right"></i> @z.AnswerText  | <small style="color: blue">@z.PostedAnswerDate</small></p>
-                                                    </div>
-                                                    <br/>
-                                                }
-                                            }
-                                            else
-                                            {
-                                                <div class="accordion-inner">
-                                                    <p><i class="fa fa-warning"></i>Not answered yet.</p>
-                                                </div>
-                                                <br />
-                                            }
+                                            <div class="accordion-inner">
+                                                Honduras; Central America
+                                            </div>
                                         </div>
                                     </div>
-                                }
-                                <!--Code Ends-->
-
+                                    <!--Code Begins-->
+                                    @foreach (var x in Model.QuestionList)
+                                    {
+                                        <div class="accordion-group">
+                                            <div class="accordion-heading">
+                                                <a class="accordion-toggle glyphicons download_alt" data-toggle="collapse" data-parent="#accordion" href="#collapse-4">
+                                                    @x.QuestionText    |     <small>@x.Name</small>     |     <small>@x.Email                                                   |<i style="text-align: right"></i>@x.PostedQuestionDate.ToShortDateString()</small>
+                                                </a>
+                                            </div>
+                                            <div id="collapse-4" class="accordion-body collapse">
+                                                @if (x.QuestionAnswers != null)
+                                                {
+                                                    foreach (var z in x.QuestionAnswers)
+                                                    {
+                                                        <div class="accordion-inner">
+                                                            <p><i class="fa fa-hand-o-right"></i> @z.AnswerText  | <small style="color: blue">@z.PostedAnswerDate</small></p>
+                                                        </div>
+                                                        <br />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <div class="accordion-inner">
+                                                        <p><i class="fa fa-warning"></i>Not answered yet.</p>
+                                                    </div>
+                                                    <br />
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                    <!--Code Ends-->
+                                </div>
                             </div>
+                            <!-- // Tab content END -->
+
                         </div>
-                        <!-- // Tab content END -->
-                          
                     </div>
                 </div>
+                <!-- // Widget END -->
             </div>
-            <!-- // Widget END -->
+            <h3>Question</h3>
+            <div class="row-fluid row-merge border-bottom border-top">
 
-        </div>
-        <h3>Question</h3>
-        <div class="row-fluid row-merge border-bottom border-top">
-               
-            <!--Form BEGINS HERE-->
-                
-            @using (Html.BeginForm("FAQ", "FAQ", null, FormMethod.Post, new { @class = "form-horizontal" })) { 
-                <div class="span7">
+                <!--Form BEGINS HERE-->
+                @using (Html.BeginForm("FAQ", "FAQ", null, FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="span7">
+                        <div class="innerAll">
+                            <h4 class="separator bottom margin-none">Send us a message</h4>
+                            <form class="row-fluid margin-none">
+                                <div class="span6">
+                                    @Html.TextBoxFor(x => x.Name, new { @class = "span12", placeholder = "YOUR NAME" })
+                                </div>
+                                <div class="span6">
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "span12", placeholder = "EMAIL" })
+                                </div>
+                                @Html.TextAreaFor(x => x.QuestionText, new { @class = "span12", placeholder = "YOUR MESSAGE", rows = "5" })
+                                <div class="right">
+                                    <button type="submit" class="btn btn-primary btn-icon glyphicons envelope"><i></i> Send Question</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                }
+                <!--Form ENDS HERE-->
+                <div class="span5">
                     <div class="innerAll">
-                        <h4 class="separator bottom margin-none">Send us a message</h4>
-                        <form class="row-fluid margin-none">
-                            <div class="span6">
-                                @Html.TextBoxFor(x => x.Name, new { @class = "span12", placeholder="YOUR NAME"})
-                            </div>
-                            <div class="span6">
-                                @Html.TextBoxFor(x => x.Email, new { @class = "span12", placeholder = "EMAIL"})
-                            </div>
-                            @Html.TextAreaFor(x => x.QuestionText, new { @class = "span12", placeholder = "YOUR MESSAGE",rows="5"})
-                            <div class="right">
-                                <button type="submit" class="btn btn-primary btn-icon glyphicons envelope"><i></i> Send Question</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            }
-            <!--Form ENDS HERE-->
-
-            <div class="span5">
-                <div class="innerAll">
-                    <div class="well margin-none">
-                        <address class="margin-none">
-                            <h2>Jose M. Ibarra</h2>
-                            <strong>Business manager</strong> at
-                            <strong><a href="#">Business</a></strong><br>
-                            <abbr title="Work email">e-mail:</abbr> <a href="~/Contact/Contact">jmibarrad@gmail.com</a><br />
-                            <abbr title="Work Phone">phone:</abbr> (504) 992-048<br />
-                            <abbr title="Work Fax">fax:</abbr> (012) 678-132-901
-                            <div class="separator line"></div>
-                            <p class="margin-none"><strong>SalesJMID.es</strong></p>
-                        </address>
+                        <div class="well margin-none">
+                            <address class="margin-none">
+                                <h2>Jose M. Ibarra</h2>
+                                <strong>Business manager</strong> at
+                                <strong><a href="#">Business</a></strong><br>
+                                <abbr title="Work email">e-mail:</abbr> <a href="~/Contact/Contact">jmibarrad@gmail.com</a><br />
+                                <abbr title="Work Phone">phone:</abbr> (504) 992-048<br />
+                                <abbr title="Work Fax">fax:</abbr> (012) 678-132-901
+                                <div class="separator line"></div>
+                                <p class="margin-none"><strong>SalesJMID.es</strong></p>
+                            </address>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        
-        
-        
-        <!-- // Themer END -->
-
-        <!-- JQuery -->
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-        <!-- Code Beautify -->
-        <script src="../../../../../common/theme/scripts/plugins/other/js-beautify/beautify.js"></script>
-        <script src="../../../../../common/theme/scripts/plugins/other/js-beautify/beautify-html.js"></script>
-
-        
-        <!-- Global -->
-        <script>
-            var basePath = '',
-                commonPath = '../../../../../common/';
-        </script>
-
-        <!-- JQueryUI -->
-        <script src="~/common/theme/scripts/plugins/system/jquery-ui/js/jquery-ui-1.9.2.custom.min.js"></script>
-
-        <!-- Modernizr -->
-        <script src="~/common/theme/scripts/plugins/system/modernizr.js"></script>
-
-        <!-- Bootstrap -->
-        <script src="~/common/bootstrap/js/bootstrap.min.js"></script>
-
-        <!-- SlimScroll Plugin -->
-        <script src="~/common/theme/scripts/plugins/other/jquery-slimScroll/jquery.slimscroll.min.js"></script>
-
-        <!-- Common Demo Script -->
-        <script src="~/common/theme/scripts/demo/common.js?1372280967"></script>
-
-        <!-- Holder Plugin -->
-        <script src="~/common/theme/scripts/plugins/other/holder/holder.js"></script>
-        <script>
-            Holder.add_theme("dark", { background: "#000", foreground: "#aaa", size: 9 });
-            Holder.add_theme("white", { background: "#fff", foreground: "#c9c9c9", size: 9 });
-        </script>
-
-        <!-- Uniform Forms Plugin -->
-        <script src="~/common/theme/scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.min.js"></script>
-
-        <!-- Bootstrap Extended -->
-        <script src="~/common/bootstrap/extend/bootstrap-select/bootstrap-select.js"></script>
-        <script src="~/common/bootstrap/extend/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js"></script>
-        <script src="~/common/bootstrap/extend/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"></script>
-        <script src="~/common/bootstrap/extend/jasny-fileupload/js/bootstrap-fileupload.js"></script>
-        <script src="~/common/bootstrap/extend/bootbox.js"></script>
-        <script src="~/common/bootstrap/extend/bootstrap-wysihtml5/js/wysihtml5-0.3.0_rc2.min.js"></script>
-        <script src="/common/bootstrap/extend/bootstrap-wysihtml5/js/bootstrap-wysihtml5-0.0.2.js"></script>
-
-        <!-- Google Code Prettify -->
-        <script src="/common/theme/scripts/plugins/other/google-code-prettify/prettify.js"></script>
-
-        <!-- Gritter Notifications Plugin -->
-        <script src="/common/theme/scripts/plugins/notifications/Gritter/js/jquery.gritter.min.js"></script>
-
-        <!-- Notyfy Notifications Plugin -->
-        <script src="/common/theme/scripts/plugins/notifications/notyfy/jquery.notyfy.js"></script>
-
-        <!-- MiniColors Plugin -->
-        <script src="/common/theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.js"></script>
-
-        
-        <!-- Cookie Plugin -->
-        <script src="/common/theme/scripts/plugins/system/jquery.cookie.js"></script>
-
-        <!-- Colors -->
-        <script>
-            var primaryColor = '#4a8bc2',
-                dangerColor = '#b55151',
-                successColor = '#609450',
-                warningColor = '#ab7a4b',
-                inverseColor = '#45484d';
-        </script>
-
-        <!-- Ba-Resize Plugin -->
-        <script src="/common/theme/scripts/plugins/other/jquery.ba-resize.js"></script>
+    </div>
 
 
-        
-        
+    <!-- // Themer END -->
+    <!-- JQuery -->
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <!-- Code Beautify -->
+    <script src="../../../../../common/theme/scripts/plugins/other/js-beautify/beautify.js"></script>
+    <script src="../../../../../common/theme/scripts/plugins/other/js-beautify/beautify-html.js"></script>
 
-    </body>
+    <!-- Global -->
+    <script>
+        var basePath = '',
+            commonPath = '../../../../../common/';
+    </script>
+    <!-- JQueryUI -->
+    <script src="~/common/theme/scripts/plugins/system/jquery-ui/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <!-- Modernizr -->
+    <script src="~/common/theme/scripts/plugins/system/modernizr.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/common/bootstrap/js/bootstrap.min.js"></script>
+    <!-- SlimScroll Plugin -->
+    <script src="~/common/theme/scripts/plugins/other/jquery-slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- Common Demo Script -->
+    <script src="~/common/theme/scripts/demo/common.js?1372280967"></script>
+    <!-- Holder Plugin -->
+    <script src="~/common/theme/scripts/plugins/other/holder/holder.js"></script>
+    <script>
+        Holder.add_theme("dark", { background: "#000", foreground: "#aaa", size: 9 });
+        Holder.add_theme("white", { background: "#fff", foreground: "#c9c9c9", size: 9 });
+    </script>
+    <!-- Uniform Forms Plugin -->
+    <script src="~/common/theme/scripts/plugins/forms/pixelmatrix-uniform/jquery.uniform.min.js"></script>
+    <!-- Bootstrap Extended -->
+    <script src="~/common/bootstrap/extend/bootstrap-select/bootstrap-select.js"></script>
+    <script src="~/common/bootstrap/extend/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js"></script>
+    <script src="~/common/bootstrap/extend/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"></script>
+    <script src="~/common/bootstrap/extend/jasny-fileupload/js/bootstrap-fileupload.js"></script>
+    <script src="~/common/bootstrap/extend/bootbox.js"></script>
+    <script src="~/common/bootstrap/extend/bootstrap-wysihtml5/js/wysihtml5-0.3.0_rc2.min.js"></script>
+    <script src="/common/bootstrap/extend/bootstrap-wysihtml5/js/bootstrap-wysihtml5-0.0.2.js"></script>
+    <!-- Google Code Prettify -->
+    <script src="/common/theme/scripts/plugins/other/google-code-prettify/prettify.js"></script>
+    <!-- Gritter Notifications Plugin -->
+    <script src="/common/theme/scripts/plugins/notifications/Gritter/js/jquery.gritter.min.js"></script>
+    <!-- Notyfy Notifications Plugin -->
+    <script src="/common/theme/scripts/plugins/notifications/notyfy/jquery.notyfy.js"></script>
+    <!-- MiniColors Plugin -->
+    <script src="/common/theme/scripts/plugins/color/jquery-miniColors/jquery.miniColors.js"></script>
+
+    <!-- Cookie Plugin -->
+    <script src="/common/theme/scripts/plugins/system/jquery.cookie.js"></script>
+    <!-- Colors -->
+    <script>
+        var primaryColor = '#4a8bc2',
+            dangerColor = '#b55151',
+            successColor = '#609450',
+            warningColor = '#ab7a4b',
+            inverseColor = '#45484d';
+    </script>
+    <!-- Ba-Resize Plugin -->
+    <script src="/common/theme/scripts/plugins/other/jquery.ba-resize.js"></script>
+
+
+
+</body>
+
 </html>

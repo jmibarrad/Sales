@@ -105,7 +105,7 @@ namespace MiPrimerMVC.Controllers
                     user.AccountMessages = messageList;
                     SendSms(model.sendEmail.Message, EmailReceiver, user.Name, id, user.UserInfo.Cellphone);
                     _writeOnlyRepository.Update(user);
-                    MailTo.SendSimpleMessage(EmailReceiver, model.sendEmail.Name, model.sendEmail.Message);
+                   // MailTo.SendSimpleMessage(EmailReceiver, model.sendEmail.Name, model.sendEmail.Message);
                   
             //check
             MessageBox.Show("Email sent successfully");

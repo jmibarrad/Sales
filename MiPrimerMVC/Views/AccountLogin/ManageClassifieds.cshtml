@@ -21,27 +21,32 @@
                     @foreach(var x in Model.UserList){
                        <div class="panel panel-success">@x.Name</div>
                        <div class="title">Active Classifieds</div>
-                        foreach(var z in x.AccountClassifieds.Where(u=>!u.AdminArchived && !u.Archived)){
-                        
-                            <div class="images item ">
-                                <a href="#myModal" data-toggle="modal">
-                                    <img src="@z.UrlImage" alt="" />
-                                </a>
-                                <p>@z.Article  <span class="fa fa-trash">@Html.ActionLink("Archive", "ArchiveClassified", "AccountLogin", new { @id = z.Id }, new{@class="btn btn-danger"})</span> </p>
+                        foreach (var z in x.AccountClassifieds.Where(u => !u.AdminArchived && !u.Archived))
+                        {
+                            <div class="row-fluid">
+                                <div class="images item ">
+                                    <a href="#myModal" data-toggle="modal">
+                                        <img src="@z.UrlImage" alt="" />
+                                    </a>
+                                    <p>@z.Article  <span class="fa fa-trash">@Html.ActionLink("Archive", "ArchiveClassified", "AccountLogin", new { @id = z.Id }, new { @class = "btn btn-danger" })</span> </p>
+                                </div>
                             </div>
-                       }
-                       
-                       <div class="title">Archived Classifieds</div>
-                       foreach(var z in x.AccountClassifieds.Where(u=>u.AdminArchived && !u.Archived)){
-                        
-                            <div class="images item ">
-                                <a href="#myModal" data-toggle="modal">
-                                    <img src="@z.UrlImage" alt="" />
-                                </a>
-                                <p>@z.Article <span class="fa fa-undo">@Html.ActionLink("Activate", "ActivateClassified", "AccountLogin", new { @id = z.Id }, new{@class="btn btn-success"})</span></p>
+                        }
+
+                            <div class="title">Archived Classifieds</div>
+                        foreach (var z in x.AccountClassifieds.Where(u => u.AdminArchived && !u.Archived))
+                        {
+                            <div class="row-fluid">
+                                <div class="images item ">
+                                    <a href="#myModal" data-toggle="modal">
+                                        <img src="@z.UrlImage" alt="" />
+                                    </a>
+                                    <p>@z.Article <span class="fa fa-undo">@Html.ActionLink("Activate", "ActivateClassified", "AccountLogin", new { @id = z.Id }, new { @class = "btn btn-success" })</span></p>
+                                </div>
                             </div>
-                       }
-                   }
+                        }
+
+                    }
 
                   
                 </div>
